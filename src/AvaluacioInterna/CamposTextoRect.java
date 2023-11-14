@@ -4,8 +4,7 @@ import processing.core.PApplet;
 
 import static processing.core.PConstants.BACKSPACE;
 
-public class CamposDeTexto {
-
+public class CamposTextoRect {
     int x, y, w, h;
 
     int GrosorTrazo;
@@ -17,10 +16,11 @@ public class CamposDeTexto {
     boolean selected = false;
 
     //Constructor
-    public CamposDeTexto(PApplet p5, int x, int y, int w, String t){
+    public CamposTextoRect(PApplet p5, int x, int y, int w, String t){
         this.x= x;
         this.y= y;
         this.w= w;
+        this.h= 40;
         this.texto= t;
         this.textoEstatico = t;
         this.GrosorTrazo= 3;
@@ -30,15 +30,15 @@ public class CamposDeTexto {
     //Dibuja el campo de texto
     public void display(PApplet p5){
         p5.pushStyle();
-            p5.strokeWeight(GrosorTrazo);
-            p5.stroke(ColorLinea);
-            p5.line(this.x+10, this.y, this.x+this.w-15, this.y);
+        p5.strokeWeight(GrosorTrazo);
+        p5.stroke(ColorLinea);
+        p5.rect(this.x+10, this.y, this.w-20, this.h);
 
-            p5.fill(0);
-            p5.textSize(TamañoTexto);
-            p5.textAlign(p5.LEFT, p5.CENTER);
-            p5.text(texto, x+10, y-10);
-            //p5.text (texto, x+10+textoEstatico.length(), y-10);
+        p5.fill(0);
+        p5.textSize(TamañoTexto);
+        p5.textAlign(p5.LEFT, p5.CENTER);
+        p5.text(texto, x+20, y+(this.h/2));
+        //p5.text (texto, x+10+textoEstatico.length(), y-10);
         p5.popStyle();
     }
 
@@ -71,7 +71,7 @@ public class CamposDeTexto {
 
 
     public boolean cursorEncimaCampoTexto(PApplet p5) {
-        return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y-50 && p5.mouseY <= this.y);
+        return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y+50);
     }
 
     public void isPressed(PApplet p5) {
@@ -84,3 +84,4 @@ public class CamposDeTexto {
         System.out.println("SELECTED: "+selected);
     }
 }
+

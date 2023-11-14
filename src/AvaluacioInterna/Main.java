@@ -73,6 +73,9 @@ public class Main extends PApplet{
         gui.TDenominacion.isPressed(this);
         gui.TCosecha.isPressed(this);
         gui.TVariedad.isPressed(this);
+        gui.TRPrecio.isPressed(this);
+        gui.TRCapacidad.isPressed(this);
+        gui.TRUbicacion.isPressed(this);
     }
 
     public void mouseDragged(){
@@ -92,7 +95,7 @@ public class Main extends PApplet{
         else if(key=='1'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
         }
-        else if(key=='2'){
+        /*else if(key=='2'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
         }
         else if(key=='3'){
@@ -106,13 +109,16 @@ public class Main extends PApplet{
         }
         else if(key=='6'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
-        }
+        }*/
 
         gui.TNombre.keyPressed(key, (int) keyCode);
         gui.TBodega.keyPressed(key, (int) keyCode);
         gui.TDenominacion.keyPressed(key, (int) keyCode);
         gui.TCosecha.keyPressed(key, (int) keyCode);
         gui.TVariedad.keyPressed(key, (int) keyCode);
+        gui.TRPrecio.keyPressed(key, (int)keyCode);
+        gui.TRCapacidad.keyPressed(key, (int) keyCode);
+        gui.TRUbicacion.keyPressed(key, (int) keyCode);
 
     }
 

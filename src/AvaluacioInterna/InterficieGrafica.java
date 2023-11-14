@@ -29,7 +29,9 @@ public class InterficieGrafica {
     PImage logoMenu;
 
     //BOTONES y CAMPOS DE TEXTO ADDVINOS
+    BotonConTexto BAceptarV, BCancelarV, BAddV;
     CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
+    CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
 
 
     //Constructor de la interficie gràfica
@@ -51,12 +53,17 @@ public class InterficieGrafica {
         bMVinos= new BotonConTexto(p5, marginH*2, 4*marginV+MenuHeight/3 + 3*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "VINOS");
         bMCatas= new BotonConTexto(p5, marginH*2, 5*marginV+MenuHeight/3 + 4*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "CATAS");
 
-        //CAMPOS DE TEXTO ADDVINOS
+        //CAMPOS DE TEXTO Y BOTONES ADDVINOS
         TNombre= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (2*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Nom: ");
         TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (5*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
         TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominació de origen: ");
         TVariedad= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Variedad: ");
         TCosecha= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (14*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Cosecha: ");
+        TRPrecio= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (2*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Precio: ");
+        TRCapacidad= new CamposTextoRect(p5,(int)(4*marginH+2*columnVinosWidth), (int)(5*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Capacidad: " );
+        TRUbicacion= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Ubicacion: ");
+       // BAceptarV= new BotonConTexto(p5, );
+
 
     }
 
@@ -108,6 +115,9 @@ public class InterficieGrafica {
         TDenominacion.display(p5);
         TCosecha.display(p5);
         TVariedad.display(p5);
+        TRPrecio.display(p5);
+        TRCapacidad.display(p5);
+        TRUbicacion.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){
