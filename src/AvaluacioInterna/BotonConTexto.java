@@ -2,8 +2,7 @@ package AvaluacioInterna;
 
 import processing.core.PApplet;
 
-import static AvaluacioInterna.Layout.*;
-import static AvaluacioInterna.mides.midaSubtitol;
+import static AvaluacioInterna.Layout.MiniBotonesRadio;
 
 
 public class BotonConTexto {
@@ -14,6 +13,8 @@ public class BotonConTexto {
     int ColorRelleno, ColorTrazo;
     int ColorRellenoEncima; //Color del botón cuando está activo
     String TextoBoton; //TEXTO
+    int ColorLetra; //Color texto
+    int MidaTextoBoton= 35;
     boolean funciona;
 
 
@@ -32,11 +33,15 @@ public class BotonConTexto {
     public void setTextoBoton(String t){
         this.TextoBoton= t;
     }
+    public void setMidaTextoBoton(int m){
+        this.MidaTextoBoton= m;
+    }
 
-    public void setColores(int cRelleno, int colorRellenoEncima, int cTrazo){
+    public void setColores(int cRelleno, int colorRellenoEncima, int cTrazo, int cLetras){
         this.ColorRelleno= cRelleno;
         this.ColorTrazo= cTrazo;
         this.ColorRellenoEncima= colorRellenoEncima;
+        this.ColorLetra= cLetras;
     }
 
     //DIBUJAR EL BOTÓN
@@ -53,10 +58,10 @@ public class BotonConTexto {
         p5.rect(this.x, this.y, this.w, this.h, this.r);
 
         //Texto botón (color, alienación y mida)
-        p5.fill(255);
+        p5.fill(ColorLetra);
         p5.textAlign(p5.CENTER);
-        p5.textSize(midaSubtitol);
-        p5.text(TextoBoton, this.x+MiniBotonesWidth/2, this.y+ 35);
+        p5.textSize(MidaTextoBoton);
+        p5.text(TextoBoton, this.x+this.w/2, this.y+ 35);
 
             p5.popStyle();
     }

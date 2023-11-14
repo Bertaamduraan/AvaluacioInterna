@@ -8,7 +8,7 @@ public class CamposTextoRect {
     int x, y, w, h;
 
     int GrosorTrazo;
-    int ColorLinea;
+    int ColorTrazo;
     String textoEstatico;
     String texto= "";
     int TamañoTexto= 20;
@@ -24,15 +24,16 @@ public class CamposTextoRect {
         this.texto= t;
         this.textoEstatico = t;
         this.GrosorTrazo= 3;
-        this.ColorLinea= p5.color(0);
+        this.ColorTrazo= p5.color(0);
     }
 
     //Dibuja el campo de texto
     public void display(PApplet p5){
         p5.pushStyle();
         p5.strokeWeight(GrosorTrazo);
-        p5.stroke(ColorLinea);
-        p5.rect(this.x+10, this.y, this.w-20, this.h);
+        p5.stroke(ColorTrazo);
+        p5.fill(255);
+        p5.rect(this.x+10, this.y, this.w-20, this.h, 10);
 
         p5.fill(0);
         p5.textSize(TamañoTexto);
