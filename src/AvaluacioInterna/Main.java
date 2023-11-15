@@ -76,6 +76,11 @@ public class Main extends PApplet{
         gui.TRPrecio.isPressed(this);
         gui.TRCapacidad.isPressed(this);
         gui.TRUbicacion.isPressed(this);
+
+        gui.TRvino1.isPressed(this);
+        gui.TRvino2.isPressed(this);
+        gui.TRvino3.isPressed(this);
+        gui.TRvino4.isPressed(this);
     }
 
     public void mouseDragged(){
@@ -119,6 +124,11 @@ public class Main extends PApplet{
         gui.TRPrecio.keyPressed(key, (int)keyCode);
         gui.TRCapacidad.keyPressed(key, (int) keyCode);
         gui.TRUbicacion.keyPressed(key, (int) keyCode);
+
+        gui.TRvino1.keyPressed(key, (int)keyCode);
+        gui.TRvino2.keyPressed(key, (int) keyCode);
+        gui.TRvino3.keyPressed(key, (int) keyCode);
+        gui.TRvino4.keyPressed(key, (int) keyCode);
 
     }
 

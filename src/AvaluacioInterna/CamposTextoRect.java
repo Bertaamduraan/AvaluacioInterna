@@ -9,6 +9,8 @@ public class CamposTextoRect {
 
     int GrosorTrazo;
     int ColorTrazo;
+    int ColorRellenoEncima;
+    int ColorRelleno;
     String textoEstatico;
     String texto= "";
     int TamañoTexto= 20;
@@ -25,21 +27,40 @@ public class CamposTextoRect {
         this.textoEstatico = t;
         this.GrosorTrazo= 3;
         this.ColorTrazo= p5.color(0);
+
     }
+
+    //SETTERS
+    public void setColoresCamposTextoRect(int cRellleno, int colorRellenoEncima, int cTrazo){
+        this.ColorRelleno= cRellleno;
+        this.ColorRellenoEncima= colorRellenoEncima;
+        this.ColorTrazo= cTrazo;
+    }
+
+    public void setHeightRectSizeLetra(int height, int s){
+        this.h= height;
+        this.TamañoTexto= s;
+    }
+
 
     //Dibuja el campo de texto
     public void display(PApplet p5){
-        p5.pushStyle();
+ p5.pushStyle();
+        if(cursorEncimaCampoTexto(p5)){
+            p5.fill(ColorRellenoEncima);
+        }
+        else {
+            p5.fill(ColorRelleno);
+        }
+
         p5.strokeWeight(GrosorTrazo);
         p5.stroke(ColorTrazo);
-        p5.fill(255);
         p5.rect(this.x+10, this.y, this.w-20, this.h, 10);
 
         p5.fill(0);
         p5.textSize(TamañoTexto);
         p5.textAlign(p5.LEFT, p5.CENTER);
         p5.text(texto, x+20, y+(this.h/2));
-        //p5.text (texto, x+10+textoEstatico.length(), y-10);
         p5.popStyle();
     }
 
