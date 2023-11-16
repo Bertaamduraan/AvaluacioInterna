@@ -81,6 +81,15 @@ public class Main extends PApplet{
         gui.TRvino2.isPressed(this);
         gui.TRvino3.isPressed(this);
         gui.TRvino4.isPressed(this);
+
+
+
+        if(gui.sDenominacionOrigen.cursorEncimaBoton(this)){
+            if(!gui.sDenominacionOrigen.plegado){
+                gui.sDenominacionOrigen.actualizar(this);
+            }
+            gui.sDenominacionOrigen.cambio();
+        }
     }
 
     public void mouseDragged(){

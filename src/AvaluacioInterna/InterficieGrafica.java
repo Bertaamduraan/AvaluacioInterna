@@ -37,6 +37,10 @@ public class InterficieGrafica {
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
 
+    //SELECTOR BUSCADOR
+    Selector sDenominacionOrigen;
+    //String[] ValuesDenominacio= {"1", "2", "3", "4", "5"};
+
 
     //Constructor de la interficie gràfica
     public InterficieGrafica(PApplet p5){
@@ -95,8 +99,17 @@ public class InterficieGrafica {
         TRvino4.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
         TRvino4.setHeightRectSizeLetra(60,25);
 
-        /*BAceptarC=;
-        BEliminarV=;*/
+        BAceptarC= new BotonConTexto(p5,4*marginH+columnVinosWidth,24*marginV+HeadLineHeight+115,160,55, "GUARDAR");
+        BAceptarC.setMidaTextoBoton(30);
+        BAceptarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
+        BEliminarC= new BotonConTexto(p5, 13*marginH+columnVinosWidth, 24*marginV+HeadLineHeight+115,160,55, "ELIMINAR");
+        BEliminarC.setMidaTextoBoton(30);
+        BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
+
+
+        //SELCTORS BUSCADOR
+        String[] ValuesDenominacio= {"1", "2", "3", "4", "5"};
+        sDenominacionOrigen= new Selector(ValuesDenominacio, 100, 100, 300, 300, 10);
     }
 
     // PANTALLAS DE LA INTERFÍCIE GRÁFICA
@@ -128,6 +141,7 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogoMenu(p5);
         dibuja1Fila(p5);
+        sDenominacionOrigen.display(p5);
     }
 
     public void dibujaPantallaCalendario(PApplet p5){
@@ -164,6 +178,11 @@ public class InterficieGrafica {
         TRvino2.display(p5);
         TRvino3.display(p5);
         TRvino4.display(p5);
+        p5.pushStyle();
+            p5.textFont(FontsApp.getFirstFont());
+            BAceptarC.display(p5);
+            BEliminarC.display(p5);
+        p5.popStyle();
     }
 
 

@@ -14,6 +14,8 @@ public class BotonConTexto {
     int ColorRellenoEncima; //Color del botón cuando está activo
     String TextoBoton; //TEXTO
     int ColorLetra; //Color texto
+
+    Fonts tipoTexto;
     int MidaTextoBoton= 35;
     boolean funciona;
 
@@ -36,6 +38,7 @@ public class BotonConTexto {
     public void setMidaTextoBoton(int m){
         this.MidaTextoBoton= m;
     }
+
 
     public void setColores(int cRelleno, int colorRellenoEncima, int cTrazo, int cLetras){
         this.ColorRelleno= cRelleno;
@@ -63,7 +66,7 @@ public class BotonConTexto {
         p5.textSize(MidaTextoBoton);
         p5.text(TextoBoton, this.x+this.w/2, this.y+ 35);
 
-            p5.popStyle();
+        p5.popStyle();
     }
 
     //INDICAR SI EL CURSOR ESTÁ SOBRE EL BOTÓN
