@@ -11,11 +11,12 @@ public class Selector {
 
     boolean plegado= true;
 
-    float espacioLineas= 15; //Espacio entre líneas
+    float espacioLineas= 8; //Espacio entre líneas
 
     public Selector(String[] texts, float x, float y, float w, float h, float r){
 
         this.textos= texts;
+        this.selectedValue= "";
         this.x= x;
         this.y= y;
         this.w= w;
@@ -28,9 +29,6 @@ public class Selector {
         return this.plegado;
     }
 
-    public String cogerSelectedValue(){
-        return this.selectedValue;
-    }
 
     public void display(PApplet p5){
     p5.pushStyle();
@@ -43,13 +41,13 @@ public class Selector {
         p5.triangle(x + w - 25, y+5, x + w - 15, y + 25, x + w - 5 , y+5);
 
         p5.fill(0); p5.textSize(14);
-        p5.text(selectedValue, x+10, y+20);
+        p5.text(selectedValue, x+(w/2), y+(h/2));
 
         if(!this.plegado){
             p5.fill(255); p5.stroke(0);
-            p5.rect(x, y+h, w, (h+espacioLineas)*textos.length);
+            p5.rect(x, y+h, w, (h+espacioLineas)*this.textos.length);
 
-             for(int i=0; i< textos.length; i++){
+             for(int i=0; i< this.textos.length; i++){
 
                  if(i== OpcionClicked(p5)){
                      p5.fill(200); p5.noStroke();
@@ -57,12 +55,16 @@ public class Selector {
                  }
 
                  p5.fill(0);
-                 p5.text(textos[i], x + 10, y + h + 25 + (h + espacioLineas)*i);
+                 p5.text(this.textos[i], x + (w/2), y + h + 25 + (h + espacioLineas)*i);
              }
         }
 
 
     p5.popStyle();
+    }
+
+    public void setSelectedValue(String t){
+        this.selectedValue= t;
     }
 
     public void setPlegado(boolean b){
@@ -75,7 +77,7 @@ public class Selector {
 
     public void actualizar(PApplet p5){
         int option = OpcionClicked(p5);
-        selectedValue= textos[option];
+        selectedValue= this.textos[option];
     }
 
 
@@ -91,14 +93,14 @@ public class Selector {
             return (p5.mouseX>= x) &&
                     (p5.mouseX<= x + w) &&
                     (p5.mouseY>= y) &&
-                    (p5.mouseY<= y + h + (h + espacioLineas)*textos.length);
+                    (p5.mouseY<= y + h + (h + espacioLineas)*this.textos.length);
         }
     }
 
 
 
     int OpcionClicked(PApplet p5){
-        int i= (int) p5.map(p5.mouseY, y+h, y+h+(h+espacioLineas)* textos.length, 0, textos.length);
+        int i= (int) p5.map(p5.mouseY, y+h, y+h+(h+espacioLineas)* this.textos.length, 0, this.textos.length);
         return i;
     }
 

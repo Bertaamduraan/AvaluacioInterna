@@ -25,7 +25,7 @@ public class CamposTextoRect {
         this.h= 40;
         this.texto= t;
         this.textoEstatico = t;
-        this.GrosorTrazo= 3;
+        this.GrosorTrazo= 2;
         this.ColorTrazo= p5.color(0);
 
     }

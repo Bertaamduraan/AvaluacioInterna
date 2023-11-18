@@ -54,6 +54,7 @@ public class Main extends PApplet{
     // ******************* MOUSE interaction ***************************** //
 
     public void mousePressed(){
+
             if(gui.bMHome.mouseEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.HOME;
             }else if(gui.bMBuscar.mouseEncimaBoton(this)){
@@ -82,14 +83,34 @@ public class Main extends PApplet{
         gui.TRvino3.isPressed(this);
         gui.TRvino4.isPressed(this);
 
-
-
         if(gui.sDenominacionOrigen.cursorEncimaBoton(this)){
-            if(!gui.sDenominacionOrigen.plegado){
+            if(!gui.sDenominacionOrigen.estaPlegado()){
                 gui.sDenominacionOrigen.actualizar(this);
             }
             gui.sDenominacionOrigen.cambio();
         }
+
+        if(gui.sAñada.cursorEncimaBoton(this)){
+            if(!gui.sAñada.estaPlegado()){
+                gui.sAñada.actualizar(this);
+            }
+            gui.sAñada.cambio();
+        }
+
+        if(gui.sBodega.cursorEncimaBoton(this)){
+            if(!gui.sBodega.estaPlegado()){
+                gui.sBodega.actualizar(this);
+            }
+            gui.sBodega.cambio();
+        }
+
+        if(gui.sColor.cursorEncimaBoton(this)){
+            if(!gui.sColor.estaPlegado()){
+                gui.sColor.actualizar(this);
+            }
+            gui.sColor.cambio();
+        }
+
     }
 
     public void mouseDragged(){

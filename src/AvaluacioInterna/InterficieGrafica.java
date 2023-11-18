@@ -38,8 +38,14 @@ public class InterficieGrafica {
     BotonConTexto BAceptarC, BEliminarC;
 
     //SELECTOR BUSCADOR
-    Selector sDenominacionOrigen;
-    //String[] ValuesDenominacio= {"1", "2", "3", "4", "5"};
+    Selector sDenominacionOrigen; Selector sAñada; Selector sBodega; Selector sColor;
+    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRCenasB, TRVariedad;
+
+    String[] VDenominacion= {"RIOJA", "RIBERA DE DUERO", "PRIORAT", "RUEDA", "RÍAS BAIXAS", "Penedès"};
+    String[] VAñada= {"2014", "2015", "2016", "2017", "2018"};
+    String[] VBodega= {"UNA", "DOS", "TRES", "CUATRO"};
+    String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
+
 
 
     //Constructor de la interficie gràfica
@@ -107,9 +113,20 @@ public class InterficieGrafica {
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
 
-        //SELCTORS BUSCADOR
-        String[] ValuesDenominacio= {"1", "2", "3", "4", "5"};
-        sDenominacionOrigen= new Selector(ValuesDenominacio, 100, 100, 300, 300, 10);
+        //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
+        sDenominacionOrigen= new Selector(VDenominacion, 100, 220, 210, 50, 10);
+        sDenominacionOrigen.setSelectedValue("Denominación de Origen");
+        sAñada= new Selector(VAñada, 320, 220, 100, 50, 10);
+        sAñada.setSelectedValue("Añada");
+        sBodega= new Selector (VBodega, 430, 220,100, 50,  10);
+        sBodega.setSelectedValue("Bodega");
+        sColor= new Selector(VColor, 540, 220, 100, 50, 10);
+        sColor.setSelectedValue("Color");
+        TRCapacidadB= new CamposTextoRect(p5, 650, 220, 210, "Capacidad: ");
+        TRCapacidadB.setColoresCamposTextoRect(255, 255, 0);
+        TRCapacidadB.setHeightRectSizeLetra(50, 14);
+
+
     }
 
     // PANTALLAS DE LA INTERFÍCIE GRÁFICA
@@ -142,6 +159,10 @@ public class InterficieGrafica {
         dibujaLogoMenu(p5);
         dibuja1Fila(p5);
         sDenominacionOrigen.display(p5);
+        sAñada.display(p5);
+        sBodega.display(p5);
+        sColor.display(p5);
+        TRCapacidadB.display(p5);
     }
 
     public void dibujaPantallaCalendario(PApplet p5){
