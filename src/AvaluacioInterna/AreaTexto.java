@@ -31,7 +31,7 @@ public class AreaTexto {
 
         this.ColorSinSeleccionar= p5.color(255);
         this.ColorTrazo= p5.color(0);
-        this.ColorSeleccionado= p5.color(100);
+        this.ColorSeleccionado= p5.color(240);
     }
 
     public void display(PApplet p5){
@@ -48,9 +48,10 @@ public class AreaTexto {
 
         p5.fill(0);
         p5.textSize(sizeTexto);
+        p5.textAlign(p5.LEFT);
         for(int i=0; i< lineas.length; i++){
             if(lineas[i]!=null){
-                p5.text(lineas[i], x+5, y+(i+1)*sizeTexto);
+                p5.text(lineas[i], x+10, y+(i+1)*sizeTexto);
             }
         }
         p5.popStyle();

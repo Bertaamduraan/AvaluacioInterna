@@ -120,6 +120,8 @@ public class Main extends PApplet{
         else if(gui.RBCatasV.cursorEncima(this)){
             gui.RBCatasV.cambio();
         }
+
+        gui.ATVinos.isPressed(this);
     }
 
     public void mouseDragged(){
@@ -171,6 +173,8 @@ public class Main extends PApplet{
 
         gui.TRCapacidadB.keyPressed(key, (int)keyCode);
         gui.TRPrecioB.keyPressed(key, (int)keyCode);
+
+        gui.ATVinos.keyPressed(key, (int) keyCode);
 
     }
 

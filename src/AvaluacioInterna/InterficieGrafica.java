@@ -102,7 +102,7 @@ public class InterficieGrafica {
         grb.setRadioButtons(RBCatasV, RBCenasV);
         grb.setSeleccionado(2);
 
-        ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, 100, 47, 10);
+        ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (15.5*marginV+HeadLineHeight+115), (int)columnVinosWidth, 170, 40, 10);
 
         //CAMPOS DE TEXTO Y BOTONES ADDCATAS
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
