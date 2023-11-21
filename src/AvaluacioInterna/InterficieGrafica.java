@@ -28,18 +28,21 @@ public class InterficieGrafica {
     BotonConFoto bLMenu;
     PImage logoMenu;
 
-    //BOTONES y CAMPOS DE TEXTO ADDVINOS
+    //BOTONES, CAMPOS DE TEXTO Y  Y ROUNDBUTTONS ADDVINOS
     BotonConTexto BAceptarV, BEliminarV, BAddV;
     CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
     CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
+    RadioButton RBCenasV, RBCatasV;
+    GrupoRadioButton grb;
 
     //BOTONES Y CAMPOS DE TEXTO ADDCATAS
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
 
     //SELECTOR BUSCADOR
-    Selector sDenominacionOrigen; Selector sAñada; Selector sBodega; Selector sColor;
-    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRCenasB, TRVariedad;
+    Selector RBDenominacionOrigen, RBAñada, RBBodega;
+    Selector sColor;
+    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRCenasB, TRVariedadB;
 
     String[] VDenominacion= {"RIOJA", "RIBERA DE DUERO", "PRIORAT", "RUEDA", "RÍAS BAIXAS", "Penedès"};
     String[] VAñada= {"2014", "2015", "2016", "2017", "2018"};
@@ -67,7 +70,7 @@ public class InterficieGrafica {
         bMVinos= new BotonConTexto(p5, marginH*2, 4*marginV+MenuHeight/3 + 3*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "VINOS");
         bMCatas= new BotonConTexto(p5, marginH*2, 5*marginV+MenuHeight/3 + 4*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "CATAS");
 
-        //CAMPOS DE TEXTO Y BOTONES ADDVINOS
+        //CAMPOS DE TEXTO, BOTONES Y ROUND BUTTONS ADDVINOS
         TNombre= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (2*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Nom: ");
         TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (5*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
         TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominació de origen: ");
@@ -90,6 +93,9 @@ public class InterficieGrafica {
         BAddV= new BotonConTexto(p5, 22*marginH+columnVinosWidth, 25*marginV+HeadLineHeight+115,150,55, "AÑADIR");
         BAddV.setMidaTextoBoton(29);
         BAddV.setColores(255, ColoresApp.getColorAt(7), 0, 0);
+
+        RBCatasV= new RadioButton(p5,(int) (4*marginH+2*columnVinosWidth), (int)(11*marginV+HeadLineHeight+115), 10, "CATA");
+        RBCenasV= new RadioButton(p5, (int)(4*marginH+2*columnVinosWidth), (int) (13*marginV+HeadLineHeight+115), 10, "CENA FINAL DE MES");
 
         //CAMPOS DE TEXTO Y BOTONES ADDCATAS
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -114,17 +120,26 @@ public class InterficieGrafica {
 
 
         //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
-        sDenominacionOrigen= new Selector(VDenominacion, 100, 220, 210, 50, 10);
-        sDenominacionOrigen.setSelectedValue("Denominación de Origen");
-        sAñada= new Selector(VAñada, 320, 220, 100, 50, 10);
-        sAñada.setSelectedValue("Añada");
-        sBodega= new Selector (VBodega, 430, 220,100, 50,  10);
-        sBodega.setSelectedValue("Bodega");
-        sColor= new Selector(VColor, 540, 220, 100, 50, 10);
+        RBDenominacionOrigen = new Selector(VDenominacion, 300, 220, 210, 70, 10);
+        RBDenominacionOrigen.setSelectedValue("Denominación de Origen");
+        RBAñada = new Selector(VAñada, 520, 220, 100, 70, 10);
+        RBAñada.setSelectedValue("Añada");
+        RBBodega = new Selector (VBodega, 630, 220,100, 70,  10);
+        RBBodega.setSelectedValue("Bodega");
+        sColor= new Selector(VColor, 740, 220, 100, 70, 10);
         sColor.setSelectedValue("Color");
-        TRCapacidadB= new CamposTextoRect(p5, 650, 220, 210, "Capacidad: ");
+        TRCapacidadB= new CamposTextoRect(p5, 840, 220, 160, "Capacidad: ");
         TRCapacidadB.setColoresCamposTextoRect(255, 255, 0);
-        TRCapacidadB.setHeightRectSizeLetra(50, 14);
+        TRCapacidadB.setHeightRectSizeLetra(70, 14);
+        TRPrecioB= new CamposTextoRect(p5, 390, 300, 170, "Precio: ");
+        TRPrecioB.setColoresCamposTextoRect(255, 255, 0);
+        TRPrecioB.setHeightRectSizeLetra(70, 14);
+        TRCantidadB= new CamposTextoRect(p5, 550, 300, 250, "Cantidad");
+        TRCantidadB.setColoresCamposTextoRect(255, 255, 0);
+        TRCantidadB.setHeightRectSizeLetra(70, 14);
+        /*TRCenasB= new CamposTextoRect(p5, );
+        TRVariedadB= new CamposTextoRect(p5, );*/
+
 
 
     }
@@ -158,11 +173,13 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogoMenu(p5);
         dibuja1Fila(p5);
-        sDenominacionOrigen.display(p5);
-        sAñada.display(p5);
-        sBodega.display(p5);
+        RBDenominacionOrigen.display(p5);
+        RBAñada.display(p5);
+        RBBodega.display(p5);
         sColor.display(p5);
         TRCapacidadB.display(p5);
+        TRPrecioB.display(p5);
+        TRCantidadB.display(p5);
     }
 
     public void dibujaPantallaCalendario(PApplet p5){
@@ -188,6 +205,8 @@ public class InterficieGrafica {
         BAceptarV.display(p5);
         BEliminarV.display(p5);
         BAddV.display(p5);
+        RBCenasV.display(p5);
+        RBCatasV.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){

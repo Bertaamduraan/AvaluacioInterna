@@ -83,25 +83,28 @@ public class Main extends PApplet{
         gui.TRvino3.isPressed(this);
         gui.TRvino4.isPressed(this);
 
-        if(gui.sDenominacionOrigen.cursorEncimaBoton(this)){
-            if(!gui.sDenominacionOrigen.estaPlegado()){
-                gui.sDenominacionOrigen.actualizar(this);
+        gui.TRCapacidadB.isPressed(this);
+        gui.TRPrecioB.isPressed(this);
+
+        if(gui.RBDenominacionOrigen.cursorEncimaBoton(this)){
+            if(!gui.RBDenominacionOrigen.estaPlegado()){
+                gui.RBDenominacionOrigen.actualizar(this);
             }
-            gui.sDenominacionOrigen.cambio();
+            gui.RBDenominacionOrigen.cambio();
         }
 
-        if(gui.sAñada.cursorEncimaBoton(this)){
-            if(!gui.sAñada.estaPlegado()){
-                gui.sAñada.actualizar(this);
+        if(gui.RBAñada.cursorEncimaBoton(this)){
+            if(!gui.RBAñada.estaPlegado()){
+                gui.RBAñada.actualizar(this);
             }
-            gui.sAñada.cambio();
+            gui.RBAñada.cambio();
         }
 
-        if(gui.sBodega.cursorEncimaBoton(this)){
-            if(!gui.sBodega.estaPlegado()){
-                gui.sBodega.actualizar(this);
+        if(gui.RBBodega.cursorEncimaBoton(this)){
+            if(!gui.RBBodega.estaPlegado()){
+                gui.RBBodega.actualizar(this);
             }
-            gui.sBodega.cambio();
+            gui.RBBodega.cambio();
         }
 
         if(gui.sColor.cursorEncimaBoton(this)){
@@ -110,6 +113,7 @@ public class Main extends PApplet{
             }
             gui.sColor.cambio();
         }
+
 
     }
 
@@ -159,6 +163,9 @@ public class Main extends PApplet{
         gui.TRvino2.keyPressed(key, (int) keyCode);
         gui.TRvino3.keyPressed(key, (int) keyCode);
         gui.TRvino4.keyPressed(key, (int) keyCode);
+
+        gui.TRCapacidadB.keyPressed(key, (int)keyCode);
+        gui.TRPrecioB.keyPressed(key, (int)keyCode);
 
     }
 
