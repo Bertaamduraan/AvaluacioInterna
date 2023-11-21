@@ -209,6 +209,8 @@ public class InterficieGrafica {
         BAceptarV.display(p5);
         BEliminarV.display(p5);
         BAddV.display(p5);
+        RBCatasV.display(p5);
+        RBCenasV.display(p5);
         grb.display(p5);
     }
 
