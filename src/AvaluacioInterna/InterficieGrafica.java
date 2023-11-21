@@ -94,8 +94,12 @@ public class InterficieGrafica {
         BAddV.setMidaTextoBoton(29);
         BAddV.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
-        RBCatasV= new RadioButton(p5,(int) (4*marginH+2*columnVinosWidth), (int)(11*marginV+HeadLineHeight+115), 10, "CATA");
-        RBCenasV= new RadioButton(p5, (int)(4*marginH+2*columnVinosWidth), (int) (13*marginV+HeadLineHeight+115), 10, "CENA FINAL DE MES");
+        RBCatasV= new RadioButton(p5,(int) (5*marginH+2*columnVinosWidth), (int)(17*marginV+HeadLineHeight+115), 10, "CATA");
+        RBCenasV= new RadioButton(p5, (int)(5*marginH+2*columnVinosWidth), (int) (19*marginV+HeadLineHeight+115), 10, "CENA FINAL DE MES");
+        grb= new GrupoRadioButton(2);
+        grb.setRadioButtons(RBCatasV, RBCenasV);
+        grb.setSeleccionado(2);
+
 
         //CAMPOS DE TEXTO Y BOTONES ADDCATAS
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -205,8 +209,7 @@ public class InterficieGrafica {
         BAceptarV.display(p5);
         BEliminarV.display(p5);
         BAddV.display(p5);
-        RBCenasV.display(p5);
-        RBCatasV.display(p5);
+        grb.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){

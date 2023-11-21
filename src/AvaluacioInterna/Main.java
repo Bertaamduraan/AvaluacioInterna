@@ -114,7 +114,12 @@ public class Main extends PApplet{
             gui.sColor.cambio();
         }
 
-
+        if(gui.RBCenasV.cursorEncima(this)){
+            gui.RBCenasV.cambio();
+        }
+        else if(gui.RBCatasV.cursorEncima(this)){
+            gui.RBCatasV.cambio();
+        }
     }
 
     public void mouseDragged(){

@@ -35,6 +35,19 @@ public class GrupoRadioButton {
         }
     }
 
+    public void updateOnClick(PApplet p5){
+        if(clicado1RadioButton(p5)){
+            for(int i=0; i<rbuttonsgroup.length; i++){
+                if(rbuttonsgroup[i]!=null && rbuttonsgroup[i].cursorEncima(p5)){
+                    OpcionSeleccionada = i;
+                    rbuttonsgroup[i].setSeleccionado(true);
+                }
+                else{
+                    rbuttonsgroup[i].setSeleccionado(false);
+                }
+            }
+        }
+    }
     public boolean clicado1RadioButton(PApplet p5){
         for(int i=0; i<rbuttonsgroup.length; i++){
             if (rbuttonsgroup[i] != null && rbuttonsgroup[i].cursorEncima(p5)) {

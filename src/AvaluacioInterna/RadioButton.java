@@ -21,6 +21,7 @@ public class RadioButton {
         this.texto= t;
     }
 
+    //GETTER
     public boolean estaSeleccionado(){
         return this.seleccionado;
     }
@@ -46,7 +47,7 @@ public class RadioButton {
             p5.textAlign(p5.LEFT);
             p5.textSize(15);
             p5.fill(0);
-            p5.text(this.texto, this.x+15, this.y+5);
+            p5.text(this.texto, this.x+25, this.y+15);
         p5.popStyle();
 
         if(this.seleccionado){
