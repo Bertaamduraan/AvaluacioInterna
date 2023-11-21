@@ -28,16 +28,18 @@ public class InterficieGrafica {
     BotonConFoto bLMenu;
     PImage logoMenu;
 
-    //BOTONES, CAMPOS DE TEXTO Y  Y ROUNDBUTTONS ADDVINOS
+    //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS ADDVINOS
     BotonConTexto BAceptarV, BEliminarV, BAddV;
     CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
     CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
     RadioButton RBCenasV, RBCatasV;
     GrupoRadioButton grb;
+    AreaTexto ATVinos;
 
-    //BOTONES Y CAMPOS DE TEXTO ADDCATAS
+    //BOTONES Y CAMPOS/AREA DE TEXTO ADDCATAS
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
+    AreaTexto ATCatas;
 
     //SELECTOR BUSCADOR
     Selector RBDenominacionOrigen, RBAñada, RBBodega;
@@ -100,6 +102,7 @@ public class InterficieGrafica {
         grb.setRadioButtons(RBCatasV, RBCenasV);
         grb.setSeleccionado(2);
 
+        ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, 100, 47, 10);
 
         //CAMPOS DE TEXTO Y BOTONES ADDCATAS
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -212,6 +215,7 @@ public class InterficieGrafica {
         RBCatasV.display(p5);
         RBCenasV.display(p5);
         grb.display(p5);
+        ATVinos.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){
