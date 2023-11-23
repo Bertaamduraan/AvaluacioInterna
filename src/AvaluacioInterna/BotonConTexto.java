@@ -39,6 +39,11 @@ public class BotonConTexto {
         this.MidaTextoBoton= m;
     }
 
+    //GETTER
+    public String getTextoBoton(){
+        return this.TextoBoton;
+    }
+
 
     public void setColores(int cRelleno, int colorRellenoEncima, int cTrazo, int cLetras){
         this.ColorRelleno= cRelleno;

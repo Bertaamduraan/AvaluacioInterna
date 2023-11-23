@@ -38,6 +38,52 @@ public class SelectList {
                 b.display(p5);
             }
         p5.popStyle();
-
     }
+
+    public void update(PApplet p5){
+        String buscar= this.TextField.texto;
+        System.out.print("BUSCAR "+ buscar);
+
+        this.NumCoincidencias= 0;
+        this.buttons= new ArrayList<BotonConTexto>();
+
+        if(buscar.length()>0){
+            for(int i=0; i< texts.length; i++){
+                if(texts[i][1].startsWith(buscar)){
+                    BotonConTexto b= new BotonConTexto(p5, x+10, y+h+50+(h+50)*NumCoincidencias, w, h, t0);
+                    buttons.add(b);
+                    this.NumCoincidencias++;
+                    if(this.NumCoincidencias==5){
+                        break;
+                    }
+                }
+            }
+
+        }
+    }
+
+    public boolean cursorEncimaBoton(PApplet p5){
+        for(BotonConTexto b: buttons){
+            if(b.mouseEncimaBoton(p5)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void buttonPressed(PApplet p5){
+        boolean pressed = false;
+        for(BotonConTexto b : buttons){
+            if(b.mouseEncimaBoton(p5)){
+                TextField.texto = b.TextoBoton;
+                this.ValorSelected = b.TextoBoton;
+                pressed = true;
+            }
+        }
+        if(pressed){
+            buttons.clear();
+        }
+    }
+
+
 }

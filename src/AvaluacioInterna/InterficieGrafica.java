@@ -44,6 +44,12 @@ public class InterficieGrafica {
     //SELECTOR BUSCADOR
     Selector RBDenominacionOrigen, RBAñada, RBBodega;
     Selector sColor;
+    SelectList SLdenominacion, SLañada, SLbodega;
+    BotonConTexto DO, Am, Bod;
+
+    String [][] ValoresDO= {{"0", "Rioja"}, {"1", "HOLA"}};
+    String SelectedText;
+
     CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRCenasB, TRVariedadB;
 
     String[] VDenominacion= {"RIOJA", "RIBERA DE DUERO", "PRIORAT", "RUEDA", "RÍAS BAIXAS", "Penedès"};
@@ -180,9 +186,9 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogoMenu(p5);
         dibuja1Fila(p5);
-        RBDenominacionOrigen.display(p5);
+        /*RBDenominacionOrigen.display(p5);
         RBAñada.display(p5);
-        RBBodega.display(p5);
+        RBBodega.display(p5);*/
         sColor.display(p5);
         TRCapacidadB.display(p5);
         TRPrecioB.display(p5);
