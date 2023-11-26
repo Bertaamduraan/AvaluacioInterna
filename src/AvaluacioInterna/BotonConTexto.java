@@ -55,7 +55,7 @@ public class BotonConTexto {
     //DIBUJAR EL BOTÓN
     public void display(PApplet p5){
         p5.pushStyle();
-        if(mouseEncimaBoton(p5)){
+        if(cursorEncimaBoton(p5)){
             p5.fill(ColorRellenoEncima); //color cuando el cursor está encima
         }
         else {
@@ -75,7 +75,7 @@ public class BotonConTexto {
     }
 
     //INDICAR SI EL CURSOR ESTÁ SOBRE EL BOTÓN
-    public boolean mouseEncimaBoton(PApplet p5){
+    public boolean cursorEncimaBoton(PApplet p5){
         return (p5.mouseX >= this.x) && (p5.mouseX <= this.x + this.w) &&
                 (p5.mouseY >= this.y) && (p5.mouseY <= this.y + this.h);
     }

@@ -42,11 +42,11 @@ public class InterficieGrafica {
     AreaTexto ATCatas;
 
     //SELECTOR BUSCADOR
-    Selector RBDenominacionOrigen, RBAñada, RBBodega;
+    Selector SDenominacionOrigen, SAñada, SBodega;
     Selector sColor;
+
     SelectList SLdenominacion, SLañada, SLbodega;
     BotonConTexto DO, Am, Bod;
-
     String [][] ValoresDO= {{"0", "Rioja"}, {"1", "HOLA"}};
     String SelectedText;
 
@@ -133,12 +133,12 @@ public class InterficieGrafica {
 
 
         //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
-        RBDenominacionOrigen = new Selector(VDenominacion, 300, 220, 210, 70, 10);
-        RBDenominacionOrigen.setSelectedValue("Denominación de Origen");
-        RBAñada = new Selector(VAñada, 520, 220, 100, 70, 10);
-        RBAñada.setSelectedValue("Añada");
-        RBBodega = new Selector (VBodega, 630, 220,100, 70,  10);
-        RBBodega.setSelectedValue("Bodega");
+        SDenominacionOrigen = new Selector(VDenominacion, 300, 220, 210, 70, 10);
+        SDenominacionOrigen.setSelectedValue("Denominación de Origen");
+        SAñada = new Selector(VAñada, 520, 220, 100, 70, 10);
+        SAñada.setSelectedValue("Añada");
+        SBodega = new Selector (VBodega, 630, 220,100, 70,  10);
+        SBodega.setSelectedValue("Bodega");
         sColor= new Selector(VColor, 740, 220, 100, 70, 10);
         sColor.setSelectedValue("Color");
         TRCapacidadB= new CamposTextoRect(p5, 840, 220, 160, "Capacidad: ");
@@ -152,7 +152,8 @@ public class InterficieGrafica {
         TRCantidadB.setHeightRectSizeLetra(70, 14);
         /*TRCenasB= new CamposTextoRect(p5, );
         TRVariedadB= new CamposTextoRect(p5, );*/
-
+        SLdenominacion= new SelectList(p5, ValoresDO, 300, 220, 210, 70);
+        DO= new BotonConTexto(p5, 300+marginH, 220+(70/2), 210, 70, "Denomianción de Origen: ");
 
 
     }
@@ -186,13 +187,22 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogoMenu(p5);
         dibuja1Fila(p5);
-        /*RBDenominacionOrigen.display(p5);
-        RBAñada.display(p5);
-        RBBodega.display(p5);*/
+        /*SDenominacionOrigen.display(p5);
+        SAñada.display(p5);
+        SBodega.display(p5);*/
         sColor.display(p5);
         TRCapacidadB.display(p5);
         TRPrecioB.display(p5);
         TRCantidadB.display(p5);
+        SLdenominacion.display(p5);
+        DO.display(p5);
+        if(SLdenominacion.ValorSelected!=null){
+            p5.pushStyle();
+            p5.textAlign(CENTER);
+            p5.fill(0);
+            p5.text(SLdenominacion.ValorSelected, 210/2, 70/2);
+            p5.popStyle();
+        }
     }
 
     public void dibujaPantallaCalendario(PApplet p5){

@@ -27,9 +27,20 @@ public class SelectList {
         this.w= w;
         this.h=h;
 
+        p5.fill(0);
         this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, t0);
+        this.TextField.setHeightRectSizeLetra(70, 14);
         this.buttons= new ArrayList<BotonConTexto>();
     }
+
+    public CamposTextoRect getTextField(){
+        return  this.TextField;
+    }
+
+    public String getSelectedValue(){
+        return this.ValorSelected;
+    }
+
 
     public void display(PApplet p5){
         p5.pushStyle();
@@ -64,7 +75,7 @@ public class SelectList {
 
     public boolean cursorEncimaBoton(PApplet p5){
         for(BotonConTexto b: buttons){
-            if(b.mouseEncimaBoton(p5)){
+            if(b.cursorEncimaBoton(p5)){
                 return true;
             }
         }
@@ -74,7 +85,7 @@ public class SelectList {
     public void buttonPressed(PApplet p5){
         boolean pressed = false;
         for(BotonConTexto b : buttons){
-            if(b.mouseEncimaBoton(p5)){
+            if(b.cursorEncimaBoton(p5)){
                 TextField.texto = b.TextoBoton;
                 this.ValorSelected = b.TextoBoton;
                 pressed = true;

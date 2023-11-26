@@ -48,6 +48,8 @@ public class Main extends PApplet{
             case ADDCATAS: gui.dibujaPantallaCatas(this);
             break;
         }
+
+
     }
 
 
@@ -55,15 +57,15 @@ public class Main extends PApplet{
 
     public void mousePressed(){
 
-            if(gui.bMHome.mouseEncimaBoton(this)){
+            if(gui.bMHome.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.HOME;
-            }else if(gui.bMBuscar.mouseEncimaBoton(this)){
+            }else if(gui.bMBuscar.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BUSCADOR;
-            }else if(gui.bMCalendar.mouseEncimaBoton(this)){
+            }else if(gui.bMCalendar.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.CALENDARIO;
-            }else if(gui.bMVinos.mouseEncimaBoton(this)){
+            }else if(gui.bMVinos.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.ADDVINOS;
-            }else if (gui.bMCatas.mouseEncimaBoton(this)){
+            }else if (gui.bMCatas.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.ADDCATAS;
             }else if(gui.bLMenu.mouseEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.MENU;
@@ -86,25 +88,25 @@ public class Main extends PApplet{
         gui.TRCapacidadB.isPressed(this);
         gui.TRPrecioB.isPressed(this);
 
-        if(gui.RBDenominacionOrigen.cursorEncimaBoton(this)){
-            if(!gui.RBDenominacionOrigen.estaPlegado()){
-                gui.RBDenominacionOrigen.actualizar(this);
+        if(gui.SDenominacionOrigen.cursorEncimaBoton(this)){
+            if(!gui.SDenominacionOrigen.estaPlegado()){
+                gui.SDenominacionOrigen.actualizar(this);
             }
-            gui.RBDenominacionOrigen.cambio();
+            gui.SDenominacionOrigen.cambio();
         }
 
-        if(gui.RBAñada.cursorEncimaBoton(this)){
-            if(!gui.RBAñada.estaPlegado()){
-                gui.RBAñada.actualizar(this);
+        if(gui.SAñada.cursorEncimaBoton(this)){
+            if(!gui.SAñada.estaPlegado()){
+                gui.SAñada.actualizar(this);
             }
-            gui.RBAñada.cambio();
+            gui.SAñada.cambio();
         }
 
-        if(gui.RBBodega.cursorEncimaBoton(this)){
-            if(!gui.RBBodega.estaPlegado()){
-                gui.RBBodega.actualizar(this);
+        if(gui.SBodega.cursorEncimaBoton(this)){
+            if(!gui.SBodega.estaPlegado()){
+                gui.SBodega.actualizar(this);
             }
-            gui.RBBodega.cambio();
+            gui.SBodega.cambio();
         }
 
         if(gui.sColor.cursorEncimaBoton(this)){
@@ -122,6 +124,12 @@ public class Main extends PApplet{
         }
 
         gui.ATVinos.isPressed(this);
+
+        if(gui.DO.cursorEncimaBoton(this)){
+            gui.SelectedText= gui.SLdenominacion.getSelectedValue();
+        }
+        gui.SLdenominacion.getTextField().isPressed(this);
+        gui.SLdenominacion.buttonPressed(this);
 
     }
 
@@ -176,6 +184,12 @@ public class Main extends PApplet{
         gui.TRPrecioB.keyPressed(key, (int)keyCode);
 
         gui.ATVinos.keyPressed(key, (int) keyCode);
+
+        if(gui.SLdenominacion.getTextField().cursorEncimaCampoTexto(this)){
+            gui.SLdenominacion.getTextField().keyPressed(key, (int) keyCode);
+            gui.SLdenominacion.update(this);
+        }
+
 
     }
 
