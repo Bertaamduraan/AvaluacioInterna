@@ -13,21 +13,22 @@ public class SelectList {
     int selectedFila; //Fila seleccionada
     String selectedID; //ID seleccionado
     String ValorSelected; //Valor seleccionado
-    String t0= "0";
+    String t0;
 
     int NumCoincidencias=0;
     ArrayList<BotonConTexto> buttons;
 
-    public SelectList(PApplet p5, String [][] textos, float x, float y, float w, float h){
+    public SelectList(PApplet p5, String [][] textos, float x, float y, float w, float h, String textoIncial){
         this.texts= textos;
         this.selectedID="";
         this.ValorSelected= "";
         this.x= x;
         this.y= y;
         this.w= w;
+        this.t0= textoIncial;
         this.h=h;
 
-        p5.fill(0);
+
         this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, t0);
         this.TextField.setHeightRectSizeLetra(70, 14);
         this.buttons= new ArrayList<BotonConTexto>();
@@ -44,8 +45,12 @@ public class SelectList {
 
     public void display(PApplet p5){
         p5.pushStyle();
+            TextField.setColoresCamposTextoRect(255, 200, 0);
             TextField.display(p5);
             for(BotonConTexto b: buttons){
+                b.setColores(255, 200, 0, 0);
+                b.setMidaTextoBoton(20);
+                p5.textAlign(p5.LEFT, p5.CENTER);
                 b.display(p5);
             }
         p5.popStyle();
@@ -56,12 +61,12 @@ public class SelectList {
         System.out.print("BUSCAR "+ buscar);
 
         this.NumCoincidencias= 0;
-        this.buttons= new ArrayList<BotonConTexto>();
+        this.buttons = new ArrayList<BotonConTexto>();
 
         if(buscar.length()>0){
             for(int i=0; i< texts.length; i++){
-                if(texts[i][1].startsWith(buscar)){
-                    BotonConTexto b= new BotonConTexto(p5, x+10, y+h+50+(h+50)*NumCoincidencias, w, h, t0);
+                if(this.texts[i][1].startsWith(buscar)){
+                    BotonConTexto b= new BotonConTexto(p5, x+15, y+h+5+(h-15)*NumCoincidencias, w-30, h-20, texts[i][1]);
                     buttons.add(b);
                     this.NumCoincidencias++;
                     if(this.NumCoincidencias==5){
@@ -73,7 +78,7 @@ public class SelectList {
         }
     }
 
-    public boolean cursorEncimaBoton(PApplet p5){
+    public boolean cursorEncimaBotonSL(PApplet p5){
         for(BotonConTexto b: buttons){
             if(b.cursorEncimaBoton(p5)){
                 return true;

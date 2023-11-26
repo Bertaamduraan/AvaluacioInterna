@@ -69,7 +69,7 @@ public class BotonConTexto {
         p5.fill(ColorLetra);
         p5.textAlign(p5.CENTER);
         p5.textSize(MidaTextoBoton);
-        p5.text(TextoBoton, this.x+this.w/2, this.y+ 35);
+        p5.text(TextoBoton, this.x+this.w/2, this.y+35);
 
         p5.popStyle();
     }

@@ -47,14 +47,12 @@ public class InterficieGrafica {
 
     SelectList SLdenominacion, SLañada, SLbodega;
     BotonConTexto DO, Am, Bod;
-    String [][] ValoresDO= {{"0", "Rioja"}, {"1", "HOLA"}};
+    String [][] ValoresDO= {{"0", "Rioja"}, {"1", "Ribera de Duero"}, {"2", "Priorat"}, {"3", "Rueda"}};
+    String [][] ValoresA= {{"0", "2014"}, {"1", "205"}, {"2", "2016"}, {"3", "2017"}, {"4", "2018"}};
+    String [][] ValoresBo= {{"0", "Cero"}, {"1", "Una"}, {"2", "Dos"}, {"3", "Tres"}, {"4", "Cuatro"}};
     String SelectedText;
 
     CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRCenasB, TRVariedadB;
-
-    String[] VDenominacion= {"RIOJA", "RIBERA DE DUERO", "PRIORAT", "RUEDA", "RÍAS BAIXAS", "Penedès"};
-    String[] VAñada= {"2014", "2015", "2016", "2017", "2018"};
-    String[] VBodega= {"UNA", "DOS", "TRES", "CUATRO"};
     String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
 
 
@@ -133,12 +131,12 @@ public class InterficieGrafica {
 
 
         //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
-        SDenominacionOrigen = new Selector(VDenominacion, 300, 220, 210, 70, 10);
+        /*SDenominacionOrigen = new Selector(VDenominacion, 300, 220, 210, 70, 10);
         SDenominacionOrigen.setSelectedValue("Denominación de Origen");
         SAñada = new Selector(VAñada, 520, 220, 100, 70, 10);
         SAñada.setSelectedValue("Añada");
         SBodega = new Selector (VBodega, 630, 220,100, 70,  10);
-        SBodega.setSelectedValue("Bodega");
+        SBodega.setSelectedValue("Bodega");*/
         sColor= new Selector(VColor, 740, 220, 100, 70, 10);
         sColor.setSelectedValue("Color");
         TRCapacidadB= new CamposTextoRect(p5, 840, 220, 160, "Capacidad: ");
@@ -152,8 +150,10 @@ public class InterficieGrafica {
         TRCantidadB.setHeightRectSizeLetra(70, 14);
         /*TRCenasB= new CamposTextoRect(p5, );
         TRVariedadB= new CamposTextoRect(p5, );*/
-        SLdenominacion= new SelectList(p5, ValoresDO, 300, 220, 210, 70);
-        DO= new BotonConTexto(p5, 300+marginH, 220+(70/2), 210, 70, "Denomianción de Origen: ");
+        SLdenominacion= new SelectList(p5, ValoresDO, 300, 220, 350, 70, "Denominación de Origen: ");
+        SLañada= new SelectList(p5, ValoresA, 650+marginH, 220, 350, 70, "Añada: ");
+
+        //DO= new BotonConTexto(p5, 300+marginH, 220, 210, 70, "Denomianción de Origen: ");
 
 
     }
@@ -195,14 +195,7 @@ public class InterficieGrafica {
         TRPrecioB.display(p5);
         TRCantidadB.display(p5);
         SLdenominacion.display(p5);
-        DO.display(p5);
-        if(SLdenominacion.ValorSelected!=null){
-            p5.pushStyle();
-            p5.textAlign(CENTER);
-            p5.fill(0);
-            p5.text(SLdenominacion.ValorSelected, 210/2, 70/2);
-            p5.popStyle();
-        }
+
     }
 
     public void dibujaPantallaCalendario(PApplet p5){

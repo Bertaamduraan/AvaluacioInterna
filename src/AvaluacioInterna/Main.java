@@ -88,7 +88,7 @@ public class Main extends PApplet{
         gui.TRCapacidadB.isPressed(this);
         gui.TRPrecioB.isPressed(this);
 
-        if(gui.SDenominacionOrigen.cursorEncimaBoton(this)){
+        /*if(gui.SDenominacionOrigen.cursorEncimaBoton(this)){
             if(!gui.SDenominacionOrigen.estaPlegado()){
                 gui.SDenominacionOrigen.actualizar(this);
             }
@@ -107,7 +107,7 @@ public class Main extends PApplet{
                 gui.SBodega.actualizar(this);
             }
             gui.SBodega.cambio();
-        }
+        }*/
 
         if(gui.sColor.cursorEncimaBoton(this)){
             if(!gui.sColor.estaPlegado()){
@@ -125,9 +125,9 @@ public class Main extends PApplet{
 
         gui.ATVinos.isPressed(this);
 
-        if(gui.DO.cursorEncimaBoton(this)){
+        /*if(gui.DO.cursorEncimaBoton(this)){
             gui.SelectedText= gui.SLdenominacion.getSelectedValue();
-        }
+        }*/
         gui.SLdenominacion.getTextField().isPressed(this);
         gui.SLdenominacion.buttonPressed(this);
 
