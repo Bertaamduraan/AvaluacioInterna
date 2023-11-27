@@ -47,6 +47,9 @@ public class SelectList {
         p5.pushStyle();
             TextField.setColoresCamposTextoRect(255, 200, 0);
             TextField.display(p5);
+            if(!TextField.selected){
+                p5.text("Buscar", 1, 1);
+            }
             for(BotonConTexto b: buttons){
                 b.setColores(255, 200, 0, 0);
                 b.setMidaTextoBoton(20);
