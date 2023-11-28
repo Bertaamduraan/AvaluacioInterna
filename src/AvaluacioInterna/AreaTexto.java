@@ -31,7 +31,7 @@ public class AreaTexto {
 
         this.ColorSinSeleccionar= p5.color(255);
         this.ColorTrazo= p5.color(0);
-        this.ColorSeleccionado= p5.color(240);
+        this.ColorSeleccionado= p5.color(200);
     }
 
     public void display(PApplet p5){

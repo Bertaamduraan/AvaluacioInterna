@@ -40,7 +40,7 @@ public class Selector {
         p5.stroke(0); p5.stroke(0);
         p5.triangle(x + w - 25, y+5, x + w - 15, y + 25, x + w - 5 , y+5);
 
-        p5.fill(0); p5.textSize(14);
+        p5.fill(0); p5.textSize(18);
         p5.text(selectedValue, x+(w/2), y+(h/2));
 
         if(!this.plegado){

@@ -45,7 +45,7 @@ public class CamposTextoRect {
 
     //Dibuja el campo de texto
     public void display(PApplet p5){
- p5.pushStyle();
+    p5.pushStyle();
         if(cursorEncimaCampoTexto(p5)){
             p5.fill(ColorRellenoEncima);
         }
@@ -61,7 +61,7 @@ public class CamposTextoRect {
         p5.textSize(TamañoTexto);
         p5.textAlign(p5.LEFT, p5.CENTER);
         p5.text(texto, x+20, y+(this.h/2));
-        p5.popStyle();
+    p5.popStyle();
     }
 
     //AÑADIR O QUITAR EL TEXTO QUE SE TECLEA

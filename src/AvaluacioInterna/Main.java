@@ -71,6 +71,9 @@ public class Main extends PApplet{
                 gui.pantallaActual= InterficieGrafica.PANTALLA.MENU;
             }
 
+        gui.LogIN.isPressed(this);
+        gui.Contra.isPressed(this);
+
         gui.TNombre.isPressed(this);
         gui.TBodega.isPressed(this);
         gui.TDenominacion.isPressed(this);
@@ -88,26 +91,6 @@ public class Main extends PApplet{
         gui.TRCapacidadB.isPressed(this);
         gui.TRPrecioB.isPressed(this);
 
-        /*if(gui.SDenominacionOrigen.cursorEncimaBoton(this)){
-            if(!gui.SDenominacionOrigen.estaPlegado()){
-                gui.SDenominacionOrigen.actualizar(this);
-            }
-            gui.SDenominacionOrigen.cambio();
-        }
-
-        if(gui.SAñada.cursorEncimaBoton(this)){
-            if(!gui.SAñada.estaPlegado()){
-                gui.SAñada.actualizar(this);
-            }
-            gui.SAñada.cambio();
-        }
-
-        if(gui.SBodega.cursorEncimaBoton(this)){
-            if(!gui.SBodega.estaPlegado()){
-                gui.SBodega.actualizar(this);
-            }
-            gui.SBodega.cambio();
-        }*/
 
         if(gui.sColor.cursorEncimaBoton(this)){
             if(!gui.sColor.estaPlegado()){
@@ -124,12 +107,13 @@ public class Main extends PApplet{
         }
 
         gui.ATVinos.isPressed(this);
+        gui.ATCatas.isPressed(this);
 
-        /*if(gui.DO.cursorEncimaBoton(this)){
-            gui.SelectedText= gui.SLdenominacion.getSelectedValue();
-        }*/
         gui.SLdenominacion.getTextField().isPressed(this);
-        gui.SLdenominacion.buttonPressed(this);
+        gui.SLañada.getTextField().isPressed(this);
+        gui.SLbodega.getTextField().isPressed(this);
+        gui.SLvariedad.getTextField().isPressed(this);
+
 
     }
 
@@ -166,6 +150,9 @@ public class Main extends PApplet{
             gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
         }*/
 
+        gui.LogIN.keyPressed(key, (int) keyCode);
+        gui.Contra.keyPressed(key, (int) keyCode);
+
         gui.TNombre.keyPressed(key, (int) keyCode);
         gui.TBodega.keyPressed(key, (int) keyCode);
         gui.TDenominacion.keyPressed(key, (int) keyCode);
@@ -184,12 +171,24 @@ public class Main extends PApplet{
         gui.TRPrecioB.keyPressed(key, (int)keyCode);
 
         gui.ATVinos.keyPressed(key, (int) keyCode);
+        gui.ATCatas.keyPressed(key, (int) keyCode);
 
         if(gui.SLdenominacion.getTextField().cursorEncimaCampoTexto(this)){
             gui.SLdenominacion.getTextField().keyPressed(key, (int) keyCode);
             gui.SLdenominacion.update(this);
         }
-
+        if(gui.SLañada.getTextField().cursorEncimaCampoTexto(this)){
+            gui.SLañada.getTextField().keyPressed(key, (int) keyCode);
+            gui.SLañada.update(this);
+        }
+        if(gui.SLbodega.getTextField().cursorEncimaCampoTexto(this)){
+            gui.SLbodega.getTextField().keyPressed(key, (int) keyCode);
+            gui.SLbodega.update(this);
+        }
+        if(gui.SLvariedad.getTextField().cursorEncimaCampoTexto(this)){
+            gui.SLvariedad.getTextField().keyPressed(key, (int) keyCode);
+            gui.SLvariedad.update(this);
+        }
 
     }
 

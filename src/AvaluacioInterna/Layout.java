@@ -35,6 +35,5 @@ public class Layout {
     // Dimensiones Columnas Catas
     public static float columnCatasWidth = 735, columnCatasHeight = 600 ;
 
-    //BOTONES
 
 }

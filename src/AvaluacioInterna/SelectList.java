@@ -14,6 +14,7 @@ public class SelectList {
     String selectedID; //ID seleccionado
     String ValorSelected; //Valor seleccionado
     String t0;
+    String t;
 
     int NumCoincidencias=0;
     ArrayList<BotonConTexto> buttons;
@@ -25,11 +26,11 @@ public class SelectList {
         this.x= x;
         this.y= y;
         this.w= w;
-        this.t0= textoIncial;
         this.h=h;
+        this.t0= textoIncial;
+        this.t= "";
 
-
-        this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, t0);
+        this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, t);
         this.TextField.setHeightRectSizeLetra(70, 14);
         this.buttons= new ArrayList<BotonConTexto>();
     }
@@ -48,7 +49,9 @@ public class SelectList {
             TextField.setColoresCamposTextoRect(255, 200, 0);
             TextField.display(p5);
             if(!TextField.selected){
-                p5.text("Buscar", 1, 1);
+                p5.textSize(18);
+                p5.textAlign(p5.CENTER);
+                p5.text(t0, this.x+this.w/2, this.y+ this.h/2+5);
             }
             for(BotonConTexto b: buttons){
                 b.setColores(255, 200, 0, 0);

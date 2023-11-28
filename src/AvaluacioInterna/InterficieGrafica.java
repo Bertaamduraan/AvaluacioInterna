@@ -23,6 +23,9 @@ public class InterficieGrafica {
     //Colores y topigrafias de la App
     Colors ColoresApp; Fonts FontsApp;
 
+    //CAMPOS DE TEXTO LOG IN
+    CamposTextoRect LogIN, Contra;
+
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
     BotonConFoto bLMenu;
@@ -42,18 +45,16 @@ public class InterficieGrafica {
     AreaTexto ATCatas;
 
     //SELECTOR BUSCADOR
-    Selector SDenominacionOrigen, SAñada, SBodega;
     Selector sColor;
-
-    SelectList SLdenominacion, SLañada, SLbodega;
-    BotonConTexto DO, Am, Bod;
+    String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
+    SelectList SLdenominacion, SLañada, SLbodega, SLvariedad, SLcenas;
     String [][] ValoresDO= {{"0", "Rioja"}, {"1", "Ribera de Duero"}, {"2", "Priorat"}, {"3", "Rueda"}};
     String [][] ValoresA= {{"0", "2014"}, {"1", "205"}, {"2", "2016"}, {"3", "2017"}, {"4", "2018"}};
     String [][] ValoresBo= {{"0", "Cero"}, {"1", "Una"}, {"2", "Dos"}, {"3", "Tres"}, {"4", "Cuatro"}};
-    String SelectedText;
+    String [][] ValoresVa= {{"0", "CERO"},{"1", "UNO"},{"2", "DOS"}, {"3", "TRES"}, {"4", "CUATRO"}};
+    String [][] ValoresC= {{"0", "01/02/03"},{"1", "04/05/06"},{"2", "07/08/09"}, {"3", "10/11/12"}, {"4", "14/12/13"}};
+    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB;
 
-    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRCenasB, TRVariedadB;
-    String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
 
 
 
@@ -63,6 +64,15 @@ public class InterficieGrafica {
 
         ColoresApp= new Colors(p5); //Constructor de los colores de la App
         FontsApp= new Fonts(p5); // Constructor de las tipografias de la App
+
+        //CAMPOS DE TEXTO INICIO
+        LogIN= new CamposTextoRect(p5, 465, 450, 605, "USER NAME: ");
+        LogIN.setHeightRectSizeLetra(70, 30);
+        LogIN.setColoresCamposTextoRect(255, 200, 0);
+
+        Contra= new CamposTextoRect(p5, 465, 450+70+(int)marginV, 605, "CONTRASEÑA: ");
+        Contra.setHeightRectSizeLetra(70, 30);
+        Contra.setColoresCamposTextoRect(255, 200, 0);
 
         //Botón Logo Menú
         logoMenu= p5.loadImage("LogoMenu.png"); //Cargar foto
@@ -121,6 +131,7 @@ public class InterficieGrafica {
         TRvino4= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(17*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Cuarto vino: ");
         TRvino4.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
         TRvino4.setHeightRectSizeLetra(60,25);
+        ATCatas= new AreaTexto(p5, 2*(int)marginH, 320, (int)columnCatasWidth-2*(int)marginH, 400, 80, 30);
 
         BAceptarC= new BotonConTexto(p5,4*marginH+columnVinosWidth,24*marginV+HeadLineHeight+115,160,55, "GUARDAR");
         BAceptarC.setMidaTextoBoton(30);
@@ -131,29 +142,24 @@ public class InterficieGrafica {
 
 
         //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
-        /*SDenominacionOrigen = new Selector(VDenominacion, 300, 220, 210, 70, 10);
-        SDenominacionOrigen.setSelectedValue("Denominación de Origen");
-        SAñada = new Selector(VAñada, 520, 220, 100, 70, 10);
-        SAñada.setSelectedValue("Añada");
-        SBodega = new Selector (VBodega, 630, 220,100, 70,  10);
-        SBodega.setSelectedValue("Bodega");*/
-        sColor= new Selector(VColor, 740, 220, 100, 70, 10);
+        sColor= new Selector(VColor, 870, 200, 100, 70, 10);
         sColor.setSelectedValue("Color");
-        TRCapacidadB= new CamposTextoRect(p5, 840, 220, 160, "Capacidad: ");
-        TRCapacidadB.setColoresCamposTextoRect(255, 255, 0);
-        TRCapacidadB.setHeightRectSizeLetra(70, 14);
-        TRPrecioB= new CamposTextoRect(p5, 390, 300, 170, "Precio: ");
-        TRPrecioB.setColoresCamposTextoRect(255, 255, 0);
-        TRPrecioB.setHeightRectSizeLetra(70, 14);
-        TRCantidadB= new CamposTextoRect(p5, 550, 300, 250, "Cantidad");
-        TRCantidadB.setColoresCamposTextoRect(255, 255, 0);
-        TRCantidadB.setHeightRectSizeLetra(70, 14);
-        /*TRCenasB= new CamposTextoRect(p5, );
-        TRVariedadB= new CamposTextoRect(p5, );*/
-        SLdenominacion= new SelectList(p5, ValoresDO, 300, 220, 350, 70, "Denominación de Origen: ");
-        SLañada= new SelectList(p5, ValoresA, 650+marginH, 220, 350, 70, "Añada: ");
+        TRCapacidadB= new CamposTextoRect(p5, 970, 200, 200, "Capacidad: ");
+        TRCapacidadB.setColoresCamposTextoRect(255, 200, 0);
+        TRCapacidadB.setHeightRectSizeLetra(70, 18);
+        TRPrecioB= new CamposTextoRect(p5, 430, 280, 170, "Precio: ");
+        TRPrecioB.setColoresCamposTextoRect(255, 200, 0);
+        TRPrecioB.setHeightRectSizeLetra(70, 18);
+        TRCantidadB= new CamposTextoRect(p5, 590, 280, 180, "Cantidad: ");
+        TRCantidadB.setColoresCamposTextoRect(255, 200, 0);
+        TRCantidadB.setHeightRectSizeLetra(70, 18);
 
-        //DO= new BotonConTexto(p5, 300+marginH, 220, 210, 70, "Denomianción de Origen: ");
+        SLcenas= new SelectList(p5, ValoresC, 920, 280, 150, 70, "Cenas");
+        SLvariedad= new SelectList(p5, ValoresVa, 760, 280, 170, 70, "Variedad");
+        SLdenominacion= new SelectList(p5, ValoresDO, 340, 200, 250, 70, "Denominación de Origen");
+        SLañada= new SelectList(p5, ValoresA, 580, 200, 150, 70, "Añada");
+        SLbodega= new SelectList(p5, ValoresBo, 720, 200, 150, 70, "Bodega");
+
 
 
     }
@@ -164,6 +170,8 @@ public class InterficieGrafica {
         p5.background(ColoresApp.getThirdColor());
         dibujaLogo(p5);
         dibujaRectanguloCentro(p5);
+        LogIN.display(p5);
+        Contra.display(p5);
     }
 
     public void dibujaPantallaHome(PApplet p5){
@@ -186,15 +194,16 @@ public class InterficieGrafica {
         p5.background(ColoresApp.getThirdColor());
         dibujaHeadLine(p5);
         dibujaLogoMenu(p5);
-        dibuja1Fila(p5);
-        /*SDenominacionOrigen.display(p5);
-        SAñada.display(p5);
-        SBodega.display(p5);*/
+        //dibuja1Fila(p5);
         sColor.display(p5);
         TRCapacidadB.display(p5);
         TRPrecioB.display(p5);
         TRCantidadB.display(p5);
         SLdenominacion.display(p5);
+        SLañada.display(p5);
+        SLbodega.display(p5);
+        SLvariedad.display(p5);
+        SLcenas.display(p5);
 
     }
 
@@ -241,6 +250,7 @@ public class InterficieGrafica {
             BAceptarC.display(p5);
             BEliminarC.display(p5);
         p5.popStyle();
+        ATCatas.display(p5);
     }
 
 
@@ -279,7 +289,7 @@ public class InterficieGrafica {
             p5.textFont(FontsApp.getFirstFont());
             p5.textSize(midaTitol);
             p5.text("PANTALLA "+ pantallaActual+ "(" +pantallaActual.ordinal() +")",
-                    p5.width/2, p5.height/2+marginV*5);
+                    p5.width/2, marginV*5);
         p5.popStyle();
 
     }
