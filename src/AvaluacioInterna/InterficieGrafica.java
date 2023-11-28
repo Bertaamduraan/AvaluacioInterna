@@ -60,7 +60,7 @@ public class InterficieGrafica {
 
     //Constructor de la interficie gràfica
     public InterficieGrafica(PApplet p5){
-        pantallaActual= PANTALLA.INICIO;
+        //pantallaActual= PANTALLA.INICIO;
 
         ColoresApp= new Colors(p5); //Constructor de los colores de la App
         FontsApp= new Fonts(p5); // Constructor de las tipografias de la App
