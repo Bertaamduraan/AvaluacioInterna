@@ -28,9 +28,9 @@ public class SelectList {
         this.w= w;
         this.h=h;
         this.t0= textoIncial;
-        this.t= "";
+        //this.t= "";
 
-        this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, t);
+        this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, ValorSelected);
         this.TextField.setHeightRectSizeLetra(70, 14);
         this.buttons= new ArrayList<BotonConTexto>();
     }
@@ -48,7 +48,7 @@ public class SelectList {
         p5.pushStyle();
             TextField.setColoresCamposTextoRect(255, 200, 0);
             TextField.display(p5);
-            if(!TextField.selected){
+            if(!TextField.selected && ValorSelected.equals("")){
                 p5.textSize(18);
                 p5.textAlign(p5.CENTER);
                 p5.text(t0, this.x+this.w/2, this.y+ this.h/2+5);

@@ -57,6 +57,7 @@ public class Main extends PApplet{
 
     public void mousePressed(){
 
+        println("MOUSEPRESSed");
             if(gui.bMHome.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.HOME;
             }else if(gui.bMBuscar.cursorEncimaBoton(this)){
@@ -71,8 +72,17 @@ public class Main extends PApplet{
                 gui.pantallaActual= InterficieGrafica.PANTALLA.MENU;
             }
 
-        gui.LogIN.isPressed(this);
+        gui.UserName.isPressed(this);
         gui.Contra.isPressed(this);
+        if( gui.LogIn.cursorEncimaBoton(this)){
+            println("LOGIN PRESSED");
+            println(gui.UserName.texto, gui.Contra.texto);
+            if(gui.LogInCorrecto()) {
+                println("LOGIN OK");
+
+                gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+            }
+        }
 
         gui.TNombre.isPressed(this);
         gui.TBodega.isPressed(this);
@@ -110,19 +120,24 @@ public class Main extends PApplet{
         gui.ATCatas.isPressed(this);
 
         gui.SLdenominacion.getTextField().isPressed(this);
+        gui.SLdenominacion.buttonPressed(this);
         gui.SLañada.getTextField().isPressed(this);
+        gui.SLañada.buttonPressed(this);
         gui.SLbodega.getTextField().isPressed(this);
+        gui.SLbodega.buttonPressed(this);
         gui.SLvariedad.getTextField().isPressed(this);
+        gui.SLvariedad.buttonPressed(this);
+
 
 
     }
 
     public void mouseDragged(){
-        println("MOUSE DRAGGED");
+        //println("MOUSE DRAGGED");
     }
 
     public void mouseReleased() {
-        println("MOUSE RELEASED");
+        //println("MOUSE RELEASED");
     }
 
     // ******************* KEYBOARD interaction ***************************** //
@@ -150,7 +165,7 @@ public class Main extends PApplet{
             gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
         }*/
 
-        gui.LogIN.keyPressed(key, (int) keyCode);
+        gui.UserName.keyPressed(key, (int) keyCode);
         gui.Contra.keyPressed(key, (int) keyCode);
 
         gui.TNombre.keyPressed(key, (int) keyCode);
@@ -191,5 +206,6 @@ public class Main extends PApplet{
         }
 
     }
+
 
 }

@@ -81,6 +81,5 @@ public class CamposDeTexto {
             selected = false;
         }
 
-        System.out.println("SELECTED: "+selected);
     }
 }

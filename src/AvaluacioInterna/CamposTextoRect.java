@@ -103,7 +103,7 @@ public class CamposTextoRect {
             selected = false;
         }
 
-        System.out.println("SELECTED: "+selected);
     }
+
 }
 

@@ -24,7 +24,8 @@ public class InterficieGrafica {
     Colors ColoresApp; Fonts FontsApp;
 
     //CAMPOS DE TEXTO LOG IN
-    CamposTextoRect LogIN, Contra;
+    CamposTextoRect UserName, Contra;
+    BotonConTexto LogIn;
 
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
@@ -49,7 +50,7 @@ public class InterficieGrafica {
     String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
     SelectList SLdenominacion, SLañada, SLbodega, SLvariedad, SLcenas;
     String [][] ValoresDO= {{"0", "Rioja"}, {"1", "Ribera de Duero"}, {"2", "Priorat"}, {"3", "Rueda"}};
-    String [][] ValoresA= {{"0", "2014"}, {"1", "205"}, {"2", "2016"}, {"3", "2017"}, {"4", "2018"}};
+    String [][] ValoresA= {{"0", "2014"}, {"1", "2015"}, {"2", "2016"}, {"3", "2017"}, {"4", "2018"}};
     String [][] ValoresBo= {{"0", "Cero"}, {"1", "Una"}, {"2", "Dos"}, {"3", "Tres"}, {"4", "Cuatro"}};
     String [][] ValoresVa= {{"0", "CERO"},{"1", "UNO"},{"2", "DOS"}, {"3", "TRES"}, {"4", "CUATRO"}};
     String [][] ValoresC= {{"0", "01/02/03"},{"1", "04/05/06"},{"2", "07/08/09"}, {"3", "10/11/12"}, {"4", "14/12/13"}};
@@ -60,19 +61,23 @@ public class InterficieGrafica {
 
     //Constructor de la interficie gràfica
     public InterficieGrafica(PApplet p5){
-        //pantallaActual= PANTALLA.INICIO;
+        pantallaActual= PANTALLA.INICIO;
 
         ColoresApp= new Colors(p5); //Constructor de los colores de la App
         FontsApp= new Fonts(p5); // Constructor de las tipografias de la App
 
         //CAMPOS DE TEXTO INICIO
-        LogIN= new CamposTextoRect(p5, 465, 450, 605, "USER NAME: ");
-        LogIN.setHeightRectSizeLetra(70, 30);
-        LogIN.setColoresCamposTextoRect(255, 200, 0);
+        UserName = new CamposTextoRect(p5, 465, 450, 605, "USER NAME: ");
+        UserName.setHeightRectSizeLetra(70, 30);
+        UserName.setColoresCamposTextoRect(255, 200, 0);
 
         Contra= new CamposTextoRect(p5, 465, 450+70+(int)marginV, 605, "CONTRASEÑA: ");
         Contra.setHeightRectSizeLetra(70, 30);
         Contra.setColoresCamposTextoRect(255, 200, 0);
+
+        LogIn= new BotonConTexto(p5, 465, 450+140+2*(int)marginV, 605, 70, "LOG IN");
+        LogIn.setMidaTextoBoton(30);
+        LogIn.setColores(255, 200, 0, 0);
 
         //Botón Logo Menú
         logoMenu= p5.loadImage("LogoMenu.png"); //Cargar foto
@@ -170,9 +175,12 @@ public class InterficieGrafica {
         p5.background(ColoresApp.getThirdColor());
         dibujaLogo(p5);
         dibujaRectanguloCentro(p5);
-        LogIN.display(p5);
+        UserName.display(p5);
         Contra.display(p5);
+        LogIn.display(p5);
+
     }
+
 
     public void dibujaPantallaHome(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
@@ -375,5 +383,8 @@ public class InterficieGrafica {
         p5.rect(4*marginH+2*columnVinosWidth, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
     }
 
+    boolean LogInCorrecto(){
+        return (UserName.texto.equals("USER NAME: admin")&& Contra.texto.equals("CONTRASEÑA: 234"));
+    }
 
 }
