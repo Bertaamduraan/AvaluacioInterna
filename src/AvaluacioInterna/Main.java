@@ -71,6 +71,17 @@ public class Main extends PApplet{
                 gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
             }
 
+            if(gui.LogOut.mouseEncimaBoton(this)){
+                gui.pantallaActual=InterficieGrafica.PANTALLA.INICIO;
+            }
+
+            if(gui.ADD.mouseEncimaBoton(this)){
+                if(gui.OpcionesOpen) {
+                    gui.dibujaOpciones(this);
+                    //gui.OpcionesOpen= false;
+                }
+            }
+
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO) {
             gui.UserName.isPressed(this);
             gui.Contra.isPressed(this);
@@ -186,26 +197,34 @@ public class Main extends PApplet{
             gui.Contra.keyPressed(key, (int) keyCode);
         }
 
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDVINOS) {
+            gui.TNombre.keyPressed(key, (int) keyCode);
+            gui.TBodega.keyPressed(key, (int) keyCode);
+            gui.TDenominacion.keyPressed(key, (int) keyCode);
+            gui.TCosecha.keyPressed(key, (int) keyCode);
+            gui.TVariedad.keyPressed(key, (int) keyCode);
+            gui.TRPrecio.keyPressed(key, (int) keyCode);
+            gui.TRCapacidad.keyPressed(key, (int) keyCode);
+            gui.TRUbicacion.keyPressed(key, (int) keyCode);
+            gui.TRCapacidadB.keyPressed(key, (int)keyCode);
+            gui.TRPrecioB.keyPressed(key, (int)keyCode);
 
-        gui.TNombre.keyPressed(key, (int) keyCode);
-        gui.TBodega.keyPressed(key, (int) keyCode);
-        gui.TDenominacion.keyPressed(key, (int) keyCode);
-        gui.TCosecha.keyPressed(key, (int) keyCode);
-        gui.TVariedad.keyPressed(key, (int) keyCode);
-        gui.TRPrecio.keyPressed(key, (int)keyCode);
-        gui.TRCapacidad.keyPressed(key, (int) keyCode);
-        gui.TRUbicacion.keyPressed(key, (int) keyCode);
+            gui.ATVinos.keyPressed(key, (int) keyCode);
 
-        gui.TRvino1.keyPressed(key, (int)keyCode);
-        gui.TRvino2.keyPressed(key, (int) keyCode);
-        gui.TRvino3.keyPressed(key, (int) keyCode);
-        gui.TRvino4.keyPressed(key, (int) keyCode);
+            if (gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
+                gui.Cocineros.update(this);
+            }
+        }
 
-        gui.TRCapacidadB.keyPressed(key, (int)keyCode);
-        gui.TRPrecioB.keyPressed(key, (int)keyCode);
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDCATAS) {
+            gui.TRvino1.keyPressed(key, (int) keyCode);
+            gui.TRvino2.keyPressed(key, (int) keyCode);
+            gui.TRvino3.keyPressed(key, (int) keyCode);
+            gui.TRvino4.keyPressed(key, (int) keyCode);
 
-        gui.ATVinos.keyPressed(key, (int) keyCode);
-        gui.ATCatas.keyPressed(key, (int) keyCode);
+            gui.ATCatas.keyPressed(key, (int) keyCode);
+        }
 
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BUSCADOR) {
@@ -227,11 +246,6 @@ public class Main extends PApplet{
             }
         }
 
-
-        if (gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)) {
-            gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
-            gui.Cocineros.update(this);
-        }
 
     }
 

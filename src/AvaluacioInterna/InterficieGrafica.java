@@ -29,6 +29,7 @@ public class InterficieGrafica {
 
     BotonConFoto ADD, LogOut;
     PImage logoAdd, logoLogOut;
+    boolean OpcionesOpen= true;
     BotonConTexto addVinos, addCatas;
 
     //BOTONES MENÚ
@@ -190,7 +191,6 @@ public class InterficieGrafica {
 
     // PANTALLAS DE LA INTERFÍCIE GRÁFICA
     public void dibujaPantallaInicio(PApplet p5){
-
         p5.background(ColoresApp.getThirdColor());
         dibujaLogo(p5);
         dibujaRectanguloCentro(p5);
@@ -236,15 +236,15 @@ public class InterficieGrafica {
 
     public void dibujaPantallaCalendario(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
-        dibujaLogos(p5);
         dibujaHeadLine(p5);
+        dibujaLogos(p5);
         dibuja3Fila(p5);
     }
 
     public void dibujaPantallaVinos(PApplet p5){
         p5.background(ColoresApp.getColorAt(1));
-        dibujaLogos(p5);
         dibujaHeadLine(p5);
+        dibujaLogos(p5);
         dibuja3Columna(p5);
         TNombre.display(p5);
         TBodega.display(p5);
@@ -267,8 +267,8 @@ public class InterficieGrafica {
 
     public void dibujaPantallaCatas(PApplet p5){
         p5.background(ColoresApp.getColorAt(1));
-        dibujaLogos(p5);
         dibujaHeadLine(p5);
+        dibujaLogos(p5);
         dibuja2Columna(p5);
         TRvino1.display(p5);
         TRvino2.display(p5);
@@ -406,8 +406,16 @@ public class InterficieGrafica {
         p5.rect(4*marginH+2*columnVinosWidth, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
     }
 
+    public void dibujaOpciones(PApplet p5){
+            p5.fill(0);
+            p5.rect(1400, 2 * marginV, 50, 70);
+
+    }
+
+
     boolean LogInCorrecto(){
         return (UserName.texto.equals("USER NAME: admin")&& Contra.texto.equals("CONTRASEÑA: 234"));
     }
+
 
 }
