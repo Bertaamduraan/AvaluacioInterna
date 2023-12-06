@@ -39,11 +39,15 @@ public class InterficieGrafica {
     RadioButton RBCenasV, RBCatasV;
     GrupoRadioButton grb;
     AreaTexto ATVinos;
+    SelectList Cocineros;
+    String[][] COCINEROSva= {{"0", "Grupo Joan"}, {"1", "Grupo Toni"}, {"2", "Grupo Pere"}, {"3", "Grupo Jacinto"}};
+
 
     //BOTONES Y CAMPOS/AREA DE TEXTO ADDCATAS
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
     AreaTexto ATCatas;
+
 
     //SELECTOR BUSCADOR
     Selector sColor;
@@ -55,7 +59,6 @@ public class InterficieGrafica {
     String [][] ValoresVa= {{"0", "CERO"},{"1", "UNO"},{"2", "DOS"}, {"3", "TRES"}, {"4", "CUATRO"}};
     String [][] ValoresC= {{"0", "01/02/03"},{"1", "04/05/06"},{"2", "07/08/09"}, {"3", "10/11/12"}, {"4", "14/12/13"}};
     CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB;
-
 
 
 
@@ -122,6 +125,8 @@ public class InterficieGrafica {
         grb.setSeleccionado(2);
 
         ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (15.5*marginV+HeadLineHeight+115), (int)columnVinosWidth, 170, 40, 10);
+
+        Cocineros= new SelectList(p5, COCINEROSva, (int) (5.5*marginH+2*columnVinosWidth), (int) (21*marginV+HeadLineHeight+115), 155, 50, "COCINEROS");
 
         //CAMPOS DE TEXTO Y BOTONES ADDCATAS
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -242,6 +247,7 @@ public class InterficieGrafica {
         RBCenasV.display(p5);
         grb.display(p5);
         ATVinos.display(p5);
+        Cocineros.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){

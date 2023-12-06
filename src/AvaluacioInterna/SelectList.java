@@ -14,7 +14,6 @@ public class SelectList {
     String selectedID; //ID seleccionado
     String ValorSelected; //Valor seleccionado
     String t0;
-    String t;
 
     int NumCoincidencias=0;
     ArrayList<BotonConTexto> buttons;
@@ -28,10 +27,9 @@ public class SelectList {
         this.w= w;
         this.h=h;
         this.t0= textoIncial;
-        //this.t= "";
 
         this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, ValorSelected);
-        this.TextField.setHeightRectSizeLetra(70, 14);
+        this.TextField.setHeightRectSizeLetra((int)this.h, 18);
         this.buttons= new ArrayList<BotonConTexto>();
     }
 
@@ -50,13 +48,14 @@ public class SelectList {
             TextField.display(p5);
             if(!TextField.selected && ValorSelected.equals("")){
                 p5.textSize(18);
-                p5.textAlign(p5.CENTER);
-                p5.text(t0, this.x+this.w/2, this.y+ this.h/2+5);
+                p5.fill(0);
+                p5.textAlign(p5.CENTER, p5.CENTER);
+                p5.text(t0, this.x+this.w/2, this.y+ this.h/2);
             }
             for(BotonConTexto b: buttons){
                 b.setColores(255, 200, 0, 0);
-                b.setMidaTextoBoton(20);
-                p5.textAlign(p5.LEFT, p5.CENTER);
+                b.setMidaTextoBoton(18);
+                p5.textAlign(p5.CENTER, p5.CENTER);
                 b.display(p5);
             }
         p5.popStyle();

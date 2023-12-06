@@ -128,6 +128,9 @@ public class Main extends PApplet{
         gui.SLvariedad.getTextField().isPressed(this);
         gui.SLvariedad.buttonPressed(this);
 
+        gui.Cocineros.getTextField().isPressed(this);
+        gui.Cocineros.buttonPressed(this);
+
 
 
     }
@@ -203,6 +206,11 @@ public class Main extends PApplet{
         if(gui.SLvariedad.getTextField().cursorEncimaCampoTexto(this)){
             gui.SLvariedad.getTextField().keyPressed(key, (int) keyCode);
             gui.SLvariedad.update(this);
+        }
+
+        if(gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)){
+            gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
+            gui.Cocineros.update(this);
         }
 
     }
