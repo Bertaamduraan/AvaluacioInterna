@@ -18,7 +18,7 @@ public class Layout {
     public static float MenuWidth = 500, MenuHeight = 800;
 
     //Dimensiones Logo Menú
-    public static float LogoMenuWidth= 110, LogoMenuHeight= 70;
+    public static float LogoMenuWidth= 70, LogoMenuHeight= 45;
 
     //Dimensiones Botones Menú
     public static float MiniBotonesWidth= 460, MiniBotonesHeight= 50, MiniBotonesRadio= 30;

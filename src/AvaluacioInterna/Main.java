@@ -57,80 +57,93 @@ public class Main extends PApplet{
 
     public void mousePressed(){
 
-        println("MOUSEPRESSed");
-            if(gui.bMHome.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.HOME;
-            }else if(gui.bMBuscar.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.BUSCADOR;
-            }else if(gui.bMCalendar.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.CALENDARIO;
-            }else if(gui.bMVinos.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.ADDVINOS;
-            }else if (gui.bMCatas.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.ADDCATAS;
-            }else if(gui.bLMenu.mouseEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.MENU;
-            }
-
-        gui.UserName.isPressed(this);
-        gui.Contra.isPressed(this);
-        if( gui.LogIn.cursorEncimaBoton(this)){
-            println("LOGIN PRESSED");
-            println(gui.UserName.texto, gui.Contra.texto);
-            if(gui.LogInCorrecto()) {
-                println("LOGIN OK");
-
+            if (gui.bMHome.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+            } else if (gui.bMBuscar.cursorEncimaBoton(this)) {
+                gui.pantallaActual = InterficieGrafica.PANTALLA.BUSCADOR;
+            } else if (gui.bMCalendar.cursorEncimaBoton(this)) {
+                gui.pantallaActual = InterficieGrafica.PANTALLA.CALENDARIO;
+            } else if (gui.bMVinos.cursorEncimaBoton(this)) {
+                gui.pantallaActual = InterficieGrafica.PANTALLA.ADDVINOS;
+            } else if (gui.bMCatas.cursorEncimaBoton(this)) {
+                gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
+            } else if (gui.bLMenu.mouseEncimaBoton(this)) {
+                gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
+            }
+
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO) {
+            gui.UserName.isPressed(this);
+            gui.Contra.isPressed(this);
+            if (gui.LogIn.cursorEncimaBoton(this)) {
+                println(gui.UserName.texto, gui.Contra.texto);
+                if (gui.LogInCorrecto()) {
+                    gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+                }
             }
         }
 
-        gui.TNombre.isPressed(this);
-        gui.TBodega.isPressed(this);
-        gui.TDenominacion.isPressed(this);
-        gui.TCosecha.isPressed(this);
-        gui.TVariedad.isPressed(this);
-        gui.TRPrecio.isPressed(this);
-        gui.TRCapacidad.isPressed(this);
-        gui.TRUbicacion.isPressed(this);
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDVINOS) {
+            gui.TNombre.isPressed(this);
+            gui.TBodega.isPressed(this);
+            gui.TDenominacion.isPressed(this);
+            gui.TCosecha.isPressed(this);
+            gui.TVariedad.isPressed(this);
+            gui.TRPrecio.isPressed(this);
+            gui.TRCapacidad.isPressed(this);
+            gui.TRUbicacion.isPressed(this);
 
-        gui.TRvino1.isPressed(this);
-        gui.TRvino2.isPressed(this);
-        gui.TRvino3.isPressed(this);
-        gui.TRvino4.isPressed(this);
+            gui.TRCapacidadB.isPressed(this);
+            gui.TRPrecioB.isPressed(this);
 
-        gui.TRCapacidadB.isPressed(this);
-        gui.TRPrecioB.isPressed(this);
+            gui.Cocineros.getTextField().isPressed(this);
+            gui.Cocineros.buttonPressed(this);
 
-
-        if(gui.sColor.cursorEncimaBoton(this)){
-            if(!gui.sColor.estaPlegado()){
-                gui.sColor.actualizar(this);
+            if (gui.ColorVino.cursorEncimaBoton(this)) {
+                if (!gui.ColorVino.estaPlegado()) {
+                    gui.ColorVino.actualizar(this);
+                }
+                gui.ColorVino.cambio();
             }
-            gui.sColor.cambio();
+
+
+            if (gui.RBCenasV.cursorEncima(this)) {
+                gui.RBCenasV.cambio();
+            } else if (gui.RBCatasV.cursorEncima(this)) {
+                gui.RBCatasV.cambio();
+            }
+
         }
 
-        if(gui.RBCenasV.cursorEncima(this)){
-            gui.RBCenasV.cambio();
+
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.BUSCADOR) {
+            gui.ATVinos.isPressed(this);
+
+            gui.SLdenominacion.getTextField().isPressed(this);
+            gui.SLdenominacion.buttonPressed(this);
+            gui.SLañada.getTextField().isPressed(this);
+            gui.SLañada.buttonPressed(this);
+            gui.SLbodega.getTextField().isPressed(this);
+            gui.SLbodega.buttonPressed(this);
+            gui.SLvariedad.getTextField().isPressed(this);
+            gui.SLvariedad.buttonPressed(this);
+
+            if (gui.sColor.cursorEncimaBoton(this)) {
+                if (!gui.sColor.estaPlegado()) {
+                    gui.sColor.actualizar(this);
+                }
+                gui.sColor.cambio();
+            }
+
         }
-        else if(gui.RBCatasV.cursorEncima(this)){
-            gui.RBCatasV.cambio();
+
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDCATAS){
+            gui.TRvino1.isPressed(this);
+            gui.TRvino2.isPressed(this);
+            gui.TRvino3.isPressed(this);
+            gui.TRvino4.isPressed(this);
+
+            gui.ATCatas.isPressed(this);
         }
-
-        gui.ATVinos.isPressed(this);
-        gui.ATCatas.isPressed(this);
-
-        gui.SLdenominacion.getTextField().isPressed(this);
-        gui.SLdenominacion.buttonPressed(this);
-        gui.SLañada.getTextField().isPressed(this);
-        gui.SLañada.buttonPressed(this);
-        gui.SLbodega.getTextField().isPressed(this);
-        gui.SLbodega.buttonPressed(this);
-        gui.SLvariedad.getTextField().isPressed(this);
-        gui.SLvariedad.buttonPressed(this);
-
-        gui.Cocineros.getTextField().isPressed(this);
-        gui.Cocineros.buttonPressed(this);
-
 
 
     }
@@ -168,8 +181,11 @@ public class Main extends PApplet{
             gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
         }*/
 
-        gui.UserName.keyPressed(key, (int) keyCode);
-        gui.Contra.keyPressed(key, (int) keyCode);
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO){
+            gui.UserName.keyPressed(key, (int) keyCode);
+            gui.Contra.keyPressed(key, (int) keyCode);
+        }
+
 
         gui.TNombre.keyPressed(key, (int) keyCode);
         gui.TBodega.keyPressed(key, (int) keyCode);
@@ -191,24 +207,28 @@ public class Main extends PApplet{
         gui.ATVinos.keyPressed(key, (int) keyCode);
         gui.ATCatas.keyPressed(key, (int) keyCode);
 
-        if(gui.SLdenominacion.getTextField().cursorEncimaCampoTexto(this)){
-            gui.SLdenominacion.getTextField().keyPressed(key, (int) keyCode);
-            gui.SLdenominacion.update(this);
-        }
-        if(gui.SLañada.getTextField().cursorEncimaCampoTexto(this)){
-            gui.SLañada.getTextField().keyPressed(key, (int) keyCode);
-            gui.SLañada.update(this);
-        }
-        if(gui.SLbodega.getTextField().cursorEncimaCampoTexto(this)){
-            gui.SLbodega.getTextField().keyPressed(key, (int) keyCode);
-            gui.SLbodega.update(this);
-        }
-        if(gui.SLvariedad.getTextField().cursorEncimaCampoTexto(this)){
-            gui.SLvariedad.getTextField().keyPressed(key, (int) keyCode);
-            gui.SLvariedad.update(this);
+
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.BUSCADOR) {
+            if (gui.SLdenominacion.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.SLdenominacion.getTextField().keyPressed(key, (int) keyCode);
+                gui.SLdenominacion.update(this);
+            }
+            if (gui.SLañada.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.SLañada.getTextField().keyPressed(key, (int) keyCode);
+                gui.SLañada.update(this);
+            }
+            if (gui.SLbodega.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.SLbodega.getTextField().keyPressed(key, (int) keyCode);
+                gui.SLbodega.update(this);
+            }
+            if (gui.SLvariedad.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.SLvariedad.getTextField().keyPressed(key, (int) keyCode);
+                gui.SLvariedad.update(this);
+            }
         }
 
-        if(gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)){
+
+        if (gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)) {
             gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
             gui.Cocineros.update(this);
         }

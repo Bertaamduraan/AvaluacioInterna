@@ -13,7 +13,7 @@ public class Selector {
 
     float espacioLineas= 8; //Espacio entre líneas
 
-    public Selector(String[] texts, float x, float y, float w, float h, float r){
+    public Selector(PApplet p5, String[] texts, float x, float y, float w, float h, float r){
 
         this.textos= texts;
         this.selectedValue= "";
@@ -41,6 +41,7 @@ public class Selector {
         p5.triangle(x + w - 25, y+5, x + w - 15, y + 25, x + w - 5 , y+5);
 
         p5.fill(0); p5.textSize(18);
+        p5.textAlign(p5.CENTER, p5.CENTER);
         p5.text(selectedValue, x+(w/2), y+(h/2));
 
         if(!this.plegado){

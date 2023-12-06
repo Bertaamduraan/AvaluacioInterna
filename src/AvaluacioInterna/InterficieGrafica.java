@@ -23,9 +23,13 @@ public class InterficieGrafica {
     //Colores y topigrafias de la App
     Colors ColoresApp; Fonts FontsApp;
 
-    //CAMPOS DE TEXTO LOG IN
+    //CAMPOS DE TEXTO Y BOTONES LOG IN
     CamposTextoRect UserName, Contra;
     BotonConTexto LogIn;
+
+    BotonConFoto ADD, LogOut;
+    PImage logoAdd, logoLogOut;
+    BotonConTexto addVinos, addCatas;
 
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
@@ -41,6 +45,7 @@ public class InterficieGrafica {
     AreaTexto ATVinos;
     SelectList Cocineros;
     String[][] COCINEROSva= {{"0", "Grupo Joan"}, {"1", "Grupo Toni"}, {"2", "Grupo Pere"}, {"3", "Grupo Jacinto"}};
+    Selector ColorVino;
 
 
     //BOTONES Y CAMPOS/AREA DE TEXTO ADDCATAS
@@ -82,9 +87,16 @@ public class InterficieGrafica {
         LogIn.setMidaTextoBoton(30);
         LogIn.setColores(255, 200, 0, 0);
 
-        //Botón Logo Menú
+        //LOGOS MENU, ADD, LOG OUT
         logoMenu= p5.loadImage("LogoMenu.png"); //Cargar foto
         bLMenu= new BotonConFoto(p5, logoMenu, 2*marginH, 2*marginV, LogoMenuWidth, LogoMenuHeight);
+
+        logoAdd= p5.loadImage("Plus_symbol.png");
+        ADD= new BotonConFoto(p5, logoAdd, 1400, 2*marginV, 30, 30);
+        logoLogOut= p5.loadImage("LogoLogOut.png");
+        LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
+
+
 
 
         //BOTONES MENÚ
@@ -127,6 +139,8 @@ public class InterficieGrafica {
         ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (15.5*marginV+HeadLineHeight+115), (int)columnVinosWidth, 170, 40, 10);
 
         Cocineros= new SelectList(p5, COCINEROSva, (int) (5.5*marginH+2*columnVinosWidth), (int) (21*marginV+HeadLineHeight+115), 155, 50, "COCINEROS");
+        ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 150, 60, 10);
+        ColorVino.setSelectedValue("COLOR VINO");
 
         //CAMPOS DE TEXTO Y BOTONES ADDCATAS
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -152,7 +166,7 @@ public class InterficieGrafica {
 
 
         //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
-        sColor= new Selector(VColor, 870, 200, 100, 70, 10);
+        sColor= new Selector(p5, VColor, 870, 200, 100, 70, 10);
         sColor.setSelectedValue("Color");
         TRCapacidadB= new CamposTextoRect(p5, 970, 200, 200, "Capacidad: ");
         TRCapacidadB.setColoresCamposTextoRect(255, 200, 0);
@@ -189,9 +203,9 @@ public class InterficieGrafica {
 
     public void dibujaPantallaHome(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
-        dibujaLogoMenu(p5);
-        dibujaHeadLine(p5);
         dibujaRectanguloCentro(p5);
+        dibujaHeadLine(p5);
+        dibujaLogos(p5);
     }
 
     public void dibujaPantallaMenu(PApplet p5){
@@ -199,14 +213,14 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaRectanguloCentro(p5);
         dibujaMenu(p5);
-        dibujaLogoMenu(p5);
+        dibujaLogos(p5);
         dibuja5MiniFilas(p5);
     }
 
     public void dibujaPantallaBuscador(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
         dibujaHeadLine(p5);
-        dibujaLogoMenu(p5);
+        dibujaLogos(p5);
         //dibuja1Fila(p5);
         sColor.display(p5);
         TRCapacidadB.display(p5);
@@ -222,14 +236,14 @@ public class InterficieGrafica {
 
     public void dibujaPantallaCalendario(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
-        dibujaLogoMenu(p5);
+        dibujaLogos(p5);
         dibujaHeadLine(p5);
         dibuja3Fila(p5);
     }
 
     public void dibujaPantallaVinos(PApplet p5){
         p5.background(ColoresApp.getColorAt(1));
-        dibujaLogoMenu(p5);
+        dibujaLogos(p5);
         dibujaHeadLine(p5);
         dibuja3Columna(p5);
         TNombre.display(p5);
@@ -248,11 +262,12 @@ public class InterficieGrafica {
         grb.display(p5);
         ATVinos.display(p5);
         Cocineros.display(p5);
+        ColorVino.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){
         p5.background(ColoresApp.getColorAt(1));
-        dibujaLogoMenu(p5);
+        dibujaLogos(p5);
         dibujaHeadLine(p5);
         dibuja2Columna(p5);
         TRvino1.display(p5);
@@ -308,8 +323,10 @@ public class InterficieGrafica {
 
     }
 
-    public void dibujaLogoMenu(PApplet p5){
+    public void dibujaLogos(PApplet p5){
         bLMenu.display(p5);
+        ADD.display(p5);
+        LogOut.display(p5);
     }
 
     public void dibujaMenu(PApplet p5){ //Será la del Menú
