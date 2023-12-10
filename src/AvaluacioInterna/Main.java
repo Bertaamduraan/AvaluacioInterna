@@ -71,15 +71,16 @@ public class Main extends PApplet{
                 gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
             }
 
-            if(gui.LogOut.mouseEncimaBoton(this)){
-                gui.pantallaActual=InterficieGrafica.PANTALLA.INICIO;
+            if(gui.ADD.mouseEncimaBoton(this) && gui.OpcionesOpen==false){
+               gui.OpcionesOpen= true;
+            }
+            if(gui.ADD.mouseEncimaBoton(this) && gui.OpcionesOpen==true){
+                gui.OpcionesOpen= false;
             }
 
-            if(gui.ADD.mouseEncimaBoton(this)){
-                if(gui.OpcionesOpen) {
-                    gui.dibujaOpciones(this);
-                    //gui.OpcionesOpen= false;
-                }
+
+            if(gui.LogOut.mouseEncimaBoton(this)){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.INICIO;
             }
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO) {
@@ -121,6 +122,11 @@ public class Main extends PApplet{
                 gui.RBCenasV.cambio();
             } else if (gui.RBCatasV.cursorEncima(this)) {
                 gui.RBCatasV.cambio();
+            }
+
+
+            if(gui.OpcionesOpen){
+                gui.dibujaOpciones(this);
             }
 
         }

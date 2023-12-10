@@ -29,7 +29,7 @@ public class InterficieGrafica {
 
     BotonConFoto ADD, LogOut;
     PImage logoAdd, logoLogOut;
-    boolean OpcionesOpen= true;
+    boolean OpcionesOpen= false;
     BotonConTexto addVinos, addCatas;
 
     //BOTONES MENÚ
