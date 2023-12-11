@@ -33,8 +33,8 @@ public class Main extends PApplet{
             case HOME: gui.dibujaPantallaHome(this);
             break;
 
-            case MENU: gui.dibujaPantallaMenu(this);
-            break;
+            //case MENU: gui.dibujaPantallaMenu(this);
+            //break;
 
             case BUSCADOR: gui.dibujaPantallaBuscador(this);
             break;
@@ -57,20 +57,27 @@ public class Main extends PApplet{
 
     public void mousePressed(){
 
+        if(gui.MenuOpen) {
             if (gui.bMHome.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+                gui.MenuOpen= false;
             } else if (gui.bMBuscar.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.BUSCADOR;
+                gui.MenuOpen= false;
             } else if (gui.bMCalendar.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.CALENDARIO;
+                gui.MenuOpen= false;
             } else if (gui.bMVinos.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.ADDVINOS;
+                gui.MenuOpen= false;
             } else if (gui.bMCatas.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
-            } else if (gui.bLMenu.mouseEncimaBoton(this)) {
+                gui.MenuOpen= false;
+            } /*else if (gui.bLMenu.mouseEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
-            }
-
+                gui.MenuOpen= false;
+            }*/
+        }
 
             if(gui.LogOut.mouseEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.INICIO;
@@ -117,7 +124,6 @@ public class Main extends PApplet{
                 gui.RBCatasV.cambio();
             }
 
-
         }
 
 
@@ -152,7 +158,11 @@ public class Main extends PApplet{
 
 
         if(gui.ADD.mouseEncimaBoton(this)){
-                gui.OpcionesOpen = !gui.OpcionesOpen;
+            gui.OpcionesOpen = !gui.OpcionesOpen;
+        }
+
+        if(gui.bLMenu.mouseEncimaBoton(this)){
+            gui.MenuOpen= !gui.MenuOpen;
         }
 
     }

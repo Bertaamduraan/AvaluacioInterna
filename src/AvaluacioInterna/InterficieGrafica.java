@@ -30,6 +30,7 @@ public class InterficieGrafica {
     BotonConFoto ADD, LogOut;
     PImage logoAdd, logoLogOut;
     boolean OpcionesOpen= false;
+    boolean MenuOpen= false;
     BotonConTexto addVinos, addCatas;
 
     //BOTONES MENÚ
@@ -204,7 +205,6 @@ public class InterficieGrafica {
         UserName.display(p5);
         Contra.display(p5);
         LogIn.display(p5);
-
     }
 
 
@@ -216,9 +216,12 @@ public class InterficieGrafica {
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
+        if(MenuOpen){
+            dibujaMenu(p5);
+        }
     }
 
-    public void dibujaPantallaMenu(PApplet p5){
+    /*public void dibujaPantallaMenu(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
         dibujaHeadLine(p5);
         dibujaRectanguloCentro(p5);
@@ -228,7 +231,10 @@ public class InterficieGrafica {
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
-    }
+        if(MenuOpen){
+            dibujaMenu(p5);
+        }
+    }*/
 
     public void dibujaPantallaBuscador(PApplet p5){
         p5.background(ColoresApp.getThirdColor());
@@ -247,6 +253,9 @@ public class InterficieGrafica {
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
+        if(MenuOpen){
+            dibujaMenu(p5);
+        }
 
     }
 
@@ -257,6 +266,9 @@ public class InterficieGrafica {
         dibuja3Fila(p5);
         if(OpcionesOpen){
             dibujaOpciones(p5);
+        }
+        if(MenuOpen){
+            dibujaMenu(p5);
         }
     }
 
@@ -285,6 +297,9 @@ public class InterficieGrafica {
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
+        if(MenuOpen){
+            dibujaMenu(p5);
+        }
     }
 
     public void dibujaPantallaCatas(PApplet p5){
@@ -302,8 +317,12 @@ public class InterficieGrafica {
             BEliminarC.display(p5);
         p5.popStyle();
         ATCatas.display(p5);
+
         if(OpcionesOpen){
             dibujaOpciones(p5);
+        }
+        if(MenuOpen){
+            dibujaMenu(p5);
         }
     }
 
@@ -357,6 +376,8 @@ public class InterficieGrafica {
     public void dibujaMenu(PApplet p5){ //Será la del Menú
         p5.fill(ColoresApp.getSecondColor());
         p5.rect(marginH, marginV, MenuWidth, MenuHeight);
+        dibuja5MiniFilas(p5);
+        bLMenu.display(p5);
         //TEXTO
         p5.fill(0);
         p5.textFont(FontsApp.getFirstFont());
@@ -432,12 +453,10 @@ public class InterficieGrafica {
     }
 
     public void dibujaOpciones(PApplet p5){
-            /*p5.fill(255);
-            p5.rect(1400, 4*marginV, 110, 70);*/
             addVinos.display(p5);
             addCatas.display(p5);
-
     }
+
 
     boolean LogInCorrecto(){
         return (UserName.texto.equals("USER NAME: admin")&& Contra.texto.equals("CONTRASEÑA: 234"));
