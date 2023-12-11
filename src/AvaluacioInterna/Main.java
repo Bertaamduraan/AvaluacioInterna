@@ -71,13 +71,6 @@ public class Main extends PApplet{
                 gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
             }
 
-            if(gui.ADD.mouseEncimaBoton(this) && gui.OpcionesOpen==false){
-               gui.OpcionesOpen= true;
-            }
-            if(gui.ADD.mouseEncimaBoton(this) && gui.OpcionesOpen==true){
-                gui.OpcionesOpen= false;
-            }
-
 
             if(gui.LogOut.mouseEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.INICIO;
@@ -125,10 +118,6 @@ public class Main extends PApplet{
             }
 
 
-            if(gui.OpcionesOpen){
-                gui.dibujaOpciones(this);
-            }
-
         }
 
 
@@ -150,7 +139,6 @@ public class Main extends PApplet{
                 }
                 gui.sColor.cambio();
             }
-
         }
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDCATAS){
@@ -162,6 +150,10 @@ public class Main extends PApplet{
             gui.ATCatas.isPressed(this);
         }
 
+
+        if(gui.ADD.mouseEncimaBoton(this)){
+                gui.OpcionesOpen = !gui.OpcionesOpen;
+        }
 
     }
 

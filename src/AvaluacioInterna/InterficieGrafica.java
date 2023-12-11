@@ -94,6 +94,13 @@ public class InterficieGrafica {
 
         logoAdd= p5.loadImage("Plus_symbol.png");
         ADD= new BotonConFoto(p5, logoAdd, 1400, 2*marginV, 30, 30);
+        addVinos= new BotonConTexto(p5, 1390, 4*marginV, 100, 30, "AÑADIR VINO");
+        addVinos.setMidaTextoBoton(15);
+        addVinos.setColores(255, ColoresApp.getColorAt(1),0, 0);
+        addCatas= new BotonConTexto(p5, 1390, 6*marginV, 100, 30, "AÑADIR CATA");
+        addCatas.setMidaTextoBoton(15);
+        addCatas.setColores(255, ColoresApp.getColorAt(1),0, 0 );
+
         logoLogOut= p5.loadImage("LogoLogOut.png");
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
 
@@ -206,6 +213,9 @@ public class InterficieGrafica {
         dibujaRectanguloCentro(p5);
         dibujaHeadLine(p5);
         dibujaLogos(p5);
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
     }
 
     public void dibujaPantallaMenu(PApplet p5){
@@ -215,6 +225,9 @@ public class InterficieGrafica {
         dibujaMenu(p5);
         dibujaLogos(p5);
         dibuja5MiniFilas(p5);
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
     }
 
     public void dibujaPantallaBuscador(PApplet p5){
@@ -231,6 +244,9 @@ public class InterficieGrafica {
         SLbodega.display(p5);
         SLvariedad.display(p5);
         SLcenas.display(p5);
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
 
     }
 
@@ -239,6 +255,9 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         dibuja3Fila(p5);
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
     }
 
     public void dibujaPantallaVinos(PApplet p5){
@@ -263,6 +282,9 @@ public class InterficieGrafica {
         ATVinos.display(p5);
         Cocineros.display(p5);
         ColorVino.display(p5);
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
     }
 
     public void dibujaPantallaCatas(PApplet p5){
@@ -280,6 +302,9 @@ public class InterficieGrafica {
             BEliminarC.display(p5);
         p5.popStyle();
         ATCatas.display(p5);
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
     }
 
 
@@ -407,11 +432,12 @@ public class InterficieGrafica {
     }
 
     public void dibujaOpciones(PApplet p5){
-            p5.fill(0);
-            p5.rect(1400, 2 * marginV, 50, 70);
+            /*p5.fill(255);
+            p5.rect(1400, 4*marginV, 110, 70);*/
+            addVinos.display(p5);
+            addCatas.display(p5);
 
     }
-
 
     boolean LogInCorrecto(){
         return (UserName.texto.equals("USER NAME: admin")&& Contra.texto.equals("CONTRASEÑA: 234"));
