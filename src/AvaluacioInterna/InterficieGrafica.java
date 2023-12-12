@@ -344,6 +344,13 @@ public class InterficieGrafica {
     public void dibujaHeadLine(PApplet p5){
         p5.fill(ColoresApp.getColorAt(3));
         p5.rect(LogoMenuWidth +3*marginH, marginV, HeadLineWidth, HeadLineHeight);
+        p5.fill(0);
+        p5.pushStyle();
+            p5.fill(0);
+            p5.stroke(0);
+            p5.strokeWeight(3);
+            p5.line(LogoMenuWidth+4*marginH, HeadLineHeight-65, HeadLineWidth, HeadLineHeight-65);
+        p5.popStyle();
         //TEXTO
         p5.fill(0);
         p5.textFont(FontsApp.getFirstFont());
