@@ -9,7 +9,7 @@ public class Layout {
     public static float logoWidth = 200, logoHeight = 150;
 
     // Dimensiones HeadLine
-    public static float HeadLineWidth = 1360, HeadLineHeight = 150;
+    public static float HeadLineWidth = 1360, HeadLineHeight = 85;
 
     //Dimensiones Rectangulo Centro
     public static float CentRectWidth = 600, CentRectHeight = 500;

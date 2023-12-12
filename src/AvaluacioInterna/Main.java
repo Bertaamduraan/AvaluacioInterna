@@ -30,7 +30,7 @@ public class Main extends PApplet{
             case INICIO: gui.dibujaPantallaInicio(this);
             break;
 
-            case HOME: gui.dibujaPantallaHome(this);
+            case BODEGA: gui.dibujaPantallaHome(this);
             break;
 
             //case MENU: gui.dibujaPantallaMenu(this);
@@ -42,16 +42,15 @@ public class Main extends PApplet{
             case CALENDARIO: gui.dibujaPantallaCalendario(this);
             break;
 
-            case ADDVINOS: gui.dibujaPantallaVinos(this);
+            case AÑADIR_VINOS: gui.dibujaPantallaVinos(this);
             break;
 
-            case ADDCATAS: gui.dibujaPantallaCatas(this);
+            case AÑADIR_CATA: gui.dibujaPantallaCatas(this);
             break;
         }
 
 
     }
-
 
     // ******************* MOUSE interaction ***************************** //
 
@@ -59,7 +58,7 @@ public class Main extends PApplet{
 
         if(gui.MenuOpen) {
             if (gui.bMHome.cursorEncimaBoton(this)) {
-                gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+                gui.pantallaActual = InterficieGrafica.PANTALLA.BODEGA;
                 gui.MenuOpen= false;
             } else if (gui.bMBuscar.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.BUSCADOR;
@@ -68,10 +67,10 @@ public class Main extends PApplet{
                 gui.pantallaActual = InterficieGrafica.PANTALLA.CALENDARIO;
                 gui.MenuOpen= false;
             } else if (gui.bMVinos.cursorEncimaBoton(this)) {
-                gui.pantallaActual = InterficieGrafica.PANTALLA.ADDVINOS;
+                gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_VINOS;
                 gui.MenuOpen= false;
             } else if (gui.bMCatas.cursorEncimaBoton(this)) {
-                gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
+                gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATA;
                 gui.MenuOpen= false;
             } /*else if (gui.bLMenu.mouseEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
@@ -89,12 +88,12 @@ public class Main extends PApplet{
             if (gui.LogIn.cursorEncimaBoton(this)) {
                 println(gui.UserName.texto, gui.Contra.texto);
                 if (gui.LogInCorrecto()) {
-                    gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+                    gui.pantallaActual = InterficieGrafica.PANTALLA.BODEGA;
                 }
             }
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDVINOS) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS) {
             gui.TNombre.isPressed(this);
             gui.TBodega.isPressed(this);
             gui.TDenominacion.isPressed(this);
@@ -116,8 +115,6 @@ public class Main extends PApplet{
                 }
                 gui.ColorVino.cambio();
             }
-
-
             if (gui.RBCenasV.cursorEncima(this)) {
                 gui.RBCenasV.cambio();
             } else if (gui.RBCatasV.cursorEncima(this)) {
@@ -138,7 +135,6 @@ public class Main extends PApplet{
             gui.SLbodega.buttonPressed(this);
             gui.SLvariedad.getTextField().isPressed(this);
             gui.SLvariedad.buttonPressed(this);
-
             if (gui.sColor.cursorEncimaBoton(this)) {
                 if (!gui.sColor.estaPlegado()) {
                     gui.sColor.actualizar(this);
@@ -147,7 +143,7 @@ public class Main extends PApplet{
             }
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDCATAS){
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA){
             gui.TRvino1.isPressed(this);
             gui.TRvino2.isPressed(this);
             gui.TRvino3.isPressed(this);
@@ -163,6 +159,15 @@ public class Main extends PApplet{
 
         if(gui.bLMenu.mouseEncimaBoton(this)){
             gui.MenuOpen= !gui.MenuOpen;
+        }
+
+        if(gui.OpcionesOpen){
+            if(gui.addVinos.cursorEncimaBoton(this)){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
+            }
+            if(gui.addCatas.cursorEncimaBoton(this)){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_CATA;
+            }
         }
 
     }
@@ -182,7 +187,7 @@ public class Main extends PApplet{
             gui.pantallaActual = InterficieGrafica.PANTALLA.INICIO;
         }
         else if(key=='1'){
-            gui.pantallaActual = InterficieGrafica.PANTALLA.HOME;
+            gui.pantallaActual = InterficieGrafica.PANTALLA.BODEGA;
         }
         /*else if(key=='2'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.MENU;
@@ -194,10 +199,10 @@ public class Main extends PApplet{
             gui.pantallaActual = InterficieGrafica.PANTALLA.CALENDARIO;
         }
         else if(key=='5'){
-            gui.pantallaActual = InterficieGrafica.PANTALLA.ADDVINOS;
+            gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_VINOS;
         }
         else if(key=='6'){
-            gui.pantallaActual = InterficieGrafica.PANTALLA.ADDCATAS;
+            gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATA;
         }*/
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO){
@@ -205,7 +210,7 @@ public class Main extends PApplet{
             gui.Contra.keyPressed(key, (int) keyCode);
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDVINOS) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS) {
             gui.TNombre.keyPressed(key, (int) keyCode);
             gui.TBodega.keyPressed(key, (int) keyCode);
             gui.TDenominacion.keyPressed(key, (int) keyCode);
@@ -225,7 +230,7 @@ public class Main extends PApplet{
             }
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.ADDCATAS) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA) {
             gui.TRvino1.keyPressed(key, (int) keyCode);
             gui.TRvino2.keyPressed(key, (int) keyCode);
             gui.TRvino3.keyPressed(key, (int) keyCode);

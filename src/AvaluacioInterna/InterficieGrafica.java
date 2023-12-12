@@ -15,7 +15,7 @@ public class InterficieGrafica {
 
 
     // Enumerado de las Pantallas de la App
-    public enum PANTALLA {INICIO, HOME, MENU, BUSCADOR, CALENDARIO, ADDVINOS, ADDCATAS};
+    public enum PANTALLA {INICIO, BODEGA, MENU, BUSCADOR, CALENDARIO, AÑADIR_VINOS, AÑADIR_CATA};
 
     // Pantalla Actual
     public PANTALLA pantallaActual;
@@ -38,7 +38,7 @@ public class InterficieGrafica {
     BotonConFoto bLMenu;
     PImage logoMenu;
 
-    //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS ADDVINOS
+    //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS AÑADIR_VINOS
     BotonConTexto BAceptarV, BEliminarV, BAddV;
     CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
     CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
@@ -50,7 +50,7 @@ public class InterficieGrafica {
     Selector ColorVino;
 
 
-    //BOTONES Y CAMPOS/AREA DE TEXTO ADDCATAS
+    //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR_CATA
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
     AreaTexto ATCatas;
@@ -109,13 +109,13 @@ public class InterficieGrafica {
 
 
         //BOTONES MENÚ
-        bMHome= new BotonConTexto(p5, marginH*2, marginV+MenuHeight/3, MiniBotonesWidth, MiniBotonesHeight, "HOME");
-        bMBuscar= new BotonConTexto(p5,marginH*2, 2*marginV+MenuHeight/3 + MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight,"BUSCAR");
+        bMHome= new BotonConTexto(p5, marginH*2, marginV+MenuHeight/3, MiniBotonesWidth, MiniBotonesHeight, "BODEGA");
+        bMBuscar= new BotonConTexto(p5,marginH*2, 2*marginV+MenuHeight/3 + MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight,"BUSCADOR");
         bMCalendar= new BotonConTexto(p5,marginH*2, 3*marginV+MenuHeight/3 + 2*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "CALENDARIO");
-        bMVinos= new BotonConTexto(p5, marginH*2, 4*marginV+MenuHeight/3 + 3*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "VINOS");
-        bMCatas= new BotonConTexto(p5, marginH*2, 5*marginV+MenuHeight/3 + 4*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "CATAS");
+        bMVinos= new BotonConTexto(p5, marginH*2, 4*marginV+MenuHeight/3 + 3*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "AÑADIR VINOS");
+        bMCatas= new BotonConTexto(p5, marginH*2, 5*marginV+MenuHeight/3 + 4*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "AÑADIR CATAS");
 
-        //CAMPOS DE TEXTO, BOTONES Y ROUND BUTTONS ADDVINOS
+        //CAMPOS DE TEXTO, BOTONES Y ROUND BUTTONS AÑADIR_VINOS
         TNombre= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (2*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Nom: ");
         TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (5*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
         TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominació de origen: ");
@@ -151,7 +151,7 @@ public class InterficieGrafica {
         ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 150, 60, 10);
         ColorVino.setSelectedValue("COLOR VINO");
 
-        //CAMPOS DE TEXTO Y BOTONES ADDCATAS
+        //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
         TRvino1.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5), 0);
         TRvino1.setHeightRectSizeLetra(60,25);
@@ -166,10 +166,10 @@ public class InterficieGrafica {
         TRvino4.setHeightRectSizeLetra(60,25);
         ATCatas= new AreaTexto(p5, 2*(int)marginH, 320, (int)columnCatasWidth-2*(int)marginH, 400, 80, 30);
 
-        BAceptarC= new BotonConTexto(p5,4*marginH+columnVinosWidth,24*marginV+HeadLineHeight+115,160,55, "GUARDAR");
+        BAceptarC= new BotonConTexto(p5,4*marginH+columnVinosWidth,28*marginV+HeadLineHeight+115,160,55, "GUARDAR");
         BAceptarC.setMidaTextoBoton(30);
         BAceptarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
-        BEliminarC= new BotonConTexto(p5, 13*marginH+columnVinosWidth, 24*marginV+HeadLineHeight+115,160,55, "ELIMINAR");
+        BEliminarC= new BotonConTexto(p5, 13*marginH+columnVinosWidth, 28*marginV+HeadLineHeight+115,160,55, "ELIMINAR");
         BEliminarC.setMidaTextoBoton(30);
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
@@ -209,7 +209,7 @@ public class InterficieGrafica {
 
 
     public void dibujaPantallaHome(PApplet p5){
-        p5.background(ColoresApp.getThirdColor());
+        p5.background(ColoresApp.getSecondColor());
         dibujaRectanguloCentro(p5);
         dibujaHeadLine(p5);
         dibujaLogos(p5);
@@ -342,21 +342,20 @@ public class InterficieGrafica {
     }
 
     public void dibujaHeadLine(PApplet p5){
-        p5.fill(ColoresApp.getColorAt(3));
-        p5.rect(LogoMenuWidth +3*marginH, marginV, HeadLineWidth, HeadLineHeight);
-        p5.fill(0);
+        //p5.fill(ColoresApp.getColorAt(3));
+        //p5.rect(LogoMenuWidth +3*marginH, marginV, HeadLineWidth, HeadLineHeight);
         p5.pushStyle();
             p5.fill(0);
             p5.stroke(0);
             p5.strokeWeight(3);
-            p5.line(LogoMenuWidth+4*marginH, HeadLineHeight-65, HeadLineWidth, HeadLineHeight-65);
+            p5.line(LogoMenuWidth+4*marginH, HeadLineHeight, HeadLineWidth, HeadLineHeight);
+            //TEXTO
+            p5.fill(0);
+            p5.textFont(FontsApp.getFirstFont());
+            p5.textSize(midaTitol);
+            p5.textAlign(p5.LEFT, p5.CENTER);
+            p5.text(""+pantallaActual, 4*marginH + LogoMenuWidth,HeadLineHeight-25);
         p5.popStyle();
-        //TEXTO
-        p5.fill(0);
-        p5.textFont(FontsApp.getFirstFont());
-        p5.textSize(midaTitol);
-        p5.text("PANTALLA " +  pantallaActual + "("+pantallaActual.ordinal() +")",
-                2*marginH + LogoMenuWidth + HeadLineWidth/2, marginV + HeadLineHeight/2);
     }
 
     public void dibujaRectanguloCentro(PApplet p5){
@@ -368,8 +367,7 @@ public class InterficieGrafica {
             p5.fill(0);
             p5.textFont(FontsApp.getFirstFont());
             p5.textSize(midaTitol);
-            p5.text("PANTALLA "+ pantallaActual+ "(" +pantallaActual.ordinal() +")",
-                    p5.width/2, marginV*5);
+            //p5.text("PANTALLA "+ pantallaActual+ "(" +pantallaActual.ordinal() +")", p5.width/2, marginV*5);
         p5.popStyle();
 
     }
@@ -398,7 +396,7 @@ public class InterficieGrafica {
         p5.textFont(FontsApp.getSecondFont());
         p5.textSize(midaSubtitol);
 
-        //BOTÓN PARA IR A HOME
+        //BOTÓN PARA IR A BODEGA
      bMHome.setColores(ColoresApp.getColorAt(0), ColoresApp.getColorAt(6),0, 255);
      bMHome.display(p5);
 
