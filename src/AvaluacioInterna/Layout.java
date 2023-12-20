@@ -6,7 +6,7 @@ public class Layout {
     public static float marginH = 20, marginV = 20;
 
     // Dimensions Logo
-    public static float logoWidth = 200, logoHeight = 150;
+    public static float logoWidth = 1100, logoHeight = 820;
 
     // Dimensiones HeadLine
     public static float HeadLineWidth = 1360, HeadLineHeight = 85;

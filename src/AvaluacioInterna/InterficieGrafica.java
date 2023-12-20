@@ -7,7 +7,6 @@ import static AvaluacioInterna.Layout.*;
 import static AvaluacioInterna.mides.midaSubtitol;
 import static AvaluacioInterna.mides.midaTitol;
 import static processing.core.PConstants.CENTER;
-import static processing.core.PConstants.CORNER;
 
 ;
 
@@ -22,6 +21,9 @@ public class InterficieGrafica {
 
     //Colores y topigrafias de la App
     Colors ColoresApp; Fonts FontsApp;
+
+    //FOTO LOGO COFRADIA
+    PImage FotoLogo;
 
     //CAMPOS DE TEXTO Y BOTONES LOG IN
     CamposTextoRect UserName, Contra;
@@ -89,6 +91,8 @@ public class InterficieGrafica {
         LogIn.setMidaTextoBoton(30);
         LogIn.setColores(255, 200, 0, 0);
 
+        FotoLogo= p5.loadImage("LOGO_TASTAVINS.JPG");
+
         //LOGOS MENU, ADD, LOG OUT
         logoMenu= p5.loadImage("LogoMenu.png"); //Cargar foto
         bLMenu= new BotonConFoto(p5, logoMenu, 2*marginH, 2*marginV, LogoMenuWidth, LogoMenuHeight);
@@ -104,8 +108,6 @@ public class InterficieGrafica {
 
         logoLogOut= p5.loadImage("LogoLogOut.png");
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
-
-
 
 
         //BOTONES MENÚ
@@ -192,16 +194,14 @@ public class InterficieGrafica {
         SLdenominacion= new SelectList(p5, ValoresDO, 340, 200, 250, 70, "Denominación de Origen");
         SLañada= new SelectList(p5, ValoresA, 580, 200, 150, 70, "Añada");
         SLbodega= new SelectList(p5, ValoresBo, 720, 200, 150, 70, "Bodega");
-
-
-
     }
 
     // PANTALLAS DE LA INTERFÍCIE GRÁFICA
     public void dibujaPantallaInicio(PApplet p5){
-        p5.background(ColoresApp.getThirdColor());
+        p5.background(0);
         dibujaLogo(p5);
         dibujaRectanguloCentro(p5);
+        p5.textFont(FontsApp.getFirstFont());
         UserName.display(p5);
         Contra.display(p5);
         LogIn.display(p5);
@@ -303,6 +303,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaPantallaCatas(PApplet p5){
+    p5.pushStyle();
         p5.background(ColoresApp.getColorAt(1));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
@@ -324,6 +325,7 @@ public class InterficieGrafica {
         if(MenuOpen){
             dibujaMenu(p5);
         }
+    p5.popStyle();
     }
 
 
@@ -331,14 +333,10 @@ public class InterficieGrafica {
     //ZONAS DE LA INTERFÍCIE GRÁFICA
 
     public void dibujaLogo(PApplet p5){
-        p5.fill(ColoresApp.getColorAt(5));
-        p5.rectMode(CORNER);
-        p5.rect(marginH, marginV, logoWidth, logoHeight);
-        //TEXTO
-        p5.fill(0);
-        p5.textFont(FontsApp.getFirstFont());
-        p5.textSize(midaTitol);
-        p5.text("LOGO", marginH+logoWidth/2, marginV+logoHeight/2);
+    p5.pushStyle();
+        p5.imageMode(CENTER);
+        p5.image(FotoLogo, p5.width/2, p5.height/2, logoWidth, logoHeight);
+    p5.popStyle();
     }
 
     public void dibujaHeadLine(PApplet p5){
@@ -354,7 +352,8 @@ public class InterficieGrafica {
             p5.textFont(FontsApp.getFirstFont());
             p5.textSize(midaTitol);
             p5.textAlign(p5.LEFT, p5.CENTER);
-            p5.text(""+pantallaActual, 4*marginH + LogoMenuWidth,HeadLineHeight-25);
+            String ptitulo = pantallaActual.toString().replace("_", " ");
+            p5.text(""+ptitulo, 4*marginH + LogoMenuWidth,HeadLineHeight-25);
         p5.popStyle();
     }
 
@@ -458,8 +457,9 @@ public class InterficieGrafica {
     }
 
     public void dibujaOpciones(PApplet p5){
-            addVinos.display(p5);
-            addCatas.display(p5);
+        p5.textFont(FontsApp.getFirstFont());
+        addVinos.display(p5);
+        addCatas.display(p5);
     }
 
 

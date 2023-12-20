@@ -109,6 +109,8 @@ public class Main extends PApplet{
             gui.Cocineros.getTextField().isPressed(this);
             gui.Cocineros.buttonPressed(this);
 
+            gui.ATVinos.isPressed(this);
+
             if (gui.ColorVino.cursorEncimaBoton(this)) {
                 if (!gui.ColorVino.estaPlegado()) {
                     gui.ColorVino.actualizar(this);
