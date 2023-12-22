@@ -23,6 +23,11 @@ public class BotonesDias {
         this.selected= false;
     }
 
+
+    void setSeleccionado(boolean b){
+        this.selected=b;
+    }
+
     //DIBUJAR EL BOTÓN
     void display(PApplet p5){
         p5.pushStyle();

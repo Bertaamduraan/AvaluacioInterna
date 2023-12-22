@@ -16,14 +16,18 @@ public class InterficieGrafica {
     // Enumerado de las Pantallas de la App
     public enum PANTALLA {INICIO, BODEGA, MENU, BUSCADOR, CALENDARIO, AÑADIR_VINOS, AÑADIR_CATA};
 
+
     // Pantalla Actual
     public PANTALLA pantallaActual;
+
 
     //Colores y topigrafias de la App
     Colors ColoresApp; Fonts FontsApp;
 
+
     //FOTO LOGO COFRADIA
     PImage FotoLogo;
+
 
     //CAMPOS DE TEXTO Y BOTONES LOG IN
     CamposTextoRect UserName, Contra;
@@ -34,6 +38,7 @@ public class InterficieGrafica {
     boolean OpcionesOpen= false;
     boolean MenuOpen= false;
     BotonConTexto addVinos, addCatas;
+
 
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
@@ -56,6 +61,9 @@ public class InterficieGrafica {
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
     AreaTexto ATCatas;
+    CalendarioPlus cCata;
+    BotonConFoto bCalendarioCata;
+    PImage fotoCalendarioCata;
 
 
     //SELECTOR BUSCADOR
@@ -174,6 +182,11 @@ public class InterficieGrafica {
         BEliminarC= new BotonConTexto(p5, 13*marginH+columnVinosWidth, 28*marginV+HeadLineHeight+115,160,55, "ELIMINAR");
         BEliminarC.setMidaTextoBoton(30);
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
+
+        cCata= new CalendarioPlus(p5, 200, 200, 300, 100);
+        fotoCalendarioCata= p5.loadImage("299092_calendar_icon.png");
+        bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata ,20, 20, 200, 200);
+
 
 
         //SELCTORS Y CAMPOS DE TEXTOS BUSCADOR
