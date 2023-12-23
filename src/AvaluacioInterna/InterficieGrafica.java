@@ -184,7 +184,7 @@ public class InterficieGrafica {
         BEliminarC.setMidaTextoBoton(30);
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
-        cCata= new CalendarioPlus(p5, 300, 300, 300,150);
+        cCata= new CalendarioPlus(p5, 300, 300, 300,250);
         fotoCalendarioCata= p5.loadImage("299092_calendar_icon.png");
         bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata ,100, 100, 80, 80);
 
@@ -345,9 +345,9 @@ public class InterficieGrafica {
 
             p5.fill(0);
             p5.textAlign(p5.LEFT, p5.CENTER);
+            p5.textFont(FontsApp.getFontAt(2));
             p5.textSize(20);
             p5.text(dataCalendario, 190, 100+25);
-            p5.textFont(FontsApp.getFontAt(2));
             cCata.display(p5);
             bCalendarioCata.display(p5);
         p5.popStyle();

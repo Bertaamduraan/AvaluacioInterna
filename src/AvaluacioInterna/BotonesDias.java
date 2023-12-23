@@ -37,7 +37,7 @@ public class BotonesDias {
 
             if(selected){
                 p5.fill(200);
-                p5.ellipse(x+w/2, y+h/2, 80, 80);
+                p5.ellipse(x+w/2, y+h/2, w, w);
             }
 
             p5.fill(0);
