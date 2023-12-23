@@ -64,6 +64,7 @@ public class InterficieGrafica {
     CalendarioPlus cCata;
     BotonConFoto bCalendarioCata;
     PImage fotoCalendarioCata;
+    String dataCalendario= "";
 
 
     //SELECTOR BUSCADOR
@@ -185,7 +186,7 @@ public class InterficieGrafica {
 
         cCata= new CalendarioPlus(p5, 200, 200, 300, 100);
         fotoCalendarioCata= p5.loadImage("299092_calendar_icon.png");
-        bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata ,20, 20, 200, 200);
+        bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata ,100, 100, 80, 80);
 
 
 
@@ -338,6 +339,16 @@ public class InterficieGrafica {
         if(MenuOpen){
             dibujaMenu(p5);
         }
+
+        p5.fill(255);
+        p5.rect(180, 100, 200, 50, 7);
+
+        p5.fill(0);
+        p5.textAlign(p5.LEFT, p5.CENTER);
+        p5.textSize(14);
+        p5.text(dataCalendario, 190, 50);
+        cCata.display(p5);
+        bCalendarioCata.display(p5);
     p5.popStyle();
     }
 

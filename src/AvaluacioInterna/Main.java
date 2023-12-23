@@ -172,6 +172,24 @@ public class Main extends PApplet{
             }
         }
 
+
+        gui.cCata.checkBotones(this);
+        if(gui.bCalendarioCata.mouseEncimaBoton(this)){
+            gui.cCata.visible= !gui.cCata.visible;
+        }
+
+        if(gui.cCata.bnext.cursorEncimaBoton(this)){
+            gui.cCata.ProximoMes();
+        }
+
+        if(gui.cCata.bprev.cursorEncimaBoton(this)){
+            gui.cCata.mesAnterior();
+        }
+
+        if(gui.cCata.bAccept.cursorEncimaBoton(this) && gui.cCata.dateSelected){
+            gui.dataCalendario= gui.cCata.diaSeleccionado+"/"+gui.cCata.mesSeleccionado+"/"+gui.cCata.añoSeleccionado;
+            gui.cCata.visible= false;
+        }
     }
 
     public void mouseDragged(){

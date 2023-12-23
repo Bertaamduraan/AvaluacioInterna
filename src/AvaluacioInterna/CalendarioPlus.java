@@ -33,6 +33,8 @@ public class CalendarioPlus {
 
     CalendarioPlus(PApplet p5, int x, int y, int w, int h){
         this.botones= new BotonesDias[37];
+
+        this.calendario= Calendar.getInstance();
         calendario.set(Calendar.DAY_OF_MONTH, 1);
 
         this.año= calendario.get(Calendar.YEAR);
@@ -88,7 +90,7 @@ public class CalendarioPlus {
     }
 
 
-    void mesAterior(){
+    void mesAnterior(){
         this.botones= new BotonesDias[37];
 
         this.mes--;
