@@ -65,32 +65,38 @@ public class CalendarioPlus {
         this.h= h;
         crearCalendario(x, y, w, h);
 
-        bnext= new BotonConTexto(p5, x+w/3, y-70, 100, 50, "Siguiente");
-        bprev= new BotonConTexto(p5, x+w/3+100, y - 70, 100, 50, "Anterior");
-        bAccept= new BotonConTexto(p5, x+w/3+200, y-70, 50, 50, "OK");
+        bnext= new BotonConTexto(p5, x+w, y-70, 100, 50, "Siguiente");
+        bnext.setColores(255, 200, 0, 0);
+        bnext.setMidaTextoBoton(17);
+        bprev= new BotonConTexto(p5, x+w+100, y - 70, 100, 50, "Anterior");
+        bprev.setColores(255, 200, 0, 0);
+        bprev.setMidaTextoBoton(17);
+        bAccept= new BotonConTexto(p5, x+w+200, y-70, 50, 50, "OK");
+        bAccept.setColores(255, 200, 0, 0);
+        bAccept.setMidaTextoBoton(17);
     }
 
     //SETTERS
-    void setCalendario(int d, int m, int y){
+    public void setCalendario(int d, int m, int y){
         calendario.set(Calendar.YEAR, y);
         calendario.set(Calendar.MONTH, m);
         calendario.set(Calendar.DATE, d);
     }
 
-    void setCalendarioPrevio(int d, int m, int y){
+    public void setCalendarioPrevio(int d, int m, int y){
         CalendarioPrevio.set(Calendar.YEAR, y);
         CalendarioPrevio.set(Calendar.MONTH, m);
         CalendarioPrevio.set(Calendar.DATE, d);
     }
 
-    void setDateSelected(int d, int m, int y){
+    public void setDateSelected(int d, int m, int y){
         this.diaSeleccionado= d;
         this.mesSeleccionado= m;
         this.añoSeleccionado= y;
     }
 
 
-    void mesAnterior(){
+    public void mesAnterior(){
         this.botones= new BotonesDias[37];
 
         this.mes--;
@@ -127,18 +133,26 @@ public class CalendarioPlus {
 
         while(numeroDia<=numeroDiasMes){
             if(primerDia!=1 && f==0){
-                int calendarioPrevio=0;
+                int calendarioPrevio1=0;
                 for(int p= primerDia, c=0; p<=numeroDiasMesAnt; p++, c++){
                     botones[nb]= new BotonesDias(x+c*dayWidth, y+f*dayHeight, dayWidth, dayHeight, p, mes, año);
-                    calendarioPrevio++;
+                    calendarioPrevio1++;
                     nb++;
                 }
 
-                for(int c= calendarioPrevio; c<7; c++){
+                for(int c= calendarioPrevio1; c<7; c++){
                     botones[nb]= new BotonesDias(x+c*dayWidth, y+f*dayHeight, dayWidth, dayHeight, numeroDia, mes, año);
                     numeroDia++;
                     nb++;
-                    if(numeroDia<numeroDiasMes){
+                }
+                f++;
+
+            } else {
+                for(int c= 0; c<7; c++){
+                    botones[nb]= new BotonesDias(x+c*dayWidth, y+f*dayHeight, dayWidth, dayHeight, numeroDia, mes, año);
+                    numeroDia++;
+                    nb++;
+                    if(numeroDia>numeroDiasMes){
                         break;
                     }
                 }
@@ -201,9 +215,9 @@ public class CalendarioPlus {
                 if(dateSelected){
                     String dateText= this.diaSeleccionado+"/"+this.mesSeleccionado+"/"+this.añoSeleccionado;
                     p5.fill(0);
-                    p5.textSize(24);
-                    p5.textAlign(p5.RIGHT);
-                    p5.text(dateText, x+w, y-30);
+                    p5.textSize(20);
+                    p5.textAlign(p5.LEFT, p5.CENTER);
+                    p5.text(dateText, 190, 125);
                 }
 
                 //DIBUJAR LOS BOTONES
@@ -217,7 +231,7 @@ public class CalendarioPlus {
     //COMPROVAR SI SE PULSAN LOS BOTONES DEL CALENDARIO
     void checkBotones(PApplet p5){
         for(BotonesDias b: botones){
-            if((b!=null)&& (b.cursorEncimaBotonDia(p5))){
+            if((b!=null)&&(b.cursorEncimaBotonDia(p5))){
                 boolean estadoAnterior= b.selected;
                 deseleccionarTodo();
                 b.setSeleccionado(!estadoAnterior);

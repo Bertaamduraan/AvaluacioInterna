@@ -184,7 +184,7 @@ public class InterficieGrafica {
         BEliminarC.setMidaTextoBoton(30);
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
-        cCata= new CalendarioPlus(p5, 200, 200, 300, 100);
+        cCata= new CalendarioPlus(p5, 300, 300, 300,150);
         fotoCalendarioCata= p5.loadImage("299092_calendar_icon.png");
         bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata ,100, 100, 80, 80);
 
@@ -339,23 +339,24 @@ public class InterficieGrafica {
         if(MenuOpen){
             dibujaMenu(p5);
         }
+        p5.pushStyle();
+            p5.fill(255);
+            p5.rect(180, 100, 200, 50, 7);
 
-        p5.fill(255);
-        p5.rect(180, 100, 200, 50, 7);
-
-        p5.fill(0);
-        p5.textAlign(p5.LEFT, p5.CENTER);
-        p5.textSize(14);
-        p5.text(dataCalendario, 190, 50);
-        cCata.display(p5);
-        bCalendarioCata.display(p5);
+            p5.fill(0);
+            p5.textAlign(p5.LEFT, p5.CENTER);
+            p5.textSize(20);
+            p5.text(dataCalendario, 190, 100+25);
+            p5.textFont(FontsApp.getFontAt(2));
+            cCata.display(p5);
+            bCalendarioCata.display(p5);
+        p5.popStyle();
     p5.popStyle();
     }
 
 
 
     //ZONAS DE LA INTERFÍCIE GRÁFICA
-
     public void dibujaLogo(PApplet p5){
     p5.pushStyle();
         p5.imageMode(CENTER);

@@ -55,22 +55,21 @@ public class BotonConTexto {
     //DIBUJAR EL BOTÓN
     public void display(PApplet p5){
         p5.pushStyle();
-        if(cursorEncimaBoton(p5)){
-            p5.fill(ColorRellenoEncima); //color cuando el cursor está encima
-        }
-        else {
-            p5.fill(ColorRelleno); //color cuando el botón está activo pero el cursor no está encima
-        }
+            if(cursorEncimaBoton(p5)){
+                p5.fill(ColorRellenoEncima); //color cuando el cursor está encima
+            }
+            else {
+                p5.fill(ColorRelleno); //color cuando el botón está activo pero el cursor no está encima
+            }
 
-        p5.stroke(ColorTrazo);
-        p5.rect(this.x, this.y, this.w, this.h, this.r);
+            p5.stroke(ColorTrazo);
+            p5.rect(this.x, this.y, this.w, this.h, this.r);
 
-        //Texto botón (color, alienación y mida)
-        p5.fill(ColorLetra);
-        p5.textAlign(p5.CENTER, p5.CENTER);
-        p5.textSize(MidaTextoBoton);
-        p5.text(TextoBoton, this.x+this.w/2, this.y+this.h/2);
-
+            //Texto botón (color, alienación y mida)
+            p5.fill(ColorLetra);
+            p5.textAlign(p5.CENTER, p5.CENTER);
+            p5.textSize(MidaTextoBoton);
+            p5.text(TextoBoton, this.x+this.w/2, this.y+this.h/2);
         p5.popStyle();
     }
 

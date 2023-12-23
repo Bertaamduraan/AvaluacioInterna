@@ -14,9 +14,10 @@ public class Fonts {
 
     // Estableix les fonts de l'App
     public void setFonts(PApplet p5){
-        this.fonts = new PFont[2];
+        this.fonts = new PFont[4];
         this.fonts[0] = p5.createFont("data/WONDER SEASON.ttf", 200);
         this.fonts[1] = p5.createFont("data/CASTLEROCKS-Regular_Demo.ttf", 200);
+        this.fonts[2] = p5.createFont("data/Philosopher-Bold.ttf", 200);
     }
 
     //Getter del número de fonts
