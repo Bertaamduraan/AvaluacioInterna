@@ -217,7 +217,7 @@ public class CalendarioPlus {
                     p5.fill(0);
                     p5.textSize(20);
                     p5.textAlign(p5.LEFT, p5.CENTER);
-                    p5.text(dateText, x+w, y-30);
+                    //p5.text(dateText, x+w, y-30);
                 }
 
                 //DIBUJAR LOS BOTONES

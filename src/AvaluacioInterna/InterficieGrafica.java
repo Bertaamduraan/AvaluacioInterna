@@ -175,7 +175,7 @@ public class InterficieGrafica {
         TRvino4= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(17*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Cuarto vino: ");
         TRvino4.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
         TRvino4.setHeightRectSizeLetra(60,25);
-        ATCatas= new AreaTexto(p5, 2*(int)marginH, 320, (int)columnCatasWidth-2*(int)marginH, 400, 80, 30);
+        ATCatas= new AreaTexto(p5, 2*(int)marginH, 260, (int)columnCatasWidth-2*(int)marginH, 460, 80, 30);
 
         BAceptarC= new BotonConTexto(p5,4*marginH+columnVinosWidth,28*marginV+HeadLineHeight+115,160,55, "GUARDAR");
         BAceptarC.setMidaTextoBoton(30);
@@ -184,9 +184,9 @@ public class InterficieGrafica {
         BEliminarC.setMidaTextoBoton(30);
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
-        cCata= new CalendarioPlus(p5, 300, 300, 300,250);
+        cCata= new CalendarioPlus(p5, 350, 250, 300,250);
         fotoCalendarioCata= p5.loadImage("299092_calendar_icon.png");
-        bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata ,100, 100, 80, 80);
+        bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata, 2*marginH, 150, 80, 80);
 
 
 
@@ -314,44 +314,37 @@ public class InterficieGrafica {
         if(MenuOpen){
             dibujaMenu(p5);
         }
+
+
     }
 
     public void dibujaPantallaCatas(PApplet p5){
-    p5.pushStyle();
-        p5.background(ColoresApp.getColorAt(1));
-        dibujaHeadLine(p5);
-        dibujaLogos(p5);
-        dibuja2Columna(p5);
-        TRvino1.display(p5);
-        TRvino2.display(p5);
-        TRvino3.display(p5);
-        TRvino4.display(p5);
         p5.pushStyle();
-            p5.textFont(FontsApp.getFirstFont());
-            BAceptarC.display(p5);
-            BEliminarC.display(p5);
-        p5.popStyle();
-        ATCatas.display(p5);
+            p5.background(ColoresApp.getColorAt(1));
+            dibujaHeadLine(p5);
+            dibujaLogos(p5);
+            dibuja2Columna(p5);
+            TRvino1.display(p5);
+            TRvino2.display(p5);
+            TRvino3.display(p5);
+            TRvino4.display(p5);
+            p5.pushStyle();
+                p5.textFont(FontsApp.getFirstFont());
+                BAceptarC.display(p5);
+                BEliminarC.display(p5);
+            p5.popStyle();
+            ATCatas.display(p5);
 
-        if(OpcionesOpen){
-            dibujaOpciones(p5);
-        }
-        if(MenuOpen){
-            dibujaMenu(p5);
-        }
-        p5.pushStyle();
-            p5.fill(255);
-            p5.rect(180, 100, 200, 50, 7);
+            if(OpcionesOpen){
+                dibujaOpciones(p5);
+            }
+            if(MenuOpen){
+                dibujaMenu(p5);
+            }
 
-            p5.fill(0);
-            p5.textAlign(p5.LEFT, p5.CENTER);
-            p5.textFont(FontsApp.getFontAt(2));
-            p5.textSize(20);
-            p5.text(dataCalendario, 190, 100+25);
-            cCata.display(p5);
-            bCalendarioCata.display(p5);
+            dibujaCalendarioCatas(p5);
+
         p5.popStyle();
-    p5.popStyle();
     }
 
 
@@ -488,9 +481,40 @@ public class InterficieGrafica {
     }
 
 
-    boolean LogInCorrecto(){
+    public boolean LogInCorrecto(){
         return (UserName.texto.equals("USER NAME: admin")&& Contra.texto.equals("CONTRASEÑA: 234"));
     }
 
+
+    public void dibujaCalendarioCatas(PApplet p5){
+        p5.pushStyle();
+        p5.fill(255);
+        p5.rectMode(p5.CORNER);
+        p5.rect(2*marginH+80, 170, 200, 50, 7);
+
+        p5.fill(0);
+        p5.textAlign(p5.LEFT, p5.CENTER);
+        p5.textFont(FontsApp.getFontAt(2));
+        p5.textSize(20);
+        p5.text(dataCalendario, 2*marginH+90, 170+25);
+        cCata.display(p5);
+        bCalendarioCata.display(p5);
+        p5.popStyle();
+    }
+
+
+    /*public void dibujaCalendarioVinosCena(PApplet p5){
+        p5.pushStyle();
+            p5.fill(255);
+            p5.rectMode(p5.CORNER);
+            p5.rect();
+
+            p5.fill(0);
+            p5.textAlign(p5.LEFT, p5.CENTER);
+            p5.textSize(12);
+            p5.text();
+
+        p5.popStyle();
+    }*/
 
 }
