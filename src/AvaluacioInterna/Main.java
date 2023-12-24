@@ -93,7 +93,7 @@ public class Main extends PApplet{
             }
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible) {
             gui.TNombre.isPressed(this);
             gui.TBodega.isPressed(this);
             gui.TDenominacion.isPressed(this);
@@ -123,7 +123,52 @@ public class Main extends PApplet{
                 gui.RBCatasV.cambio();
             }
 
+            if(gui.bCalendarioVino1.mouseEncimaBoton(this)){
+                gui.cVinosCata.visible= !gui.cVinosCata.visible;
+            }
+
+            if(gui.bCalendarioVino2.mouseEncimaBoton(this)){
+                gui.cVinosCena.visible= !gui.cVinosCena.visible;
+            }
+
+        } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && (gui.cVinosCena.visible || gui.cVinosCata.visible)){
+
+            //CATAS
+            gui.cVinosCata.checkBotones(this);
+
+            if(gui.bCalendarioVino1.mouseEncimaBoton(this)){
+                gui.cVinosCata.visible= !gui.cVinosCata.visible;
+            }
+            if(gui.cVinosCata.bnext.cursorEncimaBoton(this)){
+                gui.cVinosCata.ProximoMes();
+            }
+            if(gui.cVinosCata.bprev.cursorEncimaBoton(this)){
+                gui.cVinosCata.mesAnterior();
+            }
+            if(gui.cVinosCata.bAccept.cursorEncimaBoton(this) && gui.cVinosCata.dateSelected){
+                gui.dataCalendario1= gui.cVinosCata.diaSeleccionado+"/"+gui.cVinosCata.mesSeleccionado+"/"+gui.cVinosCata.añoSeleccionado;
+                gui.cVinosCata.visible= false;
+            }
+
+
+            gui.cVinosCena.checkBotones(this);
+            if(gui.bCalendarioVino2.mouseEncimaBoton(this)){
+                gui.cVinosCena.visible= !gui.cVinosCena.visible;
+            }
+            if(gui.cVinosCena.bnext.cursorEncimaBoton(this)){
+                gui.cVinosCena.ProximoMes();
+            }
+            if(gui.cVinosCena.bprev.cursorEncimaBoton(this)){
+                gui.cVinosCena.mesAnterior();
+            }
+            if(gui.cVinosCena.bAccept.cursorEncimaBoton(this) && gui.cVinosCena.dateSelected){
+                gui.dataCalendario2= gui.cVinosCena.diaSeleccionado+"/"+gui.cVinosCena.mesSeleccionado+"/"+gui.cVinosCena.añoSeleccionado;
+                gui.cVinosCena.visible= false;
+            }
+
         }
+
+
 
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BUSCADOR) {
@@ -145,13 +190,37 @@ public class Main extends PApplet{
             }
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA){
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && !gui.cCata.visible ){
             gui.TRvino1.isPressed(this);
             gui.TRvino2.isPressed(this);
             gui.TRvino3.isPressed(this);
             gui.TRvino4.isPressed(this);
 
             gui.ATCatas.isPressed(this);
+
+            if(gui.bCalendarioCata.mouseEncimaBoton(this)){
+                gui.cCata.visible= !gui.cCata.visible;
+            }
+        }
+        else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && gui.cCata.visible){
+
+            gui.cCata.checkBotones(this);
+            if(gui.bCalendarioCata.mouseEncimaBoton(this)){
+                gui.cCata.visible= !gui.cCata.visible;
+            }
+
+            if(gui.cCata.bnext.cursorEncimaBoton(this)){
+                gui.cCata.ProximoMes();
+            }
+
+            if(gui.cCata.bprev.cursorEncimaBoton(this)){
+                gui.cCata.mesAnterior();
+            }
+
+            if(gui.cCata.bAccept.cursorEncimaBoton(this) && gui.cCata.dateSelected){
+                gui.dataCalendario= gui.cCata.diaSeleccionado+"/"+gui.cCata.mesSeleccionado+"/"+gui.cCata.añoSeleccionado;
+                gui.cCata.visible= false;
+            }
         }
 
 
@@ -173,23 +242,7 @@ public class Main extends PApplet{
         }
 
 
-        gui.cCata.checkBotones(this);
-        if(gui.bCalendarioCata.mouseEncimaBoton(this)){
-            gui.cCata.visible= !gui.cCata.visible;
-        }
 
-        if(gui.cCata.bnext.cursorEncimaBoton(this)){
-            gui.cCata.ProximoMes();
-        }
-
-        if(gui.cCata.bprev.cursorEncimaBoton(this)){
-            gui.cCata.mesAnterior();
-        }
-
-        if(gui.cCata.bAccept.cursorEncimaBoton(this) && gui.cCata.dateSelected){
-            gui.dataCalendario= gui.cCata.diaSeleccionado+"/"+gui.cCata.mesSeleccionado+"/"+gui.cCata.añoSeleccionado;
-            gui.cCata.visible= false;
-        }
     }
 
     public void mouseDragged(){

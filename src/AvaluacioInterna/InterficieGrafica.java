@@ -45,7 +45,7 @@ public class InterficieGrafica {
     BotonConFoto bLMenu;
     PImage logoMenu;
 
-    //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS AÑADIR_VINOS
+    //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS AÑADIR VINOS
     BotonConTexto BAceptarV, BEliminarV, BAddV;
     CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
     CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
@@ -56,14 +56,21 @@ public class InterficieGrafica {
     String[][] COCINEROSva= {{"0", "Grupo Joan"}, {"1", "Grupo Toni"}, {"2", "Grupo Pere"}, {"3", "Grupo Jacinto"}};
     Selector ColorVino;
 
+    CalendarioPlus cVinosCata;
+    CalendarioPlus cVinosCena;
+    BotonConFoto bCalendarioVino1;
+    BotonConFoto bCalendarioVino2;
+    String dataCalendario1= "";
+    String dataCalendario2= "";
 
-    //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR_CATA
+
+    //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR CATA
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
     BotonConTexto BAceptarC, BEliminarC;
     AreaTexto ATCatas;
     CalendarioPlus cCata;
     BotonConFoto bCalendarioCata;
-    PImage fotoCalendarioCata;
+    PImage fotoCalendario;
     String dataCalendario= "";
 
 
@@ -86,6 +93,8 @@ public class InterficieGrafica {
 
         ColoresApp= new Colors(p5); //Constructor de los colores de la App
         FontsApp= new Fonts(p5); // Constructor de las tipografias de la App
+        fotoCalendario= p5.loadImage("299092_calendar_icon.png");
+
 
         //CAMPOS DE TEXTO INICIO
         UserName = new CamposTextoRect(p5, 465, 450, 605, "USER NAME: ");
@@ -162,6 +171,12 @@ public class InterficieGrafica {
         ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 150, 60, 10);
         ColorVino.setSelectedValue("COLOR VINO");
 
+        cVinosCata= new CalendarioPlus(p5, 700, 300, 300, 250);
+        bCalendarioVino1= new BotonConFoto(p5, fotoCalendario, (int) (8.6*marginH+2*columnVinosWidth), (int)(16.5*marginV+HeadLineHeight+105), 40, 40);
+
+        cVinosCena= new CalendarioPlus(p5, 700, 600, 300, 250);
+        bCalendarioVino2= new BotonConFoto(p5, fotoCalendario, (int) (14*marginH+2*columnVinosWidth), (int)(18.5*marginV+HeadLineHeight+105), 40, 40);
+
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
         TRvino1.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5), 0);
@@ -185,8 +200,7 @@ public class InterficieGrafica {
         BEliminarC.setColores(255, ColoresApp.getColorAt(7), 0, 0);
 
         cCata= new CalendarioPlus(p5, 350, 250, 300,250);
-        fotoCalendarioCata= p5.loadImage("299092_calendar_icon.png");
-        bCalendarioCata= new BotonConFoto(p5,fotoCalendarioCata, 2*marginH, 150, 80, 80);
+        bCalendarioCata= new BotonConFoto(p5,fotoCalendario, 2*marginH, 150, 80, 80);
 
 
 
@@ -314,7 +328,8 @@ public class InterficieGrafica {
         if(MenuOpen){
             dibujaMenu(p5);
         }
-
+            dibujaCalendarioVinos(p5);
+            dibujaCalendarioVinos2(p5);
 
     }
 
@@ -341,7 +356,6 @@ public class InterficieGrafica {
             if(MenuOpen){
                 dibujaMenu(p5);
             }
-
             dibujaCalendarioCatas(p5);
 
         p5.popStyle();
@@ -503,18 +517,36 @@ public class InterficieGrafica {
     }
 
 
-    /*public void dibujaCalendarioVinosCena(PApplet p5){
+    public void dibujaCalendarioVinos(PApplet p5){ //CALENDARIO CATAS
         p5.pushStyle();
             p5.fill(255);
             p5.rectMode(p5.CORNER);
-            p5.rect();
+            p5.rect((int)(11*marginH+2*columnVinosWidth), (int)(16.8*marginV+HeadLineHeight+105), 100, 30, 7); //CUADRADO DE LAS CATAS
 
             p5.fill(0);
             p5.textAlign(p5.LEFT, p5.CENTER);
             p5.textSize(12);
-            p5.text();
+            p5.text(dataCalendario1, (int)(11*marginH+2*columnVinosWidth+10), (int)(17.5*marginV+HeadLineHeight+105));
 
+        bCalendarioVino1.display(p5);
+        cVinosCata.display(p5);
         p5.popStyle();
-    }*/
+    }
+    public void dibujaCalendarioVinos2(PApplet p5){ //CALENDARIO CENAS DE FINAL DE MES
+        p5.pushStyle();
+        p5.fill(255);
+        p5.rectMode(p5.CORNER);
+        p5.rect((int)(16.3*marginH+2*columnVinosWidth), (int)(18.8*marginV+HeadLineHeight+105), 100, 30, 7); //CUADRADO DE LAS CENAS DE FINAL DE MES
+
+        p5.fill(0);
+        p5.textAlign(p5.LEFT, p5.CENTER);
+        p5.textSize(12);
+        p5.text(dataCalendario2, (int)(16.3*marginH+2*columnVinosWidth+10), (int)(19.5*marginV+HeadLineHeight+105));
+
+        bCalendarioVino2.display(p5);
+        cVinosCena.display(p5);
+        p5.popStyle();
+    }
+
 
 }

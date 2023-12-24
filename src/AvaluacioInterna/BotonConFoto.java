@@ -31,6 +31,7 @@ public class BotonConFoto {
         p5.rect(this.x, this.y, this.w, this.h);
 
         //Imagen del boton
+        p5.rectMode(p5.CENTER);
         p5.image(this.logo, this.x, this.y, this.w, this.h);
         p5.popStyle();
     }
