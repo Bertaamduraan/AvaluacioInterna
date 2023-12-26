@@ -7,11 +7,6 @@ public class BotonConFoto {
 
     //Propiedades de un botón
     float x, y, w, h;
-    int fillColor;
-    int strokeColor;
-    int ColorRelleno;
-    int ColorRellenoEncima;
-    int ColorTrazo;
     PImage logo;
 
     //Constructor

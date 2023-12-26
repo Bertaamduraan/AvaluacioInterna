@@ -131,6 +131,8 @@ public class Main extends PApplet{
                 gui.cVinosCena.visible= !gui.cVinosCena.visible;
             }
 
+            gui.contadorVinos.update(this);
+
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && (gui.cVinosCena.visible || gui.cVinosCata.visible)){
 
             //CATAS

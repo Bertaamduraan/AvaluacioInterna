@@ -55,13 +55,15 @@ public class InterficieGrafica {
     SelectList Cocineros;
     String[][] COCINEROSva= {{"0", "Grupo Joan"}, {"1", "Grupo Toni"}, {"2", "Grupo Pere"}, {"3", "Grupo Jacinto"}};
     Selector ColorVino;
-
     CalendarioPlus cVinosCata;
     CalendarioPlus cVinosCena;
     BotonConFoto bCalendarioVino1;
     BotonConFoto bCalendarioVino2;
     String dataCalendario1= "";
     String dataCalendario2= "";
+
+    PImage flechaUp, flechaDown;
+    Contador contadorVinos;
 
 
     //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR CATA
@@ -176,6 +178,11 @@ public class InterficieGrafica {
 
         cVinosCena= new CalendarioPlus(p5, 700, 600, 300, 250);
         bCalendarioVino2= new BotonConFoto(p5, fotoCalendario, (int) (14*marginH+2*columnVinosWidth), (int)(18.5*marginV+HeadLineHeight+105), 40, 40);
+
+
+        flechaUp= p5.loadImage("flechas1.2.png");
+        flechaDown= p5.loadImage("flechas1.1.png");
+        contadorVinos= new Contador(flechaUp, flechaDown, (int) (2*columnVinosWidth+5*marginH), 430, 250, 30);
 
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -328,8 +335,9 @@ public class InterficieGrafica {
         if(MenuOpen){
             dibujaMenu(p5);
         }
-            dibujaCalendarioVinos(p5);
-            dibujaCalendarioVinos2(p5);
+        dibujaCalendarioVinos(p5);
+        dibujaCalendarioVinos2(p5);
+        contadorVinos.display(p5);
 
     }
 
