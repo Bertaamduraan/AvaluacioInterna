@@ -14,8 +14,6 @@ public class Contador {
     //PROPIEDADES DE UN CONTADOR
     float x, y, w, h;
 
-    //COLORES
-    int fillColor, strokeColor;
 
     PImage up, down; //ICONOS DEL BOTÓN
 
@@ -27,16 +25,6 @@ public class Contador {
         this.y= y;
         this.w= w;
         this.h= h;
-    }
-
-    //SETTERS
-    public void setValorInicial(int n){
-        this.valor= n;
-    }
-
-    public void setValores(int minValor, int maxValor){
-        this.minValor= minValor;
-        this.maxValor= maxValor;
     }
 
 

@@ -184,6 +184,8 @@ public class InterficieGrafica {
         flechaDown= p5.loadImage("flechas1.1.png");
         contadorVinos= new Contador(flechaUp, flechaDown, (int) (2*columnVinosWidth+5*marginH), 430, 250, 30);
 
+
+
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
         TRvino1.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5), 0);
