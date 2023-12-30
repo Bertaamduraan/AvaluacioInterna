@@ -133,6 +133,10 @@ public class Main extends PApplet{
 
             gui.contadorVinos.update(this);
 
+            if(gui.bImagenVino.cursorEncimaBoton(this)){
+                selectInput("Selecciona una imagen...", gui.fileSelected(fileSelected, this));
+            }
+
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && (gui.cVinosCena.visible || gui.cVinosCata.visible)){
 
             //CATAS
