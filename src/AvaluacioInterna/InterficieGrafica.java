@@ -3,8 +3,6 @@ package AvaluacioInterna;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-import java.io.File;
-
 import static AvaluacioInterna.Layout.*;
 import static AvaluacioInterna.mides.midaSubtitol;
 import static AvaluacioInterna.mides.midaTitol;
@@ -190,7 +188,7 @@ public class InterficieGrafica {
         flechaDown= p5.loadImage("flechas1.1.png");
         contadorVinos= new Contador(flechaUp, flechaDown, (int) (2*columnVinosWidth+5*marginH), 430, 250, 30);
 
-        bImagenVino= new BotonConTexto(p5, 3*marginH, HeadLineHeight+100, 130, 50, "IMAGEN");
+        bImagenVino= new BotonConTexto(p5, 3*marginH, 9*HeadLineHeight+20, 80, 30, "IMAGEN");
 
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -348,34 +346,17 @@ public class InterficieGrafica {
         contadorVinos.display(p5);
 
         if(imagen!=null){
-            p5.image(imagen, 2*marginH, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
+            p5.image(imagen, 2*marginH+20, 2*marginV+HeadLineHeight+20, columnVinosWidth-40, columnVinosHeight-40);
             p5.textSize(14);
             p5.textAlign(RIGHT);
             p5.fill(0);
-            p5.text(titulo, 2*marginH,3*marginV+HeadLineHeight+ FilaCalendarioHeight);
-        } else{
-            p5.fill(ColoresApp.getColorAt(5));
-            //p5.rect(2*marginH, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
-            p5.fill(0);
-            p5.text("sense imatge", 150, 200);
+            p5.textAlign(CENTER, CENTER);
+            p5.text(titulo, 10*marginH,HeadLineHeight*9+35);
         }
 
-        bImagenVino.setColores(255, 250, 0, 0);
-        bImagenVino.setMidaTextoBoton(25);
+        bImagenVino.setColores(255, 220, 0, 0);
+        bImagenVino.setMidaTextoBoton(14);
         bImagenVino.display(p5);
-    }
-
-    public void fileSelected(File selection, PApplet p5){
-        if(selection== null){
-            p5.println ("No se ha seleccionado ningún documento");
-        }
-        else{
-            String rutaImagen= selection.getAbsolutePath();
-
-            imagen= p5.loadImage(rutaImagen); //ACTUALIZAR IMAGEN
-            titulo= selection.getName(); //ACTUALIZAR TÍTULO
-        }
-
     }
 
     public void dibujaPantallaCatas(PApplet p5){

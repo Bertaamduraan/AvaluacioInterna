@@ -2,6 +2,8 @@ package AvaluacioInterna;
 
     import processing.core.PApplet;
 
+    import java.io.File;
+
 public class Main extends PApplet{
 
     // Interfície Gráfica (Pantallas y componentes)
@@ -49,6 +51,18 @@ public class Main extends PApplet{
             break;
         }
 
+    }
+
+    public void fileSelected(File selection){
+        if(selection== null){
+            println ("No se ha seleccionado ningún documento");
+        }
+        else{
+            String rutaImagen= selection.getAbsolutePath();
+
+            gui.imagen= loadImage(rutaImagen); //ACTUALIZAR IMAGEN
+            gui.titulo= selection.getName(); //ACTUALIZAR TÍTULO
+        }
 
     }
 
@@ -133,8 +147,9 @@ public class Main extends PApplet{
 
             gui.contadorVinos.update(this);
 
+
             if(gui.bImagenVino.cursorEncimaBoton(this)){
-                selectInput("Selecciona una imagen...", gui.fileSelected(fileSelected, this));
+                selectInput("Selecciona una imagen...", "fileSelected");
             }
 
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && (gui.cVinosCena.visible || gui.cVinosCata.visible)){
