@@ -51,6 +51,7 @@ public class SelectList {
                 p5.fill(0);
                 p5.textAlign(p5.CENTER, p5.CENTER);
                 p5.text(t0, this.x+this.w/2, this.y+ this.h/2);
+                System.out.println(t0);
             }
             for(BotonConTexto b: buttons){
                 b.setColores(255, 200, 0, 0);
@@ -79,7 +80,6 @@ public class SelectList {
                     }
                 }
             }
-
         }
     }
 

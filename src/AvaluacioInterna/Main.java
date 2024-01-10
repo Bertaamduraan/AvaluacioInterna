@@ -211,6 +211,8 @@ public class Main extends PApplet{
             gui.SLbodega.buttonPressed(this);
             gui.SLvariedad.getTextField().isPressed(this);
             gui.SLvariedad.buttonPressed(this);
+            gui.SLcenas.getTextField().isPressed(this);
+            gui.SLcenas.buttonPressed(this);
         }
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && !gui.cCata.visible ){
@@ -353,8 +355,15 @@ public class Main extends PApplet{
                 gui.SLvariedad.getTextField().keyPressed(key, (int) keyCode);
                 gui.SLvariedad.update(this);
             }
+            if(gui.SLcenas.getTextField().cursorEncimaCampoTexto(this)){
+                gui.SLcenas.getTextField().keyPressed(key, (int) keyCode);
+                gui.SLcenas.update(this);
+            }
+
 
             gui.TRCantidadB.keyPressed(key, (int) keyCode);
+            gui.TRCapacidadB.keyPressed(key, (int) keyCode);
+            gui.TRPrecioB.keyPressed(key, (int) keyCode);
         }
 
 
