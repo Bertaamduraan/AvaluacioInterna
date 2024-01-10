@@ -282,15 +282,15 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         //dibuja1Fila(p5);
-        sColor.display(p5);
         TRCapacidadB.display(p5);
         TRPrecioB.display(p5);
         TRCantidadB.display(p5);
         SLdenominacion.display(p5);
         SLañada.display(p5);
-        SLbodega.display(p5);
         SLvariedad.display(p5);
         SLcenas.display(p5);
+        sColor.display(p5);
+        SLbodega.display(p5);
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
@@ -375,15 +375,13 @@ public class InterficieGrafica {
                 BEliminarC.display(p5);
             p5.popStyle();
             ATCatas.display(p5);
-
+            dibujaCalendarioCatas(p5);
             if(OpcionesOpen){
                 dibujaOpciones(p5);
             }
             if(MenuOpen){
                 dibujaMenu(p5);
             }
-            dibujaCalendarioCatas(p5);
-
         p5.popStyle();
     }
 

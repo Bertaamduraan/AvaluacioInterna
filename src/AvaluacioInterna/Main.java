@@ -191,11 +191,18 @@ public class Main extends PApplet{
         }
 
 
-
-
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BUSCADOR) {
             gui.ATVinos.isPressed(this);
+            gui.TRCantidadB.isPressed(this);
+            gui.TRPrecioB.isPressed(this);
+            gui.TRCapacidadB.isPressed(this);
 
+            if (gui.sColor.cursorEncimaBoton(this)) {
+                if (!gui.sColor.estaPlegado()) {
+                    gui.sColor.actualizar(this);
+                }
+                gui.sColor.cambio();
+            }
             gui.SLdenominacion.getTextField().isPressed(this);
             gui.SLdenominacion.buttonPressed(this);
             gui.SLañada.getTextField().isPressed(this);
@@ -204,12 +211,6 @@ public class Main extends PApplet{
             gui.SLbodega.buttonPressed(this);
             gui.SLvariedad.getTextField().isPressed(this);
             gui.SLvariedad.buttonPressed(this);
-            if (gui.sColor.cursorEncimaBoton(this)) {
-                if (!gui.sColor.estaPlegado()) {
-                    gui.sColor.actualizar(this);
-                }
-                gui.sColor.cambio();
-            }
         }
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && !gui.cCata.visible ){
@@ -352,6 +353,8 @@ public class Main extends PApplet{
                 gui.SLvariedad.getTextField().keyPressed(key, (int) keyCode);
                 gui.SLvariedad.update(this);
             }
+
+            gui.TRCantidadB.keyPressed(key, (int) keyCode);
         }
 
 
