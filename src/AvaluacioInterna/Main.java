@@ -152,25 +152,26 @@ public class Main extends PApplet{
                 selectInput("Selecciona una imagen...", "fileSelected");
             }
 
-        } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && (gui.cVinosCena.visible || gui.cVinosCata.visible)){
+        } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible) {
 
             //CATAS
             gui.cVinosCata.checkBotones(this);
 
-            if(gui.bCalendarioVino1.mouseEncimaBoton(this)){
-                gui.cVinosCata.visible= !gui.cVinosCata.visible;
+            if (gui.bCalendarioVino1.mouseEncimaBoton(this)) {
+                gui.cVinosCata.visible = !gui.cVinosCata.visible;
             }
-            if(gui.cVinosCata.bnext.cursorEncimaBoton(this)){
+            if (gui.cVinosCata.bnext.cursorEncimaBoton(this)) {
                 gui.cVinosCata.ProximoMes();
             }
-            if(gui.cVinosCata.bprev.cursorEncimaBoton(this)){
+            if (gui.cVinosCata.bprev.cursorEncimaBoton(this)) {
                 gui.cVinosCata.mesAnterior();
             }
-            if(gui.cVinosCata.bAccept.cursorEncimaBoton(this) && gui.cVinosCata.dateSelected){
-                gui.dataCalendario1= gui.cVinosCata.diaSeleccionado+"/"+gui.cVinosCata.mesSeleccionado+"/"+gui.cVinosCata.añoSeleccionado;
-                gui.cVinosCata.visible= false;
+            if (gui.cVinosCata.bAccept.cursorEncimaBoton(this) && gui.cVinosCata.dateSelected) {
+                gui.dataCalendario1 = gui.cVinosCata.diaSeleccionado + "/" + gui.cVinosCata.mesSeleccionado + "/" + gui.cVinosCata.añoSeleccionado;
+                gui.cVinosCata.visible = false;
             }
-
+        }
+        else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && gui.cVinosCena.visible && !gui.cVinosCata.visible){
 
             gui.cVinosCena.checkBotones(this);
             if(gui.bCalendarioVino2.mouseEncimaBoton(this)){

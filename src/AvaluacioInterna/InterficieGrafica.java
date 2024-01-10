@@ -125,10 +125,10 @@ public class InterficieGrafica {
         ADD= new BotonConFoto(p5, logoAdd, 1400, 2*marginV, 30, 30);
         addVinos= new BotonConTexto(p5, 1390, 4*marginV, 100, 30, "AÑADIR VINO");
         addVinos.setMidaTextoBoton(15);
-        addVinos.setColores(255, ColoresApp.getColorAt(1),0, 0);
+        addVinos.setColores(255, 200,0, 0);
         addCatas= new BotonConTexto(p5, 1390, 6*marginV, 100, 30, "AÑADIR CATA");
         addCatas.setMidaTextoBoton(15);
-        addCatas.setColores(255, ColoresApp.getColorAt(1),0, 0 );
+        addCatas.setColores(255, 200,0, 0 );
 
         logoLogOut= p5.loadImage("LogoLogOut.png");
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
@@ -155,15 +155,15 @@ public class InterficieGrafica {
         TRUbicacion= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Ubicacion: ");
         TRUbicacion.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
 
-        BAceptarV= new BotonConTexto(p5,4*marginH+columnVinosWidth,25*marginV+HeadLineHeight+115,150,55, "GUARDAR" );
+        BAceptarV= new BotonConTexto(p5,4*marginH+columnVinosWidth,29*marginV+HeadLineHeight+115,150,55, "GUARDAR" );
         BAceptarV.setMidaTextoBoton(29);
-        BAceptarV.setColores(255, ColoresApp.getColorAt(7), 0, 0);
-        BEliminarV= new BotonConTexto(p5, 13*marginH+columnVinosWidth,25*marginV+HeadLineHeight+115,150,55, "ELIMINAR");
+        BAceptarV.setColores(255, 200, 0, 0);
+        BEliminarV= new BotonConTexto(p5, 13*marginH+columnVinosWidth,29*marginV+HeadLineHeight+115,150,55, "ELIMINAR");
         BEliminarV.setMidaTextoBoton(29);
-        BEliminarV.setColores(255, ColoresApp.getColorAt(7),0, 0);
-        BAddV= new BotonConTexto(p5, 22*marginH+columnVinosWidth, 25*marginV+HeadLineHeight+115,150,55, "AÑADIR");
+        BEliminarV.setColores(255, 200,0, 0);
+        BAddV= new BotonConTexto(p5, 22*marginH+columnVinosWidth, 29*marginV+HeadLineHeight+115,150,55, "AÑADIR");
         BAddV.setMidaTextoBoton(29);
-        BAddV.setColores(255, ColoresApp.getColorAt(7), 0, 0);
+        BAddV.setColores(255, 200, 0, 0);
 
         RBCatasV= new RadioButton(p5,(int) (5*marginH+2*columnVinosWidth), (int)(17*marginV+HeadLineHeight+115), 10, "CATA");
         RBCenasV= new RadioButton(p5, (int)(5*marginH+2*columnVinosWidth), (int) (19*marginV+HeadLineHeight+115), 10, "CENA FINAL DE MES");
@@ -250,7 +250,7 @@ public class InterficieGrafica {
 
 
     public void dibujaPantallaHome(PApplet p5){
-        p5.background(ColoresApp.getSecondColor());
+        p5.background(ColoresApp.getColorAt(6));
         dibujaRectanguloCentro(p5);
         dibujaHeadLine(p5);
         dibujaLogos(p5);
@@ -278,7 +278,7 @@ public class InterficieGrafica {
     }*/
 
     public void dibujaPantallaBuscador(PApplet p5){
-        p5.background(ColoresApp.getThirdColor());
+        p5.background(ColoresApp.getColorAt(6));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         //dibuja1Fila(p5);
@@ -301,7 +301,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaPantallaCalendario(PApplet p5){
-        p5.background(ColoresApp.getThirdColor());
+        p5.background(ColoresApp.getColorAt(6));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         dibuja3Fila(p5);
@@ -314,7 +314,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaPantallaVinos(PApplet p5){
-        p5.background(ColoresApp.getColorAt(1));
+        p5.background(ColoresApp.getColorAt(6));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         dibuja3Columna(p5);
@@ -361,7 +361,7 @@ public class InterficieGrafica {
 
     public void dibujaPantallaCatas(PApplet p5){
         p5.pushStyle();
-            p5.background(ColoresApp.getColorAt(1));
+            p5.background(ColoresApp.getColorAt(6));
             dibujaHeadLine(p5);
             dibujaLogos(p5);
             dibuja2Columna(p5);
@@ -416,7 +416,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaRectanguloCentro(PApplet p5){
-        p5.fill(ColoresApp.getColorAt(4));
+        p5.fill(ColoresApp.getColorAt(0));
         p5.pushStyle();
             p5.rectMode(CENTER);
             p5.rect(p5.width/2, p5.height/2 +marginV*6, CentRectWidth, CentRectHeight);
@@ -436,15 +436,15 @@ public class InterficieGrafica {
     }
 
     public void dibujaMenu(PApplet p5){ //Será la del Menú
-        p5.fill(ColoresApp.getSecondColor());
-        p5.rect(marginH, marginV, MenuWidth, MenuHeight);
+        p5.fill(ColoresApp.getColorAt(2));
+        p5.rect(marginH, marginV, MenuWidth, MenuHeight, 10);
         dibuja5MiniFilas(p5);
         bLMenu.display(p5);
         //TEXTO
         p5.fill(0);
         p5.textFont(FontsApp.getFirstFont());
         p5.textSize(midaTitol);
-        p5.text("MENÚ", marginH+ MenuWidth/2, (marginV+LogoMenuHeight-20)+ MenuHeight/4);
+        //p5.text("MENÚ", marginH+ MenuWidth/2, (marginV+LogoMenuHeight-20)+ MenuHeight/4);
     }
 
 
@@ -454,23 +454,23 @@ public class InterficieGrafica {
         p5.textSize(midaSubtitol);
 
         //BOTÓN PARA IR A BODEGA
-     bMHome.setColores(ColoresApp.getColorAt(0), ColoresApp.getColorAt(6),0, 255);
+     bMHome.setColores(ColoresApp.getColorAt(8), ColoresApp.getColorAt(9),0, 255);
      bMHome.display(p5);
 
       //BOTÓN PARA IR AL BUSCADOR
-      bMBuscar.setColores(ColoresApp.getColorAt(0), ColoresApp.getColorAt(6),0, 255);
+      bMBuscar.setColores(ColoresApp.getColorAt(8), ColoresApp.getColorAt(9),0, 255);
       bMBuscar.display(p5);
 
       //BOTÓN PARA IR AL CALENDARIO
-      bMCalendar.setColores(ColoresApp.getColorAt(0), ColoresApp.getColorAt(6),0, 255);
+      bMCalendar.setColores(ColoresApp.getColorAt(8), ColoresApp.getColorAt(9),0, 255);
       bMCalendar.display(p5);
 
       //BOTÓN PARA IR AÑADIR VINOS
-      bMVinos.setColores(ColoresApp.getColorAt(0), ColoresApp.getColorAt(6),0, 255);
+      bMVinos.setColores(ColoresApp.getColorAt(8), ColoresApp.getColorAt(9),0, 255);
       bMVinos.display(p5);
 
       //BOTÓN PARA IR AÑADIR CATAS
-      bMCatas.setColores(ColoresApp.getColorAt(0), ColoresApp.getColorAt(6),0, 255);
+      bMCatas.setColores(ColoresApp.getColorAt(8), ColoresApp.getColorAt(9),0, 255);
       bMCatas.display(p5);
 
     }
@@ -487,7 +487,7 @@ public class InterficieGrafica {
     }
 
     public void dibuja3Fila(PApplet p5){ //CALENDARIO
-        p5.fill(ColoresApp.getColorAt(5));
+        p5.fill(ColoresApp.getColorAt(3));
         p5.rect(2*marginH, 3*marginV+HeadLineHeight, FilaCalendarioWidth, FilaCalendarioHeight);
         p5.rect(2*marginH, 4*marginV+HeadLineHeight+FilaBuscadorHeight, FilaCalendarioWidth, FilaCalendarioHeight);
         p5.rect(2*marginH, 5*marginV+HeadLineHeight+2*FilaBuscadorHeight, FilaCalendarioWidth, FilaCalendarioHeight);
@@ -508,7 +508,7 @@ public class InterficieGrafica {
     }
 
     public void dibuja3Columna(PApplet p5){ //AÑADIR VINO
-        p5.fill(ColoresApp.getColorAt(5));
+        p5.fill(ColoresApp.getColorAt(0));
         p5.rect(2*marginH, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
         p5.rect(3*marginH+columnVinosWidth, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
         p5.rect(4*marginH+2*columnVinosWidth, 2*marginV+HeadLineHeight, columnVinosWidth, columnVinosHeight);
