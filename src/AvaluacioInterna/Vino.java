@@ -9,7 +9,7 @@ public class Vino {
     String nombre;
     String DO;
     String bodega;
-    String colors;
+    String color;
     String ubicacion;
     String añada;
     int c;
@@ -20,7 +20,7 @@ public class Vino {
        this.nombre=n;
        this.DO= DO;
        this.bodega=b;
-       this.colors= color;
+       this.color= color;
        this.ubicacion= u;
        this.añada=a;
        c= p5.color(200);
@@ -33,6 +33,36 @@ public class Vino {
 
    void setColor(int c){
        this.c= c;
+   }
+
+   void display(PApplet p5, float x, float y, float w, float h){
+       p5.pushStyle();
+        p5.rectMode(p5.CORNER);
+        p5.fill(c);
+        p5.stroke(0);
+        p5.strokeWeight(2);
+        p5.rect(x, y, w, h, 7);
+
+        //DIBUJA LA FOTO DEL VINO
+       if(foto!=null){
+           p5.imageMode(p5.CORNER);
+           p5.image(foto, x+margen, y+margen, w-2*margen, 3*h/4);
+       } else{
+           p5.fill(0);
+           p5.rect(x+ margen, y + margen, w - 2*margen, 3*h/4);
+       }
+
+       //MUESTRA EL TEXTO DE LA INFORMACIÓN DEL VINO
+       p5.textAlign(p5.LEFT);
+       p5.textSize(24);
+       p5.fill(0);
+       p5.text(this.nombre, margen+x, y + 3*h/4 + 50);
+       p5.textSize(18);
+       p5.text(this.DO, margen+x, y + 3*h/4 + 50);
+       p5.text(this.bodega, margen+x, y + 3*h/4 + 50);
+       p5.text(this.color, margen+x, y + 3*h/4 + 50);
+       //p5.text(this.ubicacion, margen+x, y + 3*h/4 + 50);
+       p5.text(this.añada, margen+x, y + 3*h/4 + 50);
    }
 
 }
