@@ -41,6 +41,15 @@ public class InterficieGrafica {
     BotonConTexto addVinos, addCatas;
 
 
+    //BOTONES HOME
+    Estante e;
+    Vino vinoSeleccionado= null;
+
+    String infoVinos[][]= {
+            {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
+            {"", ""}
+    };
+
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
     BotonConFoto bLMenu;

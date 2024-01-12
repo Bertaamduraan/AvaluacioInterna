@@ -124,10 +124,73 @@ public class Estante {
                 }
             }
 
-
-
-
+        if(bNext!=null && (this.currentWine+this.numVinosVisibles)<this.numVinos){
+            bNext.display(p5);
+            bNext.setEnable(true);
+        }
+        else{
+            bNext.setEnable(false);
+        }
+        if(bPrev!=null&& this.currentWine>0){
+            bPrev.display(p5);
+            bPrev.setEnable(true);
+        } else{
+            bPrev.setEnable(false);
+        }
+        p5.popStyle();
     }
 
+    boolean checkButtons(PApplet p5){
+        if(bNext.mouseEncimaBoton(p5) && bNext.enable){
+            this.next();
+            return true;
+        }
+        else if(bPrev.mouseEncimaBoton(p5) && bPrev.enable){
+            this.prev();
+            return true;
+        }
+        return false;
+    }
+
+    boolean checkCursor(PApplet p5){
+        if(bNext.mouseEncimaBoton(p5)&& bNext.enable){
+            return true;
+        }
+        else if(bPrev.mouseEncimaBoton(p5) && bPrev.enable){
+            return true;
+        }
+        else if(this.checkMouseVino(p5)){
+            return true;
+        }
+        return false;
+    }
+
+    int checkClickVino(PApplet p5){
+        for(int i= 0; i<this.numVinosVisibles; i++){
+            int index = i+this.currentWine;
+            if(index<this.numVinos){
+                float xPos= x+i*(this.vinoWidth+this.margenH);
+                Vino v= vinos[index];
+                if(v.cursorEncima(p5, xPos, y, this.vinoWidth, h)) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+
+    boolean checkMouseVino(PApplet p5){
+        for(int i= 0; i<this.numVinosVisibles; i++){
+            int index= i+this.currentWine;
+            if(index<this.numVinos){
+                float xPos= x+i*(this.vinoWidth+this.margenH);
+                Vino v= vinos[index];
+                if(v.cursorEncima(p5, xPos, y, this.vinoWidth, h)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }

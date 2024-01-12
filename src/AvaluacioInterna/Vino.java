@@ -65,4 +65,8 @@ public class Vino {
        p5.text(this.añada, margen+x, y + 3*h/4 + 50);
    }
 
+   public boolean cursorEncima (PApplet p5, float x, float y, float w, float h){
+       return p5.mouseX>x && p5.mouseX<x+w && p5.mouseY>y && p5.mouseY<y+h;
+   }
+
 }

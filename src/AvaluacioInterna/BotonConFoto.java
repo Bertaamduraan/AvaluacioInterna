@@ -8,6 +8,7 @@ public class BotonConFoto {
     //Propiedades de un botón
     float x, y, w, h;
     PImage logo;
+    boolean enable;
 
     //Constructor
     public BotonConFoto(PApplet p5, PImage logo, float x, float y, float w, float h){
@@ -16,6 +17,7 @@ public class BotonConFoto {
         this.y= y;
         this.w= w;
         this.h= h;
+        this.enable= true;
         p5.noStroke();
     }
 
@@ -34,6 +36,11 @@ public class BotonConFoto {
     //Indicar si el cursor está sobre el botón
     public boolean mouseEncimaBoton(PApplet p5) {
         return (p5.mouseX >= this.x) && (p5.mouseX <= this.x + this.w) &&
-                (p5.mouseY >= this.y) && (p5.mouseY <= this.y + this.h);
+                (p5.mouseY >= this.y) && (p5.mouseY <= this.y + this.h) && enable;
+    }
+
+
+    public void setEnable(boolean encendido){
+        this.enable= encendido;
     }
 }
