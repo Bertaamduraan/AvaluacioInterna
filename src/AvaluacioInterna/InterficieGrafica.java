@@ -49,7 +49,12 @@ public class InterficieGrafica {
     Estante e5;
     Estante e6;
     Estante altres;
-    Vino vinoSeleccionado= null;
+    Vino vinoSeleccionado1= null;
+    Vino vinoSeleccionado2= null;
+    Vino vinoSeleccionado3= null;
+    Vino vinoSeleccionado4= null;
+    Vino vinoSeleccionado5= null;
+    Vino vinoSeleccionado6= null;
 
     String infoVinosE1[][]= {
             {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
@@ -63,13 +68,7 @@ public class InterficieGrafica {
     };
 
     String [][] infoVinosE2= {
-            {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
-            {"Domino de Calles", "València", "una", "Tinto", "A2", "2015", "dominioDeCalles.jpeg"},
-            {"Golós", "Pla i Llevant Mallorca", "una", "blanc", "A3", "2016", "vinoGolos.jpg"},
-            {"Sa vall", "Pla i Llevant Mallorca", "una", "blanc", "A4", "2016", "vinoSaVall.jpg"},
-            {"Son fangos", "Pla i Llevant Mallorca", "una", "blanc", "A5", "2016", "vinoSonFangos.jpg"},
-            {"Chardonnay Roure", "Pla i Llevant Mallorca", "una", "blanc", "A6", "2016", "vinoChardonnayRoure.jpg"},
-            {"Torre des Canonge", "Pla i Llevant Mallorca", "una", "blanc", "A7", "2016", "vinoTorreDesCanonge.jpg"},
+            {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
     };
 
     //BOTONES MENÚ
@@ -170,7 +169,7 @@ public class InterficieGrafica {
         e1.setColor(ColoresApp.getColorAt(0));
         e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
 
-        e2= new Estante(2, "Rioja", 150, 360, 650, 200, 5);
+        e2= new Estante(2, "Rioja", 150, 380, 650, 200, 5);
         e2.addVinos(infoVinosE2, p5);
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
@@ -299,13 +298,16 @@ public class InterficieGrafica {
         dibujaLogos(p5);
     p5.pushStyle();
         e1.display(p5);
-        e2.display(p5);
-        if(vinoSeleccionado!=null){
-            p5.pushStyle();
-            vinoSeleccionado.setTextSizeSelected(20);
-            vinoSeleccionado.display(p5, p5.width-400, 150, 300, 500);
-            p5.popStyle();
+        if(vinoSeleccionado1!=null){
+            vinoSeleccionado1.setTextSizeSelected(20);
+            vinoSeleccionado1.display(p5, p5.width-400, 150, 300, 500);
         }
+        e2.display(p5);
+        if(vinoSeleccionado2!=null){
+            vinoSeleccionado2.setTextSizeSelected(20);
+            vinoSeleccionado2.display(p5, p5.width-400, 150, 300, 500);
+        }
+
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }

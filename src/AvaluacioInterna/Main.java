@@ -112,20 +112,20 @@ public class Main extends PApplet{
             if(!gui.e1.checkButtons(this)){
                 int nV= gui.e1.checkClickVino(this);
                 if(nV!=-1){
-                    gui.vinoSeleccionado= gui.e1.vinos[nV];
+                    gui.vinoSeleccionado1= gui.e1.vinos[nV];
                 }
                 else{
-                    gui.vinoSeleccionado= null;
+                    gui.vinoSeleccionado1= null;
                 }
             }
 
             if(!gui.e2.checkButtons(this)){
                 int nV2= gui.e2.checkClickVino(this);
                 if(nV2!=-1){
-                    gui.vinoSeleccionado= gui.e2.vinos[nV2];
+                    gui.vinoSeleccionado2= gui.e2.vinos[nV2];
                 }
                 else{
-                    gui.vinoSeleccionado= null;
+                    gui.vinoSeleccionado2= null;
                 }
             }
         }
