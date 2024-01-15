@@ -109,10 +109,20 @@ public class Main extends PApplet{
 
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BODEGA){
-            if(!gui.e.checkButtons(this)){
-                int nV= gui.e.checkClickVino(this);
+            if(!gui.e1.checkButtons(this)){
+                int nV= gui.e1.checkClickVino(this);
                 if(nV!=-1){
-                    gui.vinoSeleccionado= gui.e.vinos[nV];
+                    gui.vinoSeleccionado= gui.e1.vinos[nV];
+                }
+                else{
+                    gui.vinoSeleccionado= null;
+                }
+            }
+
+            if(!gui.e2.checkButtons(this)){
+                int nV2= gui.e2.checkClickVino(this);
+                if(nV2!=-1){
+                    gui.vinoSeleccionado= gui.e2.vinos[nV2];
                 }
                 else{
                     gui.vinoSeleccionado= null;
@@ -325,10 +335,10 @@ public class Main extends PApplet{
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BODEGA){
             if(keyCode==LEFT){
-                gui.e.prev();
+                gui.e1.prev();
             }
             else if(keyCode==RIGHT){
-                gui.e.next();
+                gui.e1.next();
             }
         }
 

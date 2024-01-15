@@ -66,7 +66,7 @@ public class Estante {
         bPrev= new BotonConFoto(p5, imgPrev, x-40, y+h/2, 30, 30);
 
         PImage imgNext= p5.loadImage(img2);
-        bNext= new BotonConFoto(p5, imgNext, x+w+(vinoWidth/2), y+h/2, 30, 30);
+        bNext= new BotonConFoto(p5, imgNext, x+w+(vinoWidth/2)+5, y+h/2, 30, 30);
     }
 
     void setColor(int c){
@@ -93,7 +93,7 @@ public class Estante {
             p5.stroke(0);
             p5.strokeWeight(2);
             p5.rectMode(p5.CORNER);
-            p5.rect(x-5, y-5, w+(vinoWidth/2)-3,  h+10, 7);
+            p5.rect(x-5, y-5, w+(vinoWidth/2)+5,  h+10, 7);
 
             p5.rect(x+w-200+margenH*2+5, y-40, 200, 40, 5);
             p5.noStroke();

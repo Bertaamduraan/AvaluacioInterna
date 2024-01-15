@@ -62,13 +62,12 @@ public class Vino {
        p5.textAlign(p5.LEFT, p5.CENTER);
        p5.textSize(12);
        p5.fill(0);
-       p5.text(this.nombre, margen+x, y + 3*h/4 + 15);
-       p5.textSize(12);
+       p5.text(this.nombre, margen+x, y + 3*h/4+25);
+       /*p5.textSize(12);
        p5.text(this.DO, margen+x, y + 3*h/4 + 25);
        p5.text(this.bodega, margen+x, y + 3*h/4 + 35);
        p5.text(this.color, margen+x, y + 3*h/4 + 45);
-       //p5.text(this.ubicacion, margen+x, y + 3*h/4 + 50);
-       p5.text(this.añada, margen+x, y + 3*h/4 + 55);
+       p5.text(this.añada, margen+x, y + 3*h/4 + 55);*/
    p5.popStyle();
    }
 

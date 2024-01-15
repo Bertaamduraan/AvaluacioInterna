@@ -42,10 +42,16 @@ public class InterficieGrafica {
 
 
     //BOTONES HOME
-    Estante e;
+    Estante e1;
+    Estante e2;
+    Estante e3;
+    Estante e4;
+    Estante e5;
+    Estante e6;
+    Estante altres;
     Vino vinoSeleccionado= null;
 
-    String infoVinos[][]= {
+    String infoVinosE1[][]= {
             {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
             {"Domino de Calles", "València", "una", "Tinto", "A2", "2015", "dominioDeCalles.jpeg"},
             {"Golós", "Pla i Llevant Mallorca", "una", "blanc", "A3", "2016", "vinoGolos.jpg"},
@@ -54,6 +60,16 @@ public class InterficieGrafica {
             {"Chardonnay Roure", "Pla i Llevant Mallorca", "una", "blanc", "A6", "2016", "vinoChardonnayRoure.jpg"},
             {"Torre des Canonge", "Pla i Llevant Mallorca", "una", "blanc", "A7", "2016", "vinoTorreDesCanonge.jpg"},
 
+    };
+
+    String [][] infoVinosE2= {
+            {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
+            {"Domino de Calles", "València", "una", "Tinto", "A2", "2015", "dominioDeCalles.jpeg"},
+            {"Golós", "Pla i Llevant Mallorca", "una", "blanc", "A3", "2016", "vinoGolos.jpg"},
+            {"Sa vall", "Pla i Llevant Mallorca", "una", "blanc", "A4", "2016", "vinoSaVall.jpg"},
+            {"Son fangos", "Pla i Llevant Mallorca", "una", "blanc", "A5", "2016", "vinoSonFangos.jpg"},
+            {"Chardonnay Roure", "Pla i Llevant Mallorca", "una", "blanc", "A6", "2016", "vinoChardonnayRoure.jpg"},
+            {"Torre des Canonge", "Pla i Llevant Mallorca", "una", "blanc", "A7", "2016", "vinoTorreDesCanonge.jpg"},
     };
 
     //BOTONES MENÚ
@@ -149,10 +165,15 @@ public class InterficieGrafica {
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
 
         //ESTANTERIA Y BOTONES HOME
-        e= new Estante(1, "Vinos blancos",150, 150, 800, 250, 5);
-        e.addVinos(infoVinos, p5);
-        e.setColor(ColoresApp.getColorAt(0));
-        e.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
+        e1 = new Estante(1, "Pla i Llevant",150, 150, 650, 200, 5);
+        e1.addVinos(infoVinosE1, p5);
+        e1.setColor(ColoresApp.getColorAt(0));
+        e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
+
+        e2= new Estante(2, "Rioja", 150, 360, 650, 200, 5);
+        e2.addVinos(infoVinosE2, p5);
+        e2.setColor(ColoresApp.getColorAt(0));
+        e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
 
         //BOTONES MENÚ
@@ -277,7 +298,8 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogos(p5);
     p5.pushStyle();
-        e.display(p5);
+        e1.display(p5);
+        e2.display(p5);
         if(vinoSeleccionado!=null){
             p5.pushStyle();
             vinoSeleccionado.setTextSizeSelected(20);
