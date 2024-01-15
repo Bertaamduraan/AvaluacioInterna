@@ -47,7 +47,13 @@ public class InterficieGrafica {
 
     String infoVinos[][]= {
             {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
-            {"", ""}
+            {"Domino de Calles", "València", "una", "Tinto", "A2", "2015", "dominioDeCalles.jpeg"},
+            {"Golós", "Pla i Llevant Mallorca", "una", "blanc", "A3", "2016", "vinoGolos.jpg"},
+            {"Sa vall", "Pla i Llevant Mallorca", "una", "blanc", "A4", "2016", "vinoSaVall.jpg"},
+            {"Son fangos", "Pla i Llevant Mallorca", "una", "blanc", "A5", "2016", "vinoSonFangos.jpg"},
+            {"Chardonnay Roure", "Pla i Llevant Mallorca", "una", "blanc", "A6", "2016", "vinoChardonnayRoure.jpg"},
+            {"Torre des Canonge", "Pla i Llevant Mallorca", "una", "blanc", "A7", "2016", "vinoTorreDesCanonge.jpg"},
+
     };
 
     //BOTONES MENÚ
@@ -141,6 +147,12 @@ public class InterficieGrafica {
 
         logoLogOut= p5.loadImage("LogoLogOut.png");
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
+
+        //ESTANTERIA Y BOTONES HOME
+        e= new Estante(1, "Vinos blancos",150, 150, 800, 250, 5);
+        e.addVinos(infoVinos, p5);
+        e.setColor(ColoresApp.getColorAt(0));
+        e.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
 
 
         //BOTONES MENÚ
@@ -259,16 +271,26 @@ public class InterficieGrafica {
 
 
     public void dibujaPantallaHome(PApplet p5){
+
         p5.background(ColoresApp.getColorAt(6));
-        dibujaRectanguloCentro(p5);
+        //dibujaRectanguloCentro(p5);
         dibujaHeadLine(p5);
         dibujaLogos(p5);
+    p5.pushStyle();
+        e.display(p5);
+        if(vinoSeleccionado!=null){
+            p5.pushStyle();
+            vinoSeleccionado.setTextSizeSelected(20);
+            vinoSeleccionado.display(p5, p5.width-400, 150, 300, 500);
+            p5.popStyle();
+        }
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
         if(MenuOpen){
             dibujaMenu(p5);
         }
+    p5.popStyle();
     }
 
     /*public void dibujaPantallaMenu(PApplet p5){

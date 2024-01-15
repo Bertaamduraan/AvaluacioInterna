@@ -14,6 +14,8 @@ public class Vino {
     String añada;
     int c;
 
+    int textSize= 12;
+
    float margen= 10;
 
    Vino(PApplet p5, String n, String DO, String b, String color, String u, String a, String f){
@@ -35,8 +37,12 @@ public class Vino {
        this.c= c;
    }
 
+    public void setTextSizeSelected(int textSize){
+        this.textSize= textSize;
+    }
+
    void display(PApplet p5, float x, float y, float w, float h){
-       p5.pushStyle();
+    p5.pushStyle();
         p5.rectMode(p5.CORNER);
         p5.fill(c);
         p5.stroke(0);
@@ -53,16 +59,17 @@ public class Vino {
        }
 
        //MUESTRA EL TEXTO DE LA INFORMACIÓN DEL VINO
-       p5.textAlign(p5.LEFT);
-       p5.textSize(24);
+       p5.textAlign(p5.LEFT, p5.CENTER);
+       p5.textSize(12);
        p5.fill(0);
-       p5.text(this.nombre, margen+x, y + 3*h/4 + 50);
-       p5.textSize(18);
-       p5.text(this.DO, margen+x, y + 3*h/4 + 50);
-       p5.text(this.bodega, margen+x, y + 3*h/4 + 50);
-       p5.text(this.color, margen+x, y + 3*h/4 + 50);
+       p5.text(this.nombre, margen+x, y + 3*h/4 + 15);
+       p5.textSize(12);
+       p5.text(this.DO, margen+x, y + 3*h/4 + 25);
+       p5.text(this.bodega, margen+x, y + 3*h/4 + 35);
+       p5.text(this.color, margen+x, y + 3*h/4 + 45);
        //p5.text(this.ubicacion, margen+x, y + 3*h/4 + 50);
-       p5.text(this.añada, margen+x, y + 3*h/4 + 50);
+       p5.text(this.añada, margen+x, y + 3*h/4 + 55);
+   p5.popStyle();
    }
 
    public boolean cursorEncima (PApplet p5, float x, float y, float w, float h){

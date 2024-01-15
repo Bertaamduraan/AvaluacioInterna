@@ -107,6 +107,21 @@ public class Main extends PApplet{
             }
         }
 
+
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.BODEGA){
+            if(!gui.e.checkButtons(this)){
+                int nV= gui.e.checkClickVino(this);
+                if(nV!=-1){
+                    gui.vinoSeleccionado= gui.e.vinos[nV];
+                }
+                else{
+                    gui.vinoSeleccionado= null;
+                }
+            }
+        }
+
+
+
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible) {
             gui.TNombre.isPressed(this);
             gui.TBodega.isPressed(this);
@@ -306,6 +321,15 @@ public class Main extends PApplet{
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO){
             gui.UserName.keyPressed(key, (int) keyCode);
             gui.Contra.keyPressed(key, (int) keyCode);
+        }
+
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.BODEGA){
+            if(keyCode==LEFT){
+                gui.e.prev();
+            }
+            else if(keyCode==RIGHT){
+                gui.e.next();
+            }
         }
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS) {
