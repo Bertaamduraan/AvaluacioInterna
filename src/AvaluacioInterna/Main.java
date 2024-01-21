@@ -128,6 +128,16 @@ public class Main extends PApplet{
                     gui.vinoSeleccionado2= null;
                 }
             }
+
+            if(!gui.e3.checkButtons(this)){
+                int nV3= gui.e3.checkClickVino(this);
+                if(nV3!=-1){
+                    gui.vinoSeleccionado3= gui.e3.vinos[nV3];
+                }
+                else{
+                    gui.vinoSeleccionado3= null;
+                }
+            }
         }
 
 

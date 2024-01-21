@@ -45,6 +45,8 @@ public class InterficieGrafica {
     Estante e1;
     Estante e2;
     Estante e3;
+    Estanteria E1;
+
     Estante e4;
     Estante e5;
     Estante e6;
@@ -67,8 +69,12 @@ public class InterficieGrafica {
 
     };
 
-    String [][] infoVinosE2= {
+    String infoVinosE2[][]= {
             {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
+    };
+
+    String infoVinosE3 [][]= {
+            {"Margalida", "Prova1", "una", "blanco", "C1", "2014", "vinoMarga.jpg"},
     };
 
     //BOTONES MENÚ
@@ -173,6 +179,13 @@ public class InterficieGrafica {
         e2.addVinos(infoVinosE2, p5);
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
+
+        e3= new Estante(3, "Prova1", 150, 610, 650, 200, 5);
+        e3.addVinos(infoVinosE3, p5);
+        e3.setColor(ColoresApp.getColorAt(0));
+        e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
+
+        E1= new Estanteria(e1, e2, e3);
 
 
         //BOTONES MENÚ
@@ -307,6 +320,14 @@ public class InterficieGrafica {
             vinoSeleccionado2.setTextSizeSelected(20);
             vinoSeleccionado2.display(p5, p5.width-400, 150, 300, 500);
         }
+
+        e3.display(p5);
+        if(vinoSeleccionado3!=null){
+            vinoSeleccionado3.setTextSizeSelected(20);
+            vinoSeleccionado3.display(p5, p5.width-400, 150, 300, 500);
+        }
+
+        E1.display(p5);
 
         if(OpcionesOpen){
             dibujaOpciones(p5);
