@@ -117,6 +117,7 @@ public class Main extends PApplet{
                 else{
                     gui.vinoSeleccionado1= null;
                 }
+
             }
 
             if(!gui.e2.checkButtons(this)){
@@ -138,11 +139,21 @@ public class Main extends PApplet{
                     gui.vinoSeleccionado3= null;
                 }
             }
+
+            gui.denominacioDeOrigen.getTextField().isPressed(this);
+            gui.denominacioDeOrigen.buttonPressed(this);
+            gui.OK.cursorEncimaBoton(this);
+
+            if(gui.wineSelected==true){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
+                gui.ptitulo= "VISUALIZAR VINO";
+            }
         }
 
 
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible) {
+
             gui.TNombre.isPressed(this);
             gui.TBodega.isPressed(this);
             gui.TDenominacion.isPressed(this);
@@ -182,13 +193,11 @@ public class Main extends PApplet{
 
             gui.contadorVinos.update(this);
 
-
             if(gui.bImagenVino.cursorEncimaBoton(this)){
                 selectInput("Selecciona una imagen...", "fileSelected");
             }
 
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible) {
-
             //CATAS
             gui.cVinosCata.checkBotones(this);
 
@@ -207,7 +216,6 @@ public class Main extends PApplet{
             }
         }
         else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && gui.cVinosCena.visible && !gui.cVinosCata.visible){
-
             gui.cVinosCena.checkBotones(this);
             if(gui.bCalendarioVino2.mouseEncimaBoton(this)){
                 gui.cVinosCena.visible= !gui.cVinosCena.visible;
@@ -263,7 +271,6 @@ public class Main extends PApplet{
             }
         }
         else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && gui.cCata.visible){
-
             gui.cCata.checkBotones(this);
             if(gui.bCalendarioCata.mouseEncimaBoton(this)){
                 gui.cCata.visible= !gui.cCata.visible;
@@ -290,6 +297,7 @@ public class Main extends PApplet{
 
         if(gui.bLMenu.mouseEncimaBoton(this)){
             gui.MenuOpen= !gui.MenuOpen;
+            gui.wineSelected= false;
         }
 
         if(gui.OpcionesOpen){
@@ -349,6 +357,11 @@ public class Main extends PApplet{
             }
             else if(keyCode==RIGHT){
                 gui.e1.next();
+            }
+
+            if (gui.denominacioDeOrigen.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.denominacioDeOrigen.getTextField().keyPressed(key, (int) keyCode);
+                gui.denominacioDeOrigen.update(this);
             }
         }
 

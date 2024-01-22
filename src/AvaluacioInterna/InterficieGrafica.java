@@ -15,11 +15,13 @@ public class InterficieGrafica {
 
 
     // Enumerado de las Pantallas de la App
-    public enum PANTALLA {INICIO, BODEGA, MENU, BUSCADOR, CALENDARIO, AÑADIR_VINOS, AÑADIR_CATA}
+    public enum PANTALLA {INICIO, BODEGA, VISUALIZAR_VINOS, BUSCADOR, CALENDARIO, AÑADIR_VINOS, AÑADIR_CATA}
 
 
     // Pantalla Actual
     public PANTALLA pantallaActual;
+
+    String ptitulo;
 
 
     //Colores y topigrafias de la App
@@ -45,18 +47,9 @@ public class InterficieGrafica {
     Estante e1;
     Estante e2;
     Estante e3;
-    Estanteria E1;
-
-    Estante e4;
-    Estante e5;
-    Estante e6;
-    Estante altres;
     Vino vinoSeleccionado1= null;
     Vino vinoSeleccionado2= null;
     Vino vinoSeleccionado3= null;
-    Vino vinoSeleccionado4= null;
-    Vino vinoSeleccionado5= null;
-    Vino vinoSeleccionado6= null;
 
     String infoVinosE1[][]= {
             {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
@@ -76,6 +69,15 @@ public class InterficieGrafica {
     String infoVinosE3 [][]= {
             {"Margalida", "Prova1", "una", "blanco", "C1", "2014", "vinoMarga.jpg"},
     };
+
+    boolean wineSelected= false;
+
+    SelectList denominacioDeOrigen;
+    String [][] ValoresDorigen= {
+            {"0", "bueno"}, {"1", "bonito"}, {"2", "barato"}, {"3","arriba"}, {"4", "abajo"}, {"5", "cariño"},
+    };
+
+    BotonConTexto OK;
 
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
@@ -170,22 +172,25 @@ public class InterficieGrafica {
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
 
         //ESTANTERIA Y BOTONES HOME
-        e1 = new Estante(1, "Pla i Llevant",150, 150, 650, 200, 5);
+        e1 = new Estante(1, "TINTO",100, 150, 755, 200, 5);
         e1.addVinos(infoVinosE1, p5);
         e1.setColor(ColoresApp.getColorAt(0));
         e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
 
-        e2= new Estante(2, "Rioja", 150, 380, 650, 200, 5);
+        e2= new Estante(2, "BLANCO", 100, 380, 750, 200, 5);
         e2.addVinos(infoVinosE2, p5);
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
-        e3= new Estante(3, "Prova1", 150, 610, 650, 200, 5);
+        e3= new Estante(3, "ROSADO", 100, 610, 750, 200, 5);
         e3.addVinos(infoVinosE3, p5);
         e3.setColor(ColoresApp.getColorAt(0));
         e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
-        E1= new Estanteria(e1, e2, e3);
+        denominacioDeOrigen= new SelectList(p5,ValoresDorigen, 1100, 150, 250, 50, "Denominación de Origen");
+        OK= new BotonConTexto(p5, 1350, 150, 50, 50, "OK");
+        OK.setColores(255, 200, 0, 0);
+        OK.setMidaTextoBoton(20);
 
 
         //BOTONES MENÚ
@@ -313,21 +318,36 @@ public class InterficieGrafica {
         e1.display(p5);
         if(vinoSeleccionado1!=null){
             vinoSeleccionado1.setTextSizeSelected(20);
-            vinoSeleccionado1.display(p5, p5.width-400, 150, 300, 500);
+            vinoSeleccionado1.display(p5, 1100, 300, 300, 500);
+
+            if(vinoSeleccionado1.cursorEncima(p5, 1100, 300, 300, 500)){
+                wineSelected=true;
+            }
         }
         e2.display(p5);
         if(vinoSeleccionado2!=null){
             vinoSeleccionado2.setTextSizeSelected(20);
-            vinoSeleccionado2.display(p5, p5.width-400, 150, 300, 500);
+            vinoSeleccionado2.display(p5, 1100, 300, 300, 500);
+
+            if(vinoSeleccionado2.cursorEncima(p5, 1100, 300, 300, 500)){
+                wineSelected=true;
+            }
+
         }
 
         e3.display(p5);
         if(vinoSeleccionado3!=null){
             vinoSeleccionado3.setTextSizeSelected(20);
-            vinoSeleccionado3.display(p5, p5.width-400, 150, 300, 500);
+            vinoSeleccionado3.display(p5, 1100, 300, 300, 500);
+
+            if(vinoSeleccionado3.cursorEncima(p5, 1100, 300, 300, 500)){
+                wineSelected=true;
+            }
         }
 
-        E1.display(p5);
+        denominacioDeOrigen.display(p5);
+        OK.display(p5);
+
 
         if(OpcionesOpen){
             dibujaOpciones(p5);
@@ -484,8 +504,15 @@ public class InterficieGrafica {
             p5.textFont(FontsApp.getFirstFont());
             p5.textSize(midaTitol);
             p5.textAlign(p5.LEFT, p5.CENTER);
-            String ptitulo = pantallaActual.toString().replace("_", " ");
-            p5.text(""+ptitulo, 4*marginH + LogoMenuWidth,HeadLineHeight-25);
+            if(pantallaActual==PANTALLA.AÑADIR_VINOS && wineSelected==true){
+                p5.text("" + ptitulo, 4 * marginH + LogoMenuWidth, HeadLineHeight - 25);
+            }
+            else{
+                ptitulo = pantallaActual.toString().replace("_", " ");
+                p5.text("" + ptitulo, 4 * marginH + LogoMenuWidth, HeadLineHeight - 25);
+            }
+
+
         p5.popStyle();
     }
 

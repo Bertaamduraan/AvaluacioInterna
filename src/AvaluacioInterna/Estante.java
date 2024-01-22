@@ -19,7 +19,7 @@ public class Estante {
     Vino[] vinos;
 
     float vinoWidth;
-    float margenH= 15;
+    float margenH= 10;
     int selected= -1;
 
 
@@ -66,7 +66,7 @@ public class Estante {
         bPrev= new BotonConFoto(p5, imgPrev, x-40, y+h/2, 30, 30);
 
         PImage imgNext= p5.loadImage(img2);
-        bNext= new BotonConFoto(p5, imgNext, x+w+(vinoWidth/2)+5, y+h/2, 30, 30);
+        bNext= new BotonConFoto(p5, imgNext, x+w+(vinoWidth/2)-20, y+h/2, 30, 30);
     }
 
     void setColor(int c){
@@ -93,16 +93,16 @@ public class Estante {
             p5.stroke(0);
             p5.strokeWeight(2);
             p5.rectMode(p5.CORNER);
-            p5.rect(x-5, y-5, w+(vinoWidth/2)+5,  h+10, 7);
+            p5.rect(x-5, y-5, w+(vinoWidth/2)-20,  h+10, 7);
 
             p5.rect(x+w-200+margenH*2+5, y-40, 200, 40, 5);
             p5.noStroke();
             p5.rect(x+w-200+ margenH*2+6, y -39, 198, 44, 7);
 
-            p5.fill(0);
+            p5.fill(255);
             p5.textAlign(p5.CENTER);
             p5.textSize(24);
-            p5.text("("+this.numVinos+")"+this.nombre, x+w-100+margenH*2+10, y-10);
+            p5.text("("+this.numVinos+") "+this.nombre, x+w-100+margenH*2+10, y-10);
 
             for(int i=0; i<this.numVinosVisibles; i++){
                 int index=i+this.currentWine;
