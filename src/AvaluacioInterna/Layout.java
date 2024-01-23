@@ -27,7 +27,7 @@ public class Layout {
     public static float FilaBuscadorWidth= 1490, FilaBuscadorHeight= 200;
 
     //Dimensiones Filas Calendario
-    public static float FilaCalendarioWidth= 1470, FilaCalendarioHeight= 200;
+    public static float FilaCalendarioWidth= 1470, FilaCalendarioHeight= 600;
 
     //Dimensiones Columnas Vinos
     public static float columnVinosWidth= 477, columnVinosHeight= 650;

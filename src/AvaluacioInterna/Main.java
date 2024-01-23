@@ -150,6 +150,10 @@ public class Main extends PApplet{
             }
         }
 
+        if(gui.pantallaActual== InterficieGrafica.PANTALLA.CALENDARIO){
+            gui.c1.checkBotones(this);
+        }
+
 
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible) {

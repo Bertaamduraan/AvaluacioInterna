@@ -79,6 +79,13 @@ public class InterficieGrafica {
 
     BotonConTexto OK;
 
+
+
+    //BOTONES CALENDARIO
+    CalendarCarrousel c1;
+    String [] años= {"AÑADA: 2024", "AÑADA: 2023", "AÑADA: dibuja2022"};
+
+
     //BOTONES MENÚ
     BotonConTexto bMHome, bMCalendar, bMBuscar, bMVinos, bMCatas;
     BotonConFoto bLMenu;
@@ -191,6 +198,11 @@ public class InterficieGrafica {
         OK= new BotonConTexto(p5, 1350, 150, 50, 50, "OK");
         OK.setColores(255, 200, 0, 0);
         OK.setMidaTextoBoton(20);
+
+        //CARROUSEL CALENDARIO
+        c1= new CalendarCarrousel(p5, 2*marginH, 3*marginV+HeadLineHeight, FilaCalendarioWidth, FilaCalendarioHeight, años);
+        c1.setBotones(p5,"flechaAtrás.png", "flechaAdelante.png");
+
 
 
         //BOTONES MENÚ
@@ -517,10 +529,10 @@ public class InterficieGrafica {
     }
 
     public void dibujaRectanguloCentro(PApplet p5){
-        p5.fill(ColoresApp.getColorAt(0));
+        p5.fill(ColoresApp.getColorAt(0), 90);
         p5.pushStyle();
             p5.rectMode(CENTER);
-            p5.rect(p5.width/2, p5.height/2 +marginV*6, CentRectWidth, CentRectHeight);
+            p5.rect(p5.width/2, p5.height/2 +marginV*6, CentRectWidth+130, CentRectHeight-150, 10);
             //TEXTO
             p5.fill(0);
             p5.textFont(FontsApp.getFirstFont());
@@ -588,10 +600,17 @@ public class InterficieGrafica {
     }
 
     public void dibuja3Fila(PApplet p5){ //CALENDARIO
-        p5.fill(ColoresApp.getColorAt(3));
+        /*p5.fill(ColoresApp.getColorAt(3));
         p5.rect(2*marginH, 3*marginV+HeadLineHeight, FilaCalendarioWidth, FilaCalendarioHeight);
         p5.rect(2*marginH, 4*marginV+HeadLineHeight+FilaBuscadorHeight, FilaCalendarioWidth, FilaCalendarioHeight);
-        p5.rect(2*marginH, 5*marginV+HeadLineHeight+2*FilaBuscadorHeight, FilaCalendarioWidth, FilaCalendarioHeight);
+        p5.rect(2*marginH, 5*marginV+HeadLineHeight+2*FilaBuscadorHeight, FilaCalendarioWidth, FilaCalendarioHeight);*/
+
+        c1.display(p5);
+        p5.fill(0);
+        p5.textAlign(p5.LEFT, p5.LEFT);
+        p5.textSize(24);
+        p5.text("Soldadito marinero", 3*marginH, 5*marginV+HeadLineHeight);
+        p5.text("hasta 2030", FilaCalendarioWidth-5*marginH, 5*marginV+HeadLineHeight);
 
 
     }
