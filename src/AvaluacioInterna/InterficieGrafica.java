@@ -310,7 +310,7 @@ public class InterficieGrafica {
 
     public void dibujaPantallaHome(PApplet p5){
 
-        p5.background(ColoresApp.getColorAt(6));
+        p5.background(ColoresApp.getColorAt(5));
         //dibujaRectanguloCentro(p5);
         dibujaHeadLine(p5);
         dibujaLogos(p5);
@@ -374,7 +374,7 @@ public class InterficieGrafica {
     }*/
 
     public void dibujaPantallaBuscador(PApplet p5){
-        p5.background(ColoresApp.getColorAt(6));
+        p5.background(ColoresApp.getColorAt(5));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         //dibuja1Fila(p5);
@@ -397,7 +397,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaPantallaCalendario(PApplet p5){
-        p5.background(ColoresApp.getColorAt(6));
+        p5.background(ColoresApp.getColorAt(5));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         dibuja3Fila(p5);
@@ -410,7 +410,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaPantallaVinos(PApplet p5){
-        p5.background(ColoresApp.getColorAt(6));
+        p5.background(ColoresApp.getColorAt(5));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         dibuja3Columna(p5);
@@ -457,7 +457,7 @@ public class InterficieGrafica {
 
     public void dibujaPantallaCatas(PApplet p5){
         p5.pushStyle();
-            p5.background(ColoresApp.getColorAt(6));
+            p5.background(ColoresApp.getColorAt(5));
             dibujaHeadLine(p5);
             dibujaLogos(p5);
             dibuja2Columna(p5);
@@ -537,7 +537,7 @@ public class InterficieGrafica {
     }
 
     public void dibujaMenu(PApplet p5){ //Será la del Menú
-        p5.fill(ColoresApp.getColorAt(2));
+        p5.fill(0xFF083E4A);
         p5.rect(marginH, marginV, MenuWidth, MenuHeight, 10);
         dibuja5MiniFilas(p5);
         bLMenu.display(p5);
