@@ -156,7 +156,7 @@ public class Main extends PApplet{
 
 
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible && !gui.cVinos.visible) {
 
             gui.TNombre.isPressed(this);
             gui.TBodega.isPressed(this);
@@ -195,13 +195,17 @@ public class Main extends PApplet{
                 gui.cVinosCena.visible= !gui.cVinosCena.visible;
             }
 
+            if(gui.bCalendarioVinos.mouseEncimaBoton(this)){
+                gui.cVinos.visible= !gui.cVinos.visible;
+            }
+
             gui.contadorVinos.update(this);
 
             if(gui.bImagenVino.cursorEncimaBoton(this)){
                 selectInput("Selecciona una imagen...", "fileSelected");
             }
 
-        } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible) {
+        } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible && !gui.cVinos.visible) {
             //CATAS
             gui.cVinosCata.checkBotones(this);
 
@@ -219,7 +223,7 @@ public class Main extends PApplet{
                 gui.cVinosCata.visible = false;
             }
         }
-        else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && gui.cVinosCena.visible && !gui.cVinosCata.visible){
+        else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && gui.cVinosCena.visible && !gui.cVinosCata.visible && !gui.cVinos.visible){
             gui.cVinosCena.checkBotones(this);
             if(gui.bCalendarioVino2.mouseEncimaBoton(this)){
                 gui.cVinosCena.visible= !gui.cVinosCena.visible;
@@ -235,6 +239,22 @@ public class Main extends PApplet{
                 gui.cVinosCena.visible= false;
             }
 
+        }
+        else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible && gui.cVinos.visible){
+            gui.cVinos.checkBotones(this);
+            if(gui.bCalendarioVinos.mouseEncimaBoton(this)){
+                gui.cVinos.visible= !gui.cVinos.visible;
+            }
+            if(gui.cVinos.bnext.cursorEncimaBoton(this)){
+                gui.cVinos.ProximoMes();
+            }
+            if(gui.cVinos.bprev.cursorEncimaBoton(this)){
+                gui.cVinos.mesAnterior();
+            }
+            if(gui.cVinos.bAccept.cursorEncimaBoton(this) && gui.cVinos.dateSelected){
+                gui.dataCalendarioVinos= gui.cVinos.diaSeleccionado+"/"+gui.cVinos.mesSeleccionado+"/"+gui.cVinos.añoSeleccionado;
+                gui.cVinos.visible= false;
+            }
         }
 
 

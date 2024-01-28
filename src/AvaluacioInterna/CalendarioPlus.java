@@ -5,6 +5,8 @@ import processing.core.PApplet;
 import java.util.Calendar;
 
 public class CalendarioPlus {
+
+    Colors coloresCalendario;
     String [] meses= {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
                         "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"};
 
@@ -33,6 +35,8 @@ public class CalendarioPlus {
 
     CalendarioPlus(PApplet p5, int x, int y, int w, int h){
         this.botones= new BotonesDias[37];
+
+        this.coloresCalendario= new Colors(p5);
 
         this.calendario= Calendar.getInstance();
         calendario.set(Calendar.DAY_OF_MONTH, 1);
@@ -65,13 +69,13 @@ public class CalendarioPlus {
         this.h= h;
         crearCalendario(x, y, w, h);
 
-        bnext= new BotonConTexto(p5, x+w, y-70, 100, 50, "Siguiente");
+        bnext= new BotonConTexto(p5, x+10, y-140, 100, 50, "Siguiente");
         bnext.setColores(255, 200, 0, 0);
         bnext.setMidaTextoBoton(17);
-        bprev= new BotonConTexto(p5, x+w+100, y - 70, 100, 50, "Anterior");
+        bprev= new BotonConTexto(p5, x+120, y-140, 100, 50, "Anterior");
         bprev.setColores(255, 200, 0, 0);
         bprev.setMidaTextoBoton(17);
-        bAccept= new BotonConTexto(p5, x+w+200, y-70, 50, 50, "OK");
+        bAccept= new BotonConTexto(p5, x+230, y-140, 50, 50, "OK");
         bAccept.setColores(255, 200, 0, 0);
         bAccept.setMidaTextoBoton(17);
     }
@@ -124,7 +128,7 @@ public class CalendarioPlus {
         crearCalendario(x, y, w, h);
     }
 
-    void crearCalendario(int x, int y, int w, int h){
+    public void crearCalendario(int x, int y, int w, int h){
         float dayWidth= w/7;
         float dayHeight= h/6;
         int numeroDia=1;
@@ -198,14 +202,14 @@ public class CalendarioPlus {
 
         if(visible){
             p5.pushStyle();
-                p5.fill(255);
+                p5.fill(coloresCalendario.getColorAt(8));
                 p5.noStroke();
                 p5.rect(x, y-80, w, h);
 
-                p5.fill(0);
+                p5.fill(255);
                 p5.textSize(36);
                 p5.textAlign(p5.LEFT);
-                p5.text(meses[mes-1]+"/"+año, x, y-30);
+                p5.text(meses[mes-1]+"/"+año, x+10, y-30);
                 for(BotonesDias b: botones){
                     if(b!=null){
                         b.display(p5);

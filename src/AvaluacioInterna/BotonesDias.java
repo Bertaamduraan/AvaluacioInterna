@@ -31,16 +31,16 @@ public class BotonesDias {
     //DIBUJAR EL BOTÓN
     void display(PApplet p5){
         p5.pushStyle();
-            p5.fill(255);
+            p5.fill(0xFFB86221);
             p5.noStroke();
             p5.rect(x, y, w, h);
 
             if(selected){
-                p5.fill(200);
+                p5.fill(30);
                 p5.ellipse(x+w/2, y+h/2, w, w);
             }
 
-            p5.fill(0);
+            p5.fill(250);
             p5.textSize(13);
             p5.textAlign(p5.CENTER, p5.CENTER);
             p5.text(dia, x+w/2, y+h/2);

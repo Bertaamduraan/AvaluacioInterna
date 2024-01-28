@@ -114,6 +114,10 @@ public class InterficieGrafica {
     String titulo= "";
     BotonConTexto bImagenVino;
 
+    BotonConFoto bCalendarioVinos;
+    CalendarioPlus cVinos;
+    String dataCalendarioVinos= "";
+
 
     //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR CATA
     CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
@@ -260,6 +264,9 @@ public class InterficieGrafica {
         contadorVinos= new Contador(flechaUp, flechaDown, (int) (2*columnVinosWidth+5*marginH), 430, 250, 30);
 
         bImagenVino= new BotonConTexto(p5, 3*marginH, 9*HeadLineHeight+20, 80, 30, "IMAGEN");
+
+        bCalendarioVinos= new BotonConFoto(p5, fotoCalendario, (int) (5*marginH+2*columnVinosWidth), HeadLineHeight+3*marginV, 80, 80);
+        cVinos= new CalendarioPlus(p5, 700, 300, 300, 250);
 
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -451,6 +458,7 @@ public class InterficieGrafica {
         }
         dibujaCalendarioVinos(p5);
         dibujaCalendarioVinos2(p5);
+        dibujaCalendarioVINOS(p5);
         contadorVinos.display(p5);
 
         if(imagen!=null){
@@ -650,7 +658,7 @@ public class InterficieGrafica {
         p5.pushStyle();
         p5.fill(255);
         p5.rectMode(p5.CORNER);
-        p5.rect(2*marginH+80, 170, 200, 50, 7);
+        p5.rect(2*marginH+80, 170, 300, 55, 7);
 
         p5.fill(0);
         p5.textAlign(p5.LEFT, p5.CENTER);
@@ -691,6 +699,22 @@ public class InterficieGrafica {
 
         bCalendarioVino2.display(p5);
         cVinosCena.display(p5);
+        p5.popStyle();
+    }
+
+    public void dibujaCalendarioVINOS(PApplet p5){
+        p5.pushStyle();
+        p5.fill(255);
+        p5.rectMode(p5.CORNER);
+        p5.rect(9*marginH+2*columnVinosWidth, HeadLineHeight+4*marginV, 250, 50, 7);
+
+        p5.fill(0);
+        p5.textAlign(p5.LEFT);
+        p5.textSize(30);
+        p5.text(dataCalendarioVinos, (int)(9*marginH+2*columnVinosWidth+10), (int)(HeadLineHeight+5*marginV+15));
+
+        bCalendarioVinos.display(p5);
+        cVinos.display(p5);
         p5.popStyle();
     }
 
