@@ -8,6 +8,8 @@ public class Main extends PApplet{
 
     // Interfície Gráfica (Pantallas y componentes)
     InterficieGrafica gui;
+    DataBase db;
+    int n;
 
 
     public static void main(String[] args) {
@@ -24,6 +26,11 @@ public class Main extends PApplet{
         textAlign(CENTER); //Alineación del texto
         textSize (18); //Mida del texto
         gui= new InterficieGrafica(this); //Constructor de la interfície gráfica
+        db= new DataBase("admin", "12345", "vinoteca");
+        db.connect();
+        n= db.getNumeroFilasTabla("denominacion");
+        print("\n Files DO: "+ n);
+
     }
 
     public void draw(){
@@ -50,6 +57,10 @@ public class Main extends PApplet{
             case AÑADIR_CATA: gui.dibujaPantallaCatas(this);
             break;
         }
+
+        String info= db.connected ? "OK" : "ERROR";
+        fill(0); textSize(28);
+        text("Connexió a la BBDD: "+ info, 200, 100);
 
     }
 
