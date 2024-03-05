@@ -219,7 +219,7 @@ public class Main extends PApplet{
                     if(gui.BAceptarV.cursorEncimaBoton(this)){
                         gui.cAddVinos.visible= true;
                     }
-                    if(gui.cAddVinos.bAceptar.cursorEncimaBoton(this) &&gui.cAddVinos.bAceptar.funciona) {
+                    if(gui.cAddVinos.bAceptar.cursorEncimaBoton(this) && gui.cAddVinos.bAceptar.funciona) {
                         gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                         gui.cAddVinos.visible= false;
                     }
@@ -239,6 +239,7 @@ public class Main extends PApplet{
                     }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible && !gui.cVinos.visible) {
             //CATAS
             gui.cVinosCata.checkBotones(this);
@@ -326,6 +327,30 @@ public class Main extends PApplet{
 
             if(gui.bCalendarioCata.mouseEncimaBoton(this)){
                 gui.cCata.visible= !gui.cCata.visible;
+            }
+
+
+            if(gui.BAceptarC.cursorEncimaBoton(this)){
+                gui.cAddCatas.visible= true;
+            }
+            if(gui.cAddCatas.bAceptar.cursorEncimaBoton(this) && gui.cAddCatas.bAceptar.funciona){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
+                gui.cAddCatas.visible= false;
+            }
+            else if (gui.cAddCatas.bCancelar.cursorEncimaBoton(this) && gui.cAddCatas.bCancelar.funciona){
+                gui.cAddCatas.visible= false;
+            }
+
+
+            if(gui.BEliminarC.cursorEncimaBoton(this)){
+                gui.cEliminarCatas.visible= true;
+            }
+            if(gui.cEliminarCatas.bAceptar.cursorEncimaBoton(this) && gui.cEliminarCatas.bAceptar.funciona){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
+                gui.cEliminarCatas.visible= false;
+            }
+            else if (gui.cEliminarCatas.bCancelar.cursorEncimaBoton(this) && gui.cEliminarCatas.bCancelar.funciona){
+                gui.cEliminarCatas.visible= false;
             }
         }
         else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && gui.cCata.visible){

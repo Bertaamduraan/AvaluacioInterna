@@ -12,6 +12,7 @@ public class Confirmar {
     String mensaje;
 
     Colors ColoresAPP;
+    Fonts FontsAPP;
 
     BotonConTexto bAceptar, bCancelar;
     float widthBoton= 95, heightBoton= 45;
@@ -21,6 +22,7 @@ public class Confirmar {
     //CONSTRUCTOR
     Confirmar (PApplet p5, String t, String m, float x, float y, float w, float h) {
         ColoresAPP= new Colors(p5);
+        FontsAPP= new Fonts(p5);
         this.titulo = t;
         this.mensaje = m;
         this.x = x;
@@ -66,6 +68,7 @@ public class Confirmar {
                 p5.rect(x, y, w, h, borde);
                 p5.line(x-w/2, y-5*borde, x+w/2, y-5*borde);
 
+                p5.textFont(FontsAPP.getFirstFont());
                 //Título
                 p5.fill(0);
                 p5.textSize(25);

@@ -131,6 +131,8 @@ public class InterficieGrafica {
     BotonConFoto bCalendarioCata;
     PImage fotoCalendario;
     String dataCalendario= "";
+    Confirmar cAddCatas;
+    Confirmar cEliminarCatas;
 
 
     //SELECTOR BUSCADOR
@@ -296,6 +298,9 @@ public class InterficieGrafica {
 
         cCata= new CalendarioPlus(p5, 350, 250, 300,250);
         bCalendarioCata= new BotonConFoto(p5,fotoCalendario, 2*marginH, 150, 80, 80);
+
+        cAddCatas= new Confirmar(p5, "GUARDAR CATA", "Quieres guardar la información de esta cata?", p5.width/2, p5.height/2, popWidth, popHeight);
+        cEliminarCatas= new Confirmar (p5, "ELIMINAR CATA", "Quieres eliminar la información de esta cata?", p5.width/2, p5.height/2, popWidth, popHeight);
 
 
 
@@ -503,6 +508,8 @@ public class InterficieGrafica {
             if(MenuOpen){
                 dibujaMenu(p5);
             }
+        cAddCatas.display(p5);
+        cEliminarCatas.display(p5);
         p5.popStyle();
     }
 
