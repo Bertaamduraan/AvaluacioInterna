@@ -39,10 +39,6 @@ public class BotonConTexto {
         this.MidaTextoBoton= m;
     }
 
-    //GETTER
-    public String getTextoBoton(){
-        return this.TextoBoton;
-    }
 
 
     public void setColores(int cRelleno, int colorRellenoEncima, int cTrazo, int cLetras){
@@ -52,13 +48,17 @@ public class BotonConTexto {
         this.ColorLetra= cLetras;
     }
 
+    void setFunciona (boolean f){
+        this.funciona= f;
+    }
+
     //DIBUJAR EL BOTÓN
     public void display(PApplet p5){
         p5.pushStyle();
-            if(cursorEncimaBoton(p5)){
+        if(funciona) {
+            if (cursorEncimaBoton(p5)) {
                 p5.fill(ColorRellenoEncima); //color cuando el cursor está encima
-            }
-            else {
+            } else {
                 p5.fill(ColorRelleno); //color cuando el botón está activo pero el cursor no está encima
             }
 
@@ -69,7 +69,8 @@ public class BotonConTexto {
             p5.fill(ColorLetra);
             p5.textAlign(p5.CENTER, p5.CENTER);
             p5.textSize(MidaTextoBoton);
-            p5.text(TextoBoton, this.x+this.w/2, this.y+this.h/2);
+            p5.text(TextoBoton, this.x + this.w / 2, this.y + this.h / 2);
+        }
         p5.popStyle();
     }
 

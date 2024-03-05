@@ -10,7 +10,6 @@ import static processing.core.PConstants.CENTER;
 import static processing.core.PConstants.RIGHT;
 
 
-
 public class InterficieGrafica {
 
 
@@ -83,7 +82,7 @@ public class InterficieGrafica {
 
     //BOTONES CALENDARIO
     CalendarCarrousel c1;
-    String [] años= {"AÑADA: 2024", "AÑADA: 2023", "AÑADA: dibuja2022"};
+    String [] años= {"AÑADA: 2022", "AÑADA: 2023", "AÑADA: 2024"};
 
 
     //BOTONES MENÚ
@@ -93,7 +92,7 @@ public class InterficieGrafica {
 
 
     //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS AÑADIR VINOS
-    BotonConTexto BAceptarV, BEliminarV, BAddV;
+    BotonConTexto BAceptarV, BEliminarV;
     CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
     CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
     RadioButton RBCenasV, RBCatasV;
@@ -117,6 +116,11 @@ public class InterficieGrafica {
     BotonConFoto bCalendarioVinos;
     CalendarioPlus cVinos;
     String dataCalendarioVinos= "";
+
+    float popWidth= 400;
+    float popHeight= 200;
+    Confirmar cAddVinos;
+    Confirmar cEliminarVinos;
 
 
     //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR CATA
@@ -230,15 +234,12 @@ public class InterficieGrafica {
         TRUbicacion= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Ubicacion: ");
         TRUbicacion.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
 
-        BAceptarV= new BotonConTexto(p5,4*marginH+columnVinosWidth,29*marginV+HeadLineHeight+115,150,55, "GUARDAR" );
+        BAceptarV= new BotonConTexto(p5,7*marginH+columnVinosWidth,29*marginV+HeadLineHeight+115,150,55, "GUARDAR");
         BAceptarV.setMidaTextoBoton(29);
         BAceptarV.setColores(255, 200, 0, 0);
-        BEliminarV= new BotonConTexto(p5, 13*marginH+columnVinosWidth,29*marginV+HeadLineHeight+115,150,55, "ELIMINAR");
+        BEliminarV= new BotonConTexto(p5, 16*marginH+columnVinosWidth,29*marginV+HeadLineHeight+115,150,55, "ELIMINAR");
         BEliminarV.setMidaTextoBoton(29);
         BEliminarV.setColores(255, 200,0, 0);
-        BAddV= new BotonConTexto(p5, 22*marginH+columnVinosWidth, 29*marginV+HeadLineHeight+115,150,55, "AÑADIR");
-        BAddV.setMidaTextoBoton(29);
-        BAddV.setColores(255, 200, 0, 0);
 
         RBCatasV= new RadioButton(p5,(int) (5*marginH+2*columnVinosWidth), (int)(17*marginV+HeadLineHeight+115), 10, "CATA");
         RBCenasV= new RadioButton(p5, (int)(5*marginH+2*columnVinosWidth), (int) (19*marginV+HeadLineHeight+115), 10, "CENA FINAL DE MES");
@@ -267,6 +268,9 @@ public class InterficieGrafica {
 
         bCalendarioVinos= new BotonConFoto(p5, fotoCalendario, (int) (5*marginH+2*columnVinosWidth), HeadLineHeight+3*marginV, 80, 80);
         cVinos= new CalendarioPlus(p5, 700, 300, 300, 250);
+
+        cAddVinos= new Confirmar(p5, "GUARDAR VINO", "Quieres guardar la información de este vino?", p5.width/2, p5.height/2, popWidth, popHeight);
+        cEliminarVinos= new Confirmar(p5, "ELIMINAR VINO", "Quieres eleminar la información de este vino?", p5.width/2, p5.height/2, popWidth, popHeight);
 
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
         TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
@@ -443,7 +447,6 @@ public class InterficieGrafica {
         TRUbicacion.display(p5);
         BAceptarV.display(p5);
         BEliminarV.display(p5);
-        BAddV.display(p5);
         RBCatasV.display(p5);
         RBCenasV.display(p5);
         grb.display(p5);
@@ -473,6 +476,8 @@ public class InterficieGrafica {
         bImagenVino.setColores(255, 220, 0, 0);
         bImagenVino.setMidaTextoBoton(14);
         bImagenVino.display(p5);
+        cAddVinos.display(p5);
+        cEliminarVinos.display(p5);
     }
 
     public void dibujaPantallaCatas(PApplet p5){

@@ -38,7 +38,7 @@ public class CalendarCarrousel {
     }
 
     public void next(){
-        if(this.currentYear<this.numTotalAño){
+        if(this.currentYear<this.numTotalAño-1){
             this.currentYear++;
         }
     }

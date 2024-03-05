@@ -216,6 +216,29 @@ public class Main extends PApplet{
                 selectInput("Selecciona una imagen...", "fileSelected");
             }
 
+                    if(gui.BAceptarV.cursorEncimaBoton(this)){
+                        gui.cAddVinos.visible= true;
+                    }
+                    if(gui.cAddVinos.bAceptar.cursorEncimaBoton(this) &&gui.cAddVinos.bAceptar.funciona) {
+                        gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
+                        gui.cAddVinos.visible= false;
+                    }
+                    else if (gui.cAddVinos.bCancelar.cursorEncimaBoton(this) && gui.cAddVinos.bCancelar.funciona){
+                        gui.cAddVinos.visible= false;
+                    }
+
+                    if(gui.BEliminarV.cursorEncimaBoton(this)){
+                        gui.cEliminarVinos.visible= true;
+                    }
+                    if(gui.cEliminarVinos.bAceptar.cursorEncimaBoton(this) && gui.cEliminarVinos.bAceptar.funciona){
+                        gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
+                        gui.cAddVinos.visible= false;
+                    }
+                    else if(gui.cEliminarVinos.bCancelar.cursorEncimaBoton(this) && gui.cEliminarVinos.bCancelar.funciona){
+                        gui.cEliminarVinos.visible= false;
+                    }
+
+
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible && !gui.cVinos.visible) {
             //CATAS
             gui.cVinosCata.checkBotones(this);
