@@ -60,7 +60,7 @@ public class Vino {
 
        //MUESTRA EL TEXTO DE LA INFORMACIÓN DEL VINO
        p5.textAlign(p5.LEFT, p5.CENTER);
-       p5.textSize(12);
+       p5.textSize(15);
        p5.fill(0);
        p5.text(this.nombre, margen+x, y + 3*h/4+25);
        /*p5.textSize(12);

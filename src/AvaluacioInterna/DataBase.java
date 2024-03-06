@@ -66,17 +66,35 @@ public class DataBase {
         int numCols  = 2;
         String[][] info = new String[numFiles][numCols];
         try {
-            ResultSet rs = query.executeQuery( "SELECT * FROM unitat");
+            ResultSet rs = query.executeQuery( "SELECT * FROM denominacion");
             int nr = 0;
             while (rs.next()) {
-                info[nr][0] = String.valueOf(rs.getInt("numero"));
-                info[nr][1] = rs.getString("nom");
+                info[nr][0] = String.valueOf(rs.getInt("idDenominacion"));
+                info[nr][1] = rs.getString("NombreDEO");
                 nr++;
             }
             return info;
         }
         catch(Exception e) {
             System.out.println(e);
+            return null;
+        }
+    }
+
+    public String [] getColumnaNameTDeo(){
+        int numFilas= getNumeroColumnasTabla("denominacion");
+        String [] info = new String[numFilas];
+
+        try{
+            ResultSet rs= query.executeQuery("SELECT NombreDEO FROM denominacion");
+            int nr= 0;
+            while(rs.next()){
+                info[nr]= rs.getString("NombreDEO");
+                nr++;
+            }
+            return info;
+        }
+        catch (Exception e){
             return null;
         }
     }

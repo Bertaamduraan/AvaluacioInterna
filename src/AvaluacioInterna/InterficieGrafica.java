@@ -72,9 +72,7 @@ public class InterficieGrafica {
     boolean wineSelected= false;
 
     SelectList denominacioDeOrigen;
-    String [][] ValoresDorigen= {
-            {"0", "bueno"}, {"1", "bonito"}, {"2", "barato"}, {"3","arriba"}, {"4", "abajo"}, {"5", "cariño"},
-    };
+    String [][] ValoresDorigen;
 
     BotonConTexto OK;
 
@@ -146,10 +144,14 @@ public class InterficieGrafica {
     String [][] ValoresC= {{"0", "01/02/03"},{"1", "04/05/06"},{"2", "07/08/09"}, {"3", "10/11/12"}, {"4", "14/12/13"}};
     CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB;
 
+    DataBase db;
 
 
     //Constructor de la interficie gràfica
-    public InterficieGrafica(PApplet p5){
+    public InterficieGrafica(PApplet p5, DataBase db){
+
+        this.db = db;
+
         pantallaActual= PANTALLA.INICIO;
 
         ColoresApp= new Colors(p5); //Constructor de los colores de la App
@@ -208,6 +210,7 @@ public class InterficieGrafica {
         OK= new BotonConTexto(p5, 1350, 150, 50, 50, "OK");
         OK.setColores(255, 200, 0, 0);
         OK.setMidaTextoBoton(20);
+        ValoresDorigen= db.getInfoTablaDO();
 
         //CARROUSEL CALENDARIO
         c1= new CalendarCarrousel(p5, 2*marginH, 3*marginV+HeadLineHeight, FilaCalendarioWidth, FilaCalendarioHeight, años);
