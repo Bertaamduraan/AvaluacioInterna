@@ -113,7 +113,7 @@ public class DataBase {
     }
 
     public String [][] getInfoTablaVinos(String colorVino){
-        int numFiles = getNumRowsQuery("SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen AND col.Color = '"+colorVino+"'  ORDER BY NOMBRE ASC;");
+        int numFiles = getNumRowsQuery("SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen AND col.Color = '"+colorVino+"'; ");
         int numCols  = 5;
         String[][] info = new String[numFiles][numCols];
         try {
@@ -121,9 +121,11 @@ public class DataBase {
             ResultSet rs = query.executeQuery( "SELECT v.nombreVinos AS NOMBRE, den.NombreDEO AS DO, col.Color AS COLOR, v.Ubicación AS UBICACION, img.Imagen AS FOTO FROM vinos v, color col, denominacion den, imagen img WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen AND col.Color = '"+colorVino+"'  ORDER BY NOMBRE ASC;");
             int nr = 0;
             while (rs.next()) {
-                info[nr][0] = String.valueOf(rs.getInt("NOMBRE"));
-                info[nr][1] = rs.getString("NombreDEO");
-                info[nr][2]=
+                info[nr][0] = rs.getString("NOMBRE");
+                info[nr][1] = rs.getString("DO");
+                info[nr][2]= rs.getString("COLOR");
+                info[nr][3]= rs.getString("UBICACION");
+                info[nr][4]= rs.getString("FOTO");
                 nr++;
             }
             return info;

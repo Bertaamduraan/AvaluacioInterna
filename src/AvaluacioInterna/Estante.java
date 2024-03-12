@@ -4,6 +4,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import static processing.core.PApplet.constrain;
+import static processing.core.PConstants.CENTER;
 
 public class Estante {
 
@@ -94,7 +95,7 @@ public class Estante {
             p5.stroke(0);
             p5.strokeWeight(2);
             p5.rectMode(p5.CORNER);
-            p5.rect(x-5, y-5, w+(vinoWidth/2)-20,  h+10, 7);
+            p5.rect(x-5, y-5, w+(vinoWidth/2)-25,  h+10, 7);
 
             p5.rect(x+w-200+margenH*2+5, y-40, 200, 40, 5);
             p5.noStroke();
@@ -110,7 +111,7 @@ public class Estante {
 
                 if(index<this.numVinos){
                     //POSICIÓN EN EL ESTANTE
-                    float xPos= x+i*(this.vinoWidth+this.margenH);
+                    float xPos= x+i*(this.vinoWidth+this.margenH)+3;
 
                     //VINO A MOSTRAR
                     Vino v= vinos[index];
@@ -120,9 +121,10 @@ public class Estante {
                     p5.fill(cFons);
                     p5.noStroke();
                     p5.rectMode(p5.CENTER);
-                    p5.rect(xPos+40, y+40, 40, 40, 7);
+                    p5.rect(xPos+45, y+35, 78, 40, 7);
                     p5.fill(0);
-                    p5.text(vinos[index].ubicacion, xPos+40, y+48);
+                    p5.textAlign(CENTER);
+                    p5.text(vinos[index].ubicacion, xPos+45, y+42);
                 }
             }
 

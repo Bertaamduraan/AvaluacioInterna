@@ -48,11 +48,16 @@ public class InterficieGrafica {
     Vino vinoSeleccionado2= null;
     Vino vinoSeleccionado3= null;
 
-    String infoVinosE1 [][];
+    String infoVinosE1 [][]= {
+            {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
+    };
 
-    String infoVinosE2[][];
+    String [][] infoVinosE2;
 
-    String infoVinosE3 [][];
+
+    String [][] infoVinosE3  = {
+            {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
+    };
 
     boolean wineSelected= false;
 
@@ -175,18 +180,21 @@ public class InterficieGrafica {
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
 
         //ESTANTERIA Y BOTONES HOME
-        //infoVinosE1= db.get
-        e1 = new Estante(1, "TINTO",100, 150, 755, 200, 5);
+        infoVinosE1= db.getInfoTablaVinos( "Tinto");
+        e1 = new Estante(1, "TINTO",100, 150, 800, 200, 5);
         e1.addVinos(infoVinosE1, p5);
         e1.setColor(ColoresApp.getColorAt(0));
         e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
 
-        e2= new Estante(2, "BLANCO", 100, 380, 750, 200, 5);
+        String cV= "Blanco";
+        infoVinosE2= db.getInfoTablaVinos(cV);
+        e2= new Estante(2, "BLANCO", 100, 380, 800, 200, 5);
         e2.addVinos(infoVinosE2, p5);
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
-        e3= new Estante(3, "ROSADO", 100, 610, 750, 200, 5);
+        infoVinosE3= db.getInfoTablaVinos("Otros");
+        e3= new Estante(3, "ROSADO", 100, 610, 800, 200, 5);
         e3.addVinos(infoVinosE3, p5);
         e3.setColor(ColoresApp.getColorAt(0));
         e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
