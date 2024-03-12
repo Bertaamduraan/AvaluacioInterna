@@ -43,41 +43,25 @@ public class InterficieGrafica {
 
 
     //BOTONES HOME
-    Estante e1;
-    Estante e2;
-    Estante e3;
+    Estante e1, e2, e3;
     Vino vinoSeleccionado1= null;
     Vino vinoSeleccionado2= null;
     Vino vinoSeleccionado3= null;
 
-    String infoVinosE1[][]= {
-            {"Bassus", "Utiel-Rquena", "una", "negro", "A1", "2014", "vinoBassus.jpg" },
-            {"Domino de Calles", "València", "una", "Tinto", "A2", "2015", "dominioDeCalles.jpeg"},
-            {"Golós", "Pla i Llevant Mallorca", "una", "blanc", "A3", "2016", "vinoGolos.jpg"},
-            {"Sa vall", "Pla i Llevant Mallorca", "una", "blanc", "A4", "2016", "vinoSaVall.jpg"},
-            {"Son fangos", "Pla i Llevant Mallorca", "una", "blanc", "A5", "2016", "vinoSonFangos.jpg"},
-            {"Chardonnay Roure", "Pla i Llevant Mallorca", "una", "blanc", "A6", "2016", "vinoChardonnayRoure.jpg"},
-            {"Torre des Canonge", "Pla i Llevant Mallorca", "una", "blanc", "A7", "2016", "vinoTorreDesCanonge.jpg"},
+    String infoVinosE1 [][];
 
-    };
+    String infoVinosE2[][];
 
-    String infoVinosE2[][]= {
-            {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
-    };
-
-    String infoVinosE3 [][]= {
-            {"Margalida", "Prova1", "una", "blanco", "C1", "2014", "vinoMarga.jpg"},
-    };
+    String infoVinosE3 [][];
 
     boolean wineSelected= false;
 
     SelectList denominacioDeOrigen;
-    String [][] ValoresDorigen;
+    String [][] ValoresDorigenHome;
 
     BotonConTexto OK;
-
-
-
+    
+    
     //BOTONES CALENDARIO
     CalendarCarrousel c1;
     String [] años= {"AÑADA: 2022", "AÑADA: 2023", "AÑADA: 2024"};
@@ -191,6 +175,7 @@ public class InterficieGrafica {
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
 
         //ESTANTERIA Y BOTONES HOME
+        //infoVinosE1= db.get
         e1 = new Estante(1, "TINTO",100, 150, 755, 200, 5);
         e1.addVinos(infoVinosE1, p5);
         e1.setColor(ColoresApp.getColorAt(0));
@@ -206,11 +191,11 @@ public class InterficieGrafica {
         e3.setColor(ColoresApp.getColorAt(0));
         e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
-        denominacioDeOrigen= new SelectList(p5,ValoresDorigen, 1100, 150, 250, 50, "Denominación de Origen");
+        ValoresDorigenHome= db.getInfoTablaDO();
+        denominacioDeOrigen= new SelectList(p5,ValoresDorigenHome, 1100, 150, 250, 50, "Denominación de Origen");
         OK= new BotonConTexto(p5, 1350, 150, 50, 50, "OK");
         OK.setColores(255, 200, 0, 0);
         OK.setMidaTextoBoton(20);
-        ValoresDorigen= db.getInfoTablaDO();
 
         //CARROUSEL CALENDARIO
         c1= new CalendarCarrousel(p5, 2*marginH, 3*marginV+HeadLineHeight, FilaCalendarioWidth, FilaCalendarioHeight, años);

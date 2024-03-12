@@ -51,7 +51,8 @@ public class Estante {
     }*/
 
     void addVINOinfo(String [] info, PApplet p5){
-        Vino v= new Vino(p5, info[0], info[1], info[2], info[3], info[4], info[5], info[6]);
+        //Vino v= new Vino(p5, info[0], info[1], info[2], info[3], info[4], info[5], info[6]);
+        Vino v= new Vino(p5, info[0], info[1], info[2], info[3], info[4]);
         addVino(v);
     }
 

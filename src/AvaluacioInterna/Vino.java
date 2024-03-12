@@ -29,6 +29,15 @@ public class Vino {
        setPortada (f, p5);
    }
 
+    Vino(PApplet p5, String n, String DO, String color, String u, String f){
+        this.nombre=n;
+        this.DO= DO;
+        this.color= color;
+        this.ubicacion= u;
+        c= p5.color(200);
+        setPortada (f, p5);
+    }
+
    void setPortada(String imgName, PApplet p5){
        this.foto= p5.loadImage(imgName);
    }

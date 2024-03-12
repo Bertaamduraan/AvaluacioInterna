@@ -28,8 +28,6 @@ public class Main extends PApplet{
         db= new DataBase("admin", "12345", "vinoteca");
         db.connect();
         gui= new InterficieGrafica(this, db); //Constructor de la interfície gráfica
-        n= db.getNumeroFilasTabla("denominacion");
-        print("\n Files DO: "+ n);
 
     }
 
