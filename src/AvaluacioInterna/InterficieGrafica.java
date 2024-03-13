@@ -180,20 +180,20 @@ public class InterficieGrafica {
         LogOut= new BotonConFoto(p5, logoLogOut, 1450, 2*marginV, 30, 30);
 
         //ESTANTERIA Y BOTONES HOME
-        infoVinosE1= db.getInfoTablaVinos( "Tinto");
+        infoVinosE1= db.getInfoTablaVinosPorColor( "Tinto");
         e1 = new Estante(1, "TINTO",100, 150, 800, 200, 5);
         e1.addVinos(infoVinosE1, p5);
         e1.setColor(ColoresApp.getColorAt(0));
         e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
 
         String cV= "Blanco";
-        infoVinosE2= db.getInfoTablaVinos(cV);
+        infoVinosE2= db.getInfoTablaVinosPorColor(cV);
         e2= new Estante(2, "BLANCO", 100, 380, 800, 200, 5);
         e2.addVinos(infoVinosE2, p5);
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
-        infoVinosE3= db.getInfoTablaVinos("Otros");
+        infoVinosE3= db.getInfoTablaVinosPorColor("Otros");
         e3= new Estante(3, "ROSADO", 100, 610, 800, 200, 5);
         e3.addVinos(infoVinosE3, p5);
         e3.setColor(ColoresApp.getColorAt(0));
