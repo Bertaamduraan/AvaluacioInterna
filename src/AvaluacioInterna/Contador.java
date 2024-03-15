@@ -48,6 +48,10 @@ public class Contador {
         p5.image(down, this.x+this.w+10, this.y+this.h, this.h, this.h);
     }
 
+    public int getValor(){
+        return this.valor;
+    }
+
     public boolean cursorEncimaBoton(PApplet p5){
         return cursorEncimaBotonUp(p5) || cursorEncimaBotonDown(p5);
     }

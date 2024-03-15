@@ -181,23 +181,9 @@ public class InterficieGrafica {
 
         //ESTANTERIA Y BOTONES HOME
         infoVinosE1= db.getInfoTablaVinosPorColor( "Tinto");
-        e1 = new Estante(1, "TINTO",100, 150, 800, 200, 5);
-        e1.addVinos(infoVinosE1, p5);
-        e1.setColor(ColoresApp.getColorAt(0));
-        e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
-
-        String cV= "Blanco";
-        infoVinosE2= db.getInfoTablaVinosPorColor(cV);
-        e2= new Estante(2, "BLANCO", 100, 380, 800, 200, 5);
-        e2.addVinos(infoVinosE2, p5);
-        e2.setColor(ColoresApp.getColorAt(0));
-        e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
-
+        infoVinosE2= db.getInfoTablaVinosPorColor("Blanco");
         infoVinosE3= db.getInfoTablaVinosPorColor("Otros");
-        e3= new Estante(3, "ROSADO", 100, 610, 800, 200, 5);
-        e3.addVinos(infoVinosE3, p5);
-        e3.setColor(ColoresApp.getColorAt(0));
-        e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
+        setEstanterias(p5, infoVinosE1, infoVinosE2, infoVinosE3);
 
         ValoresDorigenHome= db.getInfoTablaDO();
         denominacioDeOrigen= new SelectList(p5,ValoresDorigenHome, 1100, 150, 250, 50, "Denominación de Origen");
@@ -223,7 +209,7 @@ public class InterficieGrafica {
         TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (5*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
         TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominació de origen: ");
         TVariedad= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Variedad: ");
-        TCosecha= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (14*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Añada: ");
+        TCosecha= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Añada: ");
 
         TRPrecio= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (2*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Precio: ");
         TRPrecio.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5), 0);
@@ -318,6 +304,26 @@ public class InterficieGrafica {
         SLdenominacion= new SelectList(p5, ValoresDO, 340, 200, 250, 70, "Denominación de Origen");
         SLañada= new SelectList(p5, ValoresA, 580, 200, 150, 70, "Añada");
         SLbodega= new SelectList(p5, ValoresBo, 720, 200, 150, 70, "Bodega");
+    }
+
+    void setEstanterias(PApplet p5, String[][] infoVinosE1, String[][] infoVinosE2,String[][] infoVinosE3){
+        //infoVinosE1= db.getInfoTablaVinosPorColor( "Tinto");
+        e1 = new Estante(1, "TINTO",100, 150, 800, 200, 5);
+        e1.addVinos(infoVinosE1, p5);
+        e1.setColor(ColoresApp.getColorAt(0));
+        e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
+
+        //infoVinosE2= db.getInfoTablaVinosPorColor(cV);
+        e2= new Estante(2, "BLANCO", 100, 380, 800, 200, 5);
+        e2.addVinos(infoVinosE2, p5);
+        e2.setColor(ColoresApp.getColorAt(0));
+        e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
+
+        //infoVinosE3= db.getInfoTablaVinosPorColor("Otros");
+        e3= new Estante(3, "OTROS", 100, 610, 800, 200, 5);
+        e3.addVinos(infoVinosE3, p5);
+        e3.setColor(ColoresApp.getColorAt(0));
+        e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
     }
 
     // PANTALLAS DE LA INTERFÍCIE GRÁFICA
@@ -442,7 +448,7 @@ public class InterficieGrafica {
         TBodega.display(p5);
         TDenominacion.display(p5);
         TCosecha.display(p5);
-        TVariedad.display(p5);
+        //TVariedad.display(p5);
         TRPrecio.display(p5);
         TRCapacidad.display(p5);
         TRUbicacion.display(p5);

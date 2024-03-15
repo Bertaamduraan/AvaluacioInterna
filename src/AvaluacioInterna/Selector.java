@@ -71,6 +71,10 @@ public class Selector {
     public void setPlegado(boolean b){
         this.plegado= b;
     }
+
+    public String getSelectedValue(){
+        return this.selectedValue;
+    }
     public void cambio(){
         this.plegado= !this.plegado;
     }

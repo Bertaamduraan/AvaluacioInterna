@@ -151,7 +151,16 @@ public class Main extends PApplet{
 
             gui.denominacioDeOrigen.getTextField().isPressed(this);
             gui.denominacioDeOrigen.buttonPressed(this);
-            gui.OK.cursorEncimaBoton(this);
+
+            if(gui.OK.cursorEncimaBoton(this) && gui.denominacioDeOrigen.ValorSelected!= ""){
+                String VS= gui.denominacioDeOrigen.ValorSelected;
+                print("Quina DO:",VS);
+                String [][]infoVinosE1= gui.db.getInfoTablaVinosPorColorDO("Tinto", VS);
+                String [][]infoVinosE2= gui.db.getInfoTablaVinosPorColorDO("Blanco", VS);
+                String [][] infoVinosE3= gui.db.getInfoTablaVinosPorColorDO("Otros", VS);
+
+                gui.setEstanterias(this, infoVinosE1, infoVinosE2, infoVinosE3);
+            }
 
             if(gui.wineSelected==true){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
@@ -220,6 +229,18 @@ public class Main extends PApplet{
                     if(gui.cAddVinos.bAceptar.cursorEncimaBoton(this) && gui.cAddVinos.bAceptar.funciona) {
                         gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                         gui.cAddVinos.visible= false;
+                        String color= gui.db.getClaveFromTabla("color", "idColor", "Color", gui.ColorVino.getSelectedValue());
+                        System.out.println(color);
+
+                        String bodega = gui.db.getClaveFromTabla("bodega", "idbodega", "nombreBodega", gui.TBodega.getSoloTexto());
+                        println(bodega);
+                        String capacidad= gui.db.getClaveFromTabla("capacidad", "idCapacidad", "Capacidad", gui.TRCapacidad.getSoloTexto());
+                        println(capacidad);
+                        String denominacion= gui.db.getClaveFromTabla("denominacion", "idDenominacion", "NombreDEO", gui.TDenominacion.getSoloTexto());
+                        print(denominacion);
+                        gui.db.insertInfoTaulaVino(gui.TNombre.getSoloTexto(), gui.TCosecha.getSoloTexto(), gui.TRPrecio.getSoloTexto(), gui.TRUbicacion.getSoloTexto(), gui.contadorVinos.getValor(),
+                                                    color, capacidad, denominacion, bodega);
+
                     }
                     else if (gui.cAddVinos.bCancelar.cursorEncimaBoton(this) && gui.cAddVinos.bCancelar.funciona){
                         gui.cAddVinos.visible= false;
@@ -235,7 +256,6 @@ public class Main extends PApplet{
                     else if(gui.cEliminarVinos.bCancelar.cursorEncimaBoton(this) && gui.cEliminarVinos.bCancelar.funciona){
                         gui.cEliminarVinos.visible= false;
                     }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
         } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible && !gui.cVinos.visible) {
@@ -405,10 +425,10 @@ public class Main extends PApplet{
     // ******************* KEYBOARD interaction ***************************** //
 
     public void keyPressed(){
-        if(key=='0'){
+        /*if(key=='0'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.INICIO;
-        }
-        else if(key=='1'){
+        }*/
+        if(key=='1'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.BODEGA;
         }
         /*else if(key=='2'){

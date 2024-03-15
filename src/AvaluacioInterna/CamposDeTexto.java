@@ -69,6 +69,14 @@ public class CamposDeTexto {
         }
     }
 
+    public String getTexto(){
+        return this.texto;
+    }
+
+    public String getSoloTexto(){
+        return this.texto.replace(this.textoEstatico, "");
+    }
+
 
     public boolean cursorEncimaCampoTexto(PApplet p5) {
         return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y-50 && p5.mouseY <= this.y);
