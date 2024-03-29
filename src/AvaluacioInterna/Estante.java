@@ -22,11 +22,12 @@ public class Estante {
     float vinoWidth;
     float margenH= 10;
     int selected= -1;
+    Fonts FontsApp;
 
 
     BotonConFoto bPrev, bNext;
 
-    Estante(int p, String n, float x, float y, float w, float h, int numVisible){
+    Estante(PApplet p5, int p, String n, float x, float y, float w, float h, int numVisible){
         this.pos= p;
         this.nombre= n;
         this.vinos= new Vino[100];
@@ -36,6 +37,19 @@ public class Estante {
         this.h= h;
         this.numVinosVisibles=numVisible;
         this.vinoWidth= w/(float)numVisible;
+        FontsApp= new Fonts(p5);
+    }
+
+    Estante(PApplet p5, String n, float x, float y, float w, float h,int numVisible){
+        this.nombre= n;
+        this.vinos= new Vino[300];
+        this.x= x;
+        this.y= y;
+        this.w= w;
+        this.h= h;
+        this.numVinosVisibles=numVisible;
+        this.vinoWidth= w/(float)numVisible-4;
+        FontsApp= new Fonts(p5);
     }
 
     void addVino(Vino v){
@@ -91,6 +105,7 @@ public class Estante {
 
     void display(PApplet p5){
     p5.pushStyle();
+            p5.textFont(FontsApp.getFirstFont());
             p5.fill(cFons);
             p5.stroke(0);
             p5.strokeWeight(2);
@@ -115,6 +130,7 @@ public class Estante {
 
                     //VINO A MOSTRAR
                     Vino v= vinos[index];
+                    v.setTextSizeSelected(15);
                     v.display(p5, xPos, y, this.vinoWidth, h);
 
                     //NÚMERO DEL VINO

@@ -5,7 +5,7 @@ import processing.core.PImage;
 
 public class Contador {
 
-    //VALOR DEL COMPTADOR
+    //VALOR DEL CONTADOR
     int valor= 0;
     int minValor= 0;
     int maxValor= 256;

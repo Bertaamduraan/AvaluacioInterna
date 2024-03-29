@@ -13,6 +13,7 @@ public class Vino {
     String ubicacion;
     String añada;
     int c;
+    Fonts FontsApp;
 
     int textSize= 12;
 
@@ -36,6 +37,7 @@ public class Vino {
         this.ubicacion= u;
         c= p5.color(200);
         setPortada (f, p5);
+        FontsApp= new Fonts(p5);
     }
 
    void setPortada(String imgName, PApplet p5){
@@ -50,8 +52,17 @@ public class Vino {
         this.textSize= textSize;
     }
 
+    /**
+     * DIBUJAR VINO CUANDO SE HA CLICADO ENCIMA
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición "x" de la foto que se crea al clicar encima de un vino
+     * @param y Posición "y" de la foto que se crea al clicar encima de un vino
+     * @param w Anchura de la foto que se crea al clicar encima de un vino
+     * @param h Altura de la foto que se crea al clicar ecnima de un vino
+     */
    void display(PApplet p5, float x, float y, float w, float h){
     p5.pushStyle();
+       p5.textFont(FontsApp.getFontAt(0));
         p5.rectMode(p5.CORNER);
         p5.fill(c);
         p5.stroke(0);
@@ -68,10 +79,10 @@ public class Vino {
        }
 
        //MUESTRA EL TEXTO DE LA INFORMACIÓN DEL VINO
-       p5.textAlign(p5.LEFT, p5.CENTER);
-       p5.textSize(15);
+       p5.textAlign(p5.LEFT);
+       p5.textSize(textSize);
        p5.fill(0);
-       p5.text(this.nombre, margen+x, y + 3*h/4+25);
+       p5.text(this.nombre, margen+x, y+3*h/4+10, w - 2*margen, h+100);
        /*p5.textSize(12);
        p5.text(this.DO, margen+x, y + 3*h/4 + 25);
        p5.text(this.bodega, margen+x, y + 3*h/4 + 35);

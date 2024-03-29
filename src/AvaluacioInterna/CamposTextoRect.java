@@ -98,6 +98,10 @@ public class CamposTextoRect {
         return this.texto.replace(this.textoEstatico, "");
     }
 
+    public void setSoloTexto(String textoVa){
+        this.texto= this.textoEstatico + textoVa;
+    }
+
 
     public boolean cursorEncimaCampoTexto(PApplet p5) {
         return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y+50);

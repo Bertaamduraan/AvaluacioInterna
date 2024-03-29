@@ -47,23 +47,14 @@ public class InterficieGrafica {
     Vino vinoSeleccionado1= null;
     Vino vinoSeleccionado2= null;
     Vino vinoSeleccionado3= null;
+    String[] infoVinoSeleccionado;
 
-    String infoVinosE1 [][]= {
-            {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
-    };
-
+    String infoVinosE1 [][];
     String [][] infoVinosE2;
-
-
-    String [][] infoVinosE3  = {
-            {"Soldadito Marinero", "Utiel-Rquena", "una", "blanco", "B1", "2014", "vinoSoldadito.jpg" },
-    };
-
+    String [][] infoVinosE3;
     boolean wineSelected= false;
-
     SelectList denominacioDeOrigen;
     String [][] ValoresDorigenHome;
-
     BotonConTexto OK;
     
     
@@ -80,7 +71,7 @@ public class InterficieGrafica {
 
     //BOTONES, CAMPOS/AREA DE TEXTO Y ROUNDBUTTONS AÑADIR VINOS
     BotonConTexto BAceptarV, BEliminarV;
-    CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TCosecha;
+    CamposDeTexto TNombre, TBodega, TDenominacion, TVariedad, TAñadaV;
     CamposTextoRect TRPrecio, TRCapacidad, TRUbicacion;
     RadioButton RBCenasV, RBCatasV;
     GrupoRadioButton grb;
@@ -111,7 +102,8 @@ public class InterficieGrafica {
 
 
     //BOTONES Y CAMPOS/AREA DE TEXTO AÑADIR CATA
-    CamposTextoRect TRvino1, TRvino2, TRvino3, TRvino4;
+    CamposTextoRect TRvino2, TRvino3, TRvino4;
+    SelectList SLvino1, SLvino2, SLvino3, SLvino4;
     BotonConTexto BAceptarC, BEliminarC;
     AreaTexto ATCatas;
     CalendarioPlus cCata;
@@ -121,19 +113,23 @@ public class InterficieGrafica {
     Confirmar cAddCatas;
     Confirmar cEliminarCatas;
 
+    String [][] allVinosCatas;
+
 
     //SELECTOR BUSCADOR
     Selector sColor;
-    String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
-    SelectList SLdenominacion, SLañada, SLbodega, SLvariedad, SLcenas;
-    String [][] ValoresDO= {{"0", "Rioja"}, {"1", "Ribera de Duero"}, {"2", "Priorat"}, {"3", "Rueda"}};
-    String [][] ValoresA= {{"0", "2014"}, {"1", "2015"}, {"2", "2016"}, {"3", "2017"}, {"4", "2018"}};
-    String [][] ValoresBo= {{"0", "Cero"}, {"1", "Una"}, {"2", "Dos"}, {"3", "Tres"}, {"4", "Cuatro"}};
-    String [][] ValoresVa= {{"0", "CERO"},{"1", "UNO"},{"2", "DOS"}, {"3", "TRES"}, {"4", "CUATRO"}};
-    String [][] ValoresC= {{"0", "01/02/03"},{"1", "04/05/06"},{"2", "07/08/09"}, {"3", "10/11/12"}, {"4", "14/12/13"}};
-    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB;
 
+    Vino vinoSeleccionadoBuscador= null;
+    String [] VColor= {"BLANCO", "TINTO", "ROSADO", "CAVA", "OTROS"};
+    SelectList SLdenominacion, SLbodega;
+    String [][] ValoresDO;
+    String [][] ValoresBo;
+    CamposTextoRect TRCapacidadB, TRPrecioB, TRCantidadB, TRAñadaB;
+
+    Estante Eb;
+    String [][] allVinos;
     DataBase db;
+    BotonConTexto okB;
 
 
     //Constructor de la interficie gràfica
@@ -209,7 +205,7 @@ public class InterficieGrafica {
         TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (5*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
         TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominació de origen: ");
         TVariedad= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Variedad: ");
-        TCosecha= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Añada: ");
+        TAñadaV = new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Añada: ");
 
         TRPrecio= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (2*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Precio: ");
         TRPrecio.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5), 0);
@@ -257,18 +253,20 @@ public class InterficieGrafica {
         cEliminarVinos= new Confirmar(p5, "ELIMINAR VINO", "Quieres eleminar la información de este vino?", p5.width/2, p5.height/2, popWidth, popHeight);
 
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATA
-        TRvino1= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Primer vino: ");
-        TRvino1.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5), 0);
-        TRvino1.setHeightRectSizeLetra(60,25);
-        TRvino2= new CamposTextoRect(p5,(int) (2*marginH+columnCatasWidth), (int)(7*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Segundo vino: ");
-        TRvino2.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
-        TRvino2.setHeightRectSizeLetra(60,25);
         TRvino3= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int) (12*marginV+HeadLineHeight+90), (int)(columnCatasWidth), "Tercer vino: ");
         TRvino3.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
         TRvino3.setHeightRectSizeLetra(60,25);
         TRvino4= new CamposTextoRect(p5, (int) (2*marginH+columnCatasWidth), (int)(17*marginV+HeadLineHeight+90), (int) (columnCatasWidth), "Cuarto vino: ");
         TRvino4.setColoresCamposTextoRect(255, ColoresApp.getColorAt(5),0);
         TRvino4.setHeightRectSizeLetra(60,25);
+
+        allVinosCatas= db.getInfoTablaVinos();
+        SLvino1= new SelectList(p5, allVinosCatas, (int) (2*marginH+columnCatasWidth), (int)(2*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60, "Primer vino");
+        SLvino2= new SelectList(p5,  allVinosCatas, (int) (2*marginH+columnCatasWidth), (int)(7*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60,  "Segundo vino");
+        SLvino3= new SelectList(p5, allVinosCatas, (int) (2*marginH+columnCatasWidth), (int) (12*marginV+HeadLineHeight+90), (int)(columnCatasWidth), 60, "Tercer vino");
+        SLvino4= new SelectList(p5, allVinosCatas, (int) (2*marginH+columnCatasWidth), (int)(17*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60, "Cuarto vino");
+
+
         ATCatas= new AreaTexto(p5, 2*(int)marginH, 260, (int)columnCatasWidth-2*(int)marginH, 460, 80, 30);
 
         BAceptarC= new BotonConTexto(p5,4*marginH+columnVinosWidth,28*marginV+HeadLineHeight+115,160,55, "GUARDAR");
@@ -287,40 +285,58 @@ public class InterficieGrafica {
 
 
         //SELECTORS Y CAMPOS DE TEXTOS BUSCADOR
-        sColor= new Selector(p5, VColor, 870, 200, 100, 70, 10);
-        sColor.setSelectedValue("Color");
-        TRCapacidadB= new CamposTextoRect(p5, 970, 200, 200, "Capacidad: ");
+
+        TRCapacidadB= new CamposTextoRect(p5, 810, 280, 200, "Capacidad: ");
         TRCapacidadB.setColoresCamposTextoRect(255, 200, 0);
         TRCapacidadB.setHeightRectSizeLetra(70, 18);
-        TRPrecioB= new CamposTextoRect(p5, 430, 280, 170, "Precio: ");
+
+        TRPrecioB= new CamposTextoRect(p5, 480, 280, 170, "Precio: ");
         TRPrecioB.setColoresCamposTextoRect(255, 200, 0);
         TRPrecioB.setHeightRectSizeLetra(70, 18);
-        TRCantidadB= new CamposTextoRect(p5, 590, 280, 180, "Cantidad: ");
+
+        TRCantidadB= new CamposTextoRect(p5, 640, 280, 180, "Cantidad: ");
         TRCantidadB.setColoresCamposTextoRect(255, 200, 0);
         TRCantidadB.setHeightRectSizeLetra(70, 18);
 
-        SLcenas= new SelectList(p5, ValoresC, 920, 280, 150, 70, "Cenas");
-        SLvariedad= new SelectList(p5, ValoresVa, 760, 280, 170, 70, "Variedad");
-        SLdenominacion= new SelectList(p5, ValoresDO, 340, 200, 250, 70, "Denominación de Origen");
-        SLañada= new SelectList(p5, ValoresA, 580, 200, 150, 70, "Añada");
-        SLbodega= new SelectList(p5, ValoresBo, 720, 200, 150, 70, "Bodega");
+      // *******************************************************************************************************
+
+        sColor= new Selector(p5, VColor, 1010, 200, 100, 70, 10);
+        sColor.setSelectedValue("Color");
+
+        TRAñadaB = new CamposTextoRect(p5,620, 200, 150,  "Añada: ");
+        TRAñadaB.setColoresCamposTextoRect(255, 200, 0);
+        TRAñadaB.setHeightRectSizeLetra(70, 18);
+
+        ValoresDO= db.getInfoTablaDO();
+        SLdenominacion= new SelectList(p5, ValoresDO, 380, 200, 250, 70, "Denominación de Origen");
+
+        ValoresBo= db.getInfoTablaBodega();
+        SLbodega= new SelectList(p5, ValoresBo, 760, 200, 250, 70, "Bodega");
+
+        Eb= new Estante(p5, "TODOS", 85, 480, 1310, 250, 8);
+        Eb.setColor(ColoresApp.getColorAt(0));
+        Eb.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
+        allVinos= db.getInfoTablaVinos();
+        Eb.addVinos(allVinos, p5);
+        okB= new BotonConTexto(p5, 670, 385, 200,50, "OK");
+        okB.setColores(ColoresApp.getColorAt(6), 200, 0, 0);
     }
 
     void setEstanterias(PApplet p5, String[][] infoVinosE1, String[][] infoVinosE2,String[][] infoVinosE3){
         //infoVinosE1= db.getInfoTablaVinosPorColor( "Tinto");
-        e1 = new Estante(1, "TINTO",100, 150, 800, 200, 5);
+        e1 = new Estante(p5, 1, "TINTO",100, 140, 800, 200, 5);
         e1.addVinos(infoVinosE1, p5);
         e1.setColor(ColoresApp.getColorAt(0));
         e1.setButtons(p5,"flechaAtrás.png", "flechaAdelante.png");
 
         //infoVinosE2= db.getInfoTablaVinosPorColor(cV);
-        e2= new Estante(2, "BLANCO", 100, 380, 800, 200, 5);
+        e2= new Estante(p5, 2, "BLANCO", 100, 390, 800, 200, 5);
         e2.addVinos(infoVinosE2, p5);
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
         //infoVinosE3= db.getInfoTablaVinosPorColor("Otros");
-        e3= new Estante(3, "OTROS", 100, 610, 800, 200, 5);
+        e3= new Estante(p5, 3, "OTROS", 100, 640, 800, 200, 5);
         e3.addVinos(infoVinosE3, p5);
         e3.setColor(ColoresApp.getColorAt(0));
         e3.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
@@ -328,26 +344,26 @@ public class InterficieGrafica {
 
     // PANTALLAS DE LA INTERFÍCIE GRÁFICA
     public void dibujaPantallaInicio(PApplet p5){
-        p5.background(0);
-        dibujaLogo(p5);
-        dibujaRectanguloCentro(p5);
-        p5.textFont(FontsApp.getFirstFont());
-        UserName.display(p5);
-        Contra.display(p5);
-        LogIn.display(p5);
+        p5.pushStyle();
+            p5.background(0);
+            dibujaLogo(p5);
+            dibujaRectanguloCentro(p5);
+            p5.textFont(FontsApp.getFontAt(2));
+            UserName.display(p5);
+            Contra.display(p5);
+            LogIn.display(p5);
+        p5.popStyle();
     }
 
 
     public void dibujaPantallaHome(PApplet p5){
-
         p5.background(ColoresApp.getColorAt(5));
-        //dibujaRectanguloCentro(p5);
         dibujaHeadLine(p5);
         dibujaLogos(p5);
     p5.pushStyle();
         e1.display(p5);
         if(vinoSeleccionado1!=null){
-            vinoSeleccionado1.setTextSizeSelected(20);
+            vinoSeleccionado1.setTextSizeSelected(30);
             vinoSeleccionado1.display(p5, 1100, 300, 300, 500);
 
             if(vinoSeleccionado1.cursorEncima(p5, 1100, 300, 300, 500)){
@@ -356,7 +372,7 @@ public class InterficieGrafica {
         }
         e2.display(p5);
         if(vinoSeleccionado2!=null){
-            vinoSeleccionado2.setTextSizeSelected(20);
+            vinoSeleccionado2.setTextSizeSelected(30);
             vinoSeleccionado2.display(p5, 1100, 300, 300, 500);
 
             if(vinoSeleccionado2.cursorEncima(p5, 1100, 300, 300, 500)){
@@ -367,7 +383,7 @@ public class InterficieGrafica {
 
         e3.display(p5);
         if(vinoSeleccionado3!=null){
-            vinoSeleccionado3.setTextSizeSelected(20);
+            vinoSeleccionado3.setTextSizeSelected(30);
             vinoSeleccionado3.display(p5, 1100, 300, 300, 500);
 
             if(vinoSeleccionado3.cursorEncima(p5, 1100, 300, 300, 500)){
@@ -407,16 +423,18 @@ public class InterficieGrafica {
         p5.background(ColoresApp.getColorAt(5));
         dibujaHeadLine(p5);
         dibujaLogos(p5);
-        //dibuja1Fila(p5);
+        Eb.display(p5);
+        if(vinoSeleccionadoBuscador!=null){
+                wineSelected=true;
+        }
         TRCapacidadB.display(p5);
         TRPrecioB.display(p5);
         TRCantidadB.display(p5);
+        TRAñadaB.display(p5);
         SLdenominacion.display(p5);
-        SLañada.display(p5);
-        SLvariedad.display(p5);
-        SLcenas.display(p5);
         sColor.display(p5);
         SLbodega.display(p5);
+        okB.display(p5);
         if(OpcionesOpen){
             dibujaOpciones(p5);
         }
@@ -444,14 +462,15 @@ public class InterficieGrafica {
         dibujaHeadLine(p5);
         dibujaLogos(p5);
         dibuja3Columna(p5);
+        p5.textFont(FontsApp.getFontAt(3));
         TNombre.display(p5);
         TBodega.display(p5);
         TDenominacion.display(p5);
-        TCosecha.display(p5);
-        //TVariedad.display(p5);
+        TAñadaV.display(p5);
         TRPrecio.display(p5);
         TRCapacidad.display(p5);
         TRUbicacion.display(p5);
+
         BAceptarV.display(p5);
         BEliminarV.display(p5);
         RBCatasV.display(p5);
@@ -460,12 +479,7 @@ public class InterficieGrafica {
         ATVinos.display(p5);
         Cocineros.display(p5);
         ColorVino.display(p5);
-        if(OpcionesOpen){
-            dibujaOpciones(p5);
-        }
-        if(MenuOpen){
-            dibujaMenu(p5);
-        }
+
         dibujaCalendarioVinos(p5);
         dibujaCalendarioVinos2(p5);
         dibujaCalendarioVINOS(p5);
@@ -485,6 +499,13 @@ public class InterficieGrafica {
         bImagenVino.display(p5);
         cAddVinos.display(p5);
         cEliminarVinos.display(p5);
+
+        if(OpcionesOpen){
+            dibujaOpciones(p5);
+        }
+        if(MenuOpen){
+            dibujaMenu(p5);
+        }
     }
 
     public void dibujaPantallaCatas(PApplet p5){
@@ -493,10 +514,10 @@ public class InterficieGrafica {
             dibujaHeadLine(p5);
             dibujaLogos(p5);
             dibuja2Columna(p5);
-            TRvino1.display(p5);
-            TRvino2.display(p5);
-            TRvino3.display(p5);
-            TRvino4.display(p5);
+            SLvino4.display(p5);
+            SLvino3.display(p5);
+            SLvino2.display(p5);
+            SLvino1.display(p5);
             p5.pushStyle();
                 p5.textFont(FontsApp.getFirstFont());
                 BAceptarC.display(p5);
@@ -538,7 +559,7 @@ public class InterficieGrafica {
             p5.textFont(FontsApp.getFirstFont());
             p5.textSize(midaTitol);
             p5.textAlign(p5.LEFT, p5.CENTER);
-            if(pantallaActual==PANTALLA.AÑADIR_VINOS && wineSelected==true){
+            if(pantallaActual==PANTALLA.AÑADIR_VINOS){
                 p5.text("" + ptitulo, 4 * marginH + LogoMenuWidth, HeadLineHeight - 25);
             }
             else{
@@ -579,7 +600,7 @@ public class InterficieGrafica {
         p5.fill(0);
         p5.textFont(FontsApp.getFirstFont());
         p5.textSize(midaTitol);
-        //p5.text("MENÚ", marginH+ MenuWidth/2, (marginV+LogoMenuHeight-20)+ MenuHeight/4);
+        //p5.text("MENÚO", marginH+ MenuWidth/2, (marginV+LogoMenuHeight-20)+ MenuHeight/4);
     }
 
 
@@ -645,8 +666,6 @@ public class InterficieGrafica {
         p5.fill(255);
         p5.textFont(FontsApp.getSecondFont());
         p5.textSize(midaTitol);
-        p5.text("CALENDARIO Y \n ASISTENTES", marginH+columnCatasWidth/2, 2*marginV+HeadLineHeight+columnCatasHeight/2);
-        p5.text("LISTA DE VINOS", 2*marginH+columnCatasWidth+columnCatasWidth/2, 2*marginV+HeadLineHeight+columnCatasHeight/2);
     }
 
     public void dibuja3Columna(PApplet p5){ //AÑADIR VINO
@@ -730,6 +749,24 @@ public class InterficieGrafica {
         bCalendarioVinos.display(p5);
         cVinos.display(p5);
         p5.popStyle();
+    }
+
+    public void dibujarPantallaVizualizarVino (String nombreVino, PApplet p5){
+        ptitulo= "VISUALIZAR VINO";
+        dibujaHeadLine(p5);
+        String nombreVinoSeleccionado= nombreVino;
+        infoVinoSeleccionado = db.getInfoVino(nombreVinoSeleccionado);
+        TNombre.setSoloTexto(nombreVinoSeleccionado);
+        TDenominacion.setSoloTexto(infoVinoSeleccionado[1]);
+        ColorVino.selectedValue = infoVinoSeleccionado[2];
+        TRUbicacion.setSoloTexto (infoVinoSeleccionado[3]);
+        titulo= infoVinoSeleccionado[4]; imagen= p5.loadImage(titulo);
+        System.out.println(titulo);
+        TRCapacidad.setSoloTexto(infoVinoSeleccionado[5]);
+        TBodega.setSoloTexto(infoVinoSeleccionado[6]);
+        TAñadaV.setSoloTexto(infoVinoSeleccionado[7]);
+        TRPrecio.setSoloTexto(infoVinoSeleccionado[8]);
+        contadorVinos.valor= Integer.valueOf(infoVinoSeleccionado[9]);
     }
 
 

@@ -74,6 +74,23 @@ public class DataBase {
     }
 
 
+    public String [] getColumnaNameDeo(){
+        int numFilas= getNumeroColumnasTabla("denominacion");
+        String [] info = new String[numFilas];
+
+        try{
+            ResultSet rs= query.executeQuery("SELECT NombreDEO FROM denominacion");
+            int nr= 0;
+            while(rs.next()){
+                info[nr]= rs.getString("NombreDEO");
+                nr++;
+            }
+            return info;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
     public String [][] getInfoTablaDO(){
         int numFiles = getNumeroFilasTabla("denominacion");
         int numCols  = 2;
@@ -94,24 +111,25 @@ public class DataBase {
         }
     }
 
-    public String [] getColumnaNameDeo(){
-        int numFilas= getNumeroColumnasTabla("denominacion");
-        String [] info = new String[numFilas];
-
+    public String [][] getInfoTablaBodega(){
+        int numFiles= getNumeroFilasTabla("bodega");
+        int numCols= 2;
+        String [][] info= new String [numFiles][numCols];
         try{
-            ResultSet rs= query.executeQuery("SELECT NombreDEO FROM denominacion");
+            ResultSet rs= query.executeQuery( "SELECT * FROM bodega");
             int nr= 0;
             while(rs.next()){
-                info[nr]= rs.getString("NombreDEO");
+                info[nr][0]= String.valueOf(rs.getInt("idbodega"));
+                info[nr][1]= rs.getString("nombreBodega");
                 nr++;
             }
             return info;
         }
-        catch (Exception e){
+        catch(Exception e){
+            System.out.println(e);
             return null;
         }
     }
-
 
     public String [][] getInfoTablaVinosPorColor(String colorVino){
         int numFiles = getNumRowsQuery("SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen AND col.Color = '"+colorVino+"'; ");
@@ -136,6 +154,77 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
+    }
+
+    public String [][] getInfoTablaVinosFiltros(String colorVino, String DeO, String añada, String pvp, String bodega, String capacidad, String cantidad){
+
+        String qColor="";
+        if(!colorVino.equals("Color")){
+            qColor = " AND col.Color = '"+colorVino+"' ";
+        }
+
+        String qDO="";
+        if(DeO!=""){
+            qDO = " AND den.NombreDEO = '"+DeO+"' ";
+        }
+
+        String qAño="";
+        if(añada!=""){
+            qAño = " AND v.Añada='"+añada+"' ";
+        }
+
+        String qPrecio="";
+        if(pvp!=""){
+            qPrecio = " AND v.Precio='"+pvp+"' ";
+        }
+
+        String qBodega="";
+        if(bodega!=""){
+            qBodega = " AND v.bodega='"+bodega+"' ";
+        }
+
+        String qCapacidad= "";
+        if(capacidad!=""){
+            qCapacidad= " AND v.CAPACIDAD_idCAPACIDAD='"+capacidad+"' ";
+        }
+
+        String qCantidad= "";
+        if(cantidad!= ""){
+            qCantidad= " AND v.Cantidad='" + cantidad+"' ";
+        }
+
+        String qn = "SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img " +
+                "WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen " +
+                " " + qAño + qPrecio + qColor + qDO + qBodega + qCapacidad + qCantidad;
+        System.out.println(qn);
+        int numFiles = getNumRowsQuery(qn);
+        int numCols  = 5;
+        String[][] info = new String[numFiles][numCols];
+        try {
+            String q = "SELECT v.nombreVinos AS NOMBRE, den.NombreDEO AS DO, col.Color AS COLOR, v.Ubicación AS UBICACION, " +
+                        "img.Imagen AS FOTO FROM vinos v, color col, denominacion den, imagen img " +
+                        "WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen  " +
+                        qAño + qPrecio + qColor + qDO + qBodega + qCapacidad + qCantidad+ " ORDER BY NOMBRE ASC;";
+            System.out.println(q);
+            ResultSet rs = query.executeQuery(q);
+
+            int nr = 0;
+            while (rs.next()) {
+                info[nr][0] = rs.getString("NOMBRE");
+                info[nr][1] = rs.getString("DO");
+                info[nr][2]= rs.getString("COLOR");
+                info[nr][3]= rs.getString("UBICACION");
+                info[nr][4]= rs.getString("FOTO");
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+
+
     }
 
     public String [][] getInfoTablaVinosPorColorDO(String colorVino, String DeO){
@@ -172,15 +261,82 @@ public class DataBase {
 
     }
 
-    /*public String [] getInfoVino(String nom){
+    public String [][] getInfoTablaVinos(){
+        String qn = "SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img " +
+                "WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen ";
+        int numFiles = getNumRowsQuery(qn);
+        int numCols  = 5;
+        String[][] info = new String[numFiles][numCols];
+        try {
+            String q = "SELECT v.nombreVinos AS NOMBRE, den.NombreDEO AS DO, col.Color AS COLOR, v.Ubicación AS UBICACION, " +
+                    "img.Imagen AS FOTO FROM vinos v, color col, denominacion den, imagen img " +
+                    "WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen ";
+            System.out.println(q);
+            ResultSet rs = query.executeQuery(q);
+
+            int nr = 0;
+            while (rs.next()) {
+                info[nr][0] = rs.getString("NOMBRE");
+                info[nr][1] = rs.getString("DO");
+                info[nr][2]= rs.getString("COLOR");
+                info[nr][3]= rs.getString("UBICACION");
+                info[nr][4]= rs.getString("FOTO");
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+
+
+    }
+
+    public String [] getInfoVino(String nom){
         int numCols= 11;
         String [] vino= new String [numCols];
         try{
-            ResultSet resultSet= query.executeQuery("SELECT v.nombreVinos AS NOMBRE, den.NombreDEO AS DO, col.Color as COLOR, c.Ubicación AS UBICACIO, " +
-                                                    "img.Imagen AS FOTO FROM vinos v, color col, denominacion den, imagen img" +
-                    "WHERE v.nombreVinos= '"+nom+"' AND v.COLOR_idCOLOR= col.idColor AND ");
+            String q=  "SELECT v.nombreVinos AS NOMBRE, den.NombreDEO AS DO, col.Color AS COLOR, v.Ubicación AS UBICACION, img.Imagen AS FOTO, cap.Capacidad AS CAPACIDAD, " +
+                        " bo.nombreBodega AS BODEGA, v.Añada AS YEAR, v.Precio AS PRECIO, v.Cantidad AS CANTIDAD, v.Fecha AS FECHA "+
+                        " FROM vinos v, color col, denominacion den, imagen img, capacidad cap, bodega bo " +
+                        " WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen AND "+
+                        " v.CAPACIDAD_idCAPACIDAD= cap.idCapacidad AND v.bodega= bo.idbodega AND v.nombreVinos= '"+nom+"'";
+            System.out.println(q);
+            ResultSet rs= query.executeQuery (q);
+            rs.next();
+            vino[0]= rs.getString("NOMBRE");
+            vino[1]= rs.getString("DO");
+            vino[2]= rs.getString("COLOR");
+            vino[3]= rs.getString("UBICACION");
+            vino[4]= rs.getString("FOTO");
+            vino[5]= rs.getString("CAPACIDAD");
+            vino[6]= rs.getString("BODEGA");
+            vino[7]= rs.getString("YEAR");
+            vino[8]= String.valueOf(rs.getInt("PRECIO"));
+            vino[9]= String.valueOf(rs.getString("CANTIDAD"));
+            vino[10]= String.valueOf(rs.getString("FECHA"));
+            return vino;
         }
-    }*/
+        catch(Exception e){
+            System.out.println (e);
+            return null;
+        }
+    }
+
+    public String getClaveFromTabla(String nombreTabla, String nombreColumnaClave, String nombreColumnaValor, String valorColumna){
+        try {
+            String queryText = "SELECT " + nombreColumnaClave + " AS clave FROM " + nombreTabla+ " WHERE " +nombreColumnaValor+ " = '"+valorColumna+"'";
+            System.out.println(queryText);
+            ResultSet rs = query.executeQuery(queryText);
+            rs.next();
+            return rs.getString("clave");
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
 
     //INSERT
     public void insertInfoTaulaVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b){
@@ -197,17 +353,40 @@ public class DataBase {
         }
     }
 
-    public String getClaveFromTabla(String nombreTabla, String nombreColumnaClave, String nombreColumnaValor, String valorColumna){
-        try {
-            String queryText = "SELECT " + nombreColumnaClave + " AS clave FROM " + nombreTabla+ " WHERE " +nombreColumnaValor+ " = '"+valorColumna+"'";
-            System.out.println(queryText);
-            ResultSet rs = query.executeQuery(queryText);
-            rs.next();
-            return rs.getString("clave");
+    public void insertDenominacion(String nombreDO){
+        try{
+            String Snombre= nombreDO.replace("\"'", "\\'");
+            String q= "INSERT INTO denominacion (nombreDEO) VALUES " +
+                    "('" +Snombre+ "')";
+            System.out.println(q);
+            query.execute(q);
         }
-        catch(Exception e){
+        catch (Exception e){
             System.out.println(e);
-            return null;
+        }
+    }
+
+    public void insertBodega(String nombreBodega){
+        try{
+            String Snombre= nombreBodega.replace("\"'", "\\'");
+            String q= "INSERT INTO bodega (nombreBodega) VALUES " +
+                    "('" +Snombre+ "')";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void deleteVino (String nombreV){
+        try {
+            String q = "DELETE FROM vinos WHERE nombreVinos= '" + nombreV + "'";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
         }
     }
 
