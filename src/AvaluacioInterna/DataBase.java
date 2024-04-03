@@ -261,6 +261,45 @@ public class DataBase {
 
     }
 
+    public String[][] getInfoTablaRepresentantes(){
+        int numFiles= getNumeroFilasTabla("cocineros");
+        int numCols= 2;
+        String [][] info= new String [numFiles][numCols];
+        try{
+            ResultSet rs= query.executeQuery( "SELECT * FROM cocineros");
+            int nr= 0;
+            while(rs.next()){
+                info[nr][0]= String.valueOf(rs.getInt("idGrupo"));
+                info[nr][1]= rs.getString("Representante");
+                nr++;
+            }
+            return info;
+
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public String[] getNombreVinos(){
+        int numFiles= getNumeroFilasTabla("vinos");
+        String []info= new String [numFiles];
+        try{
+            ResultSet rs= query.executeQuery( "SELECT * FROM vino");
+            int nr= 0;
+            while(rs.next()){
+                info[nr]= rs.getString("nombreVinos");
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
     public String [][] getInfoTablaVinos(){
         String qn = "SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img " +
                 "WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen ";
@@ -324,6 +363,35 @@ public class DataBase {
         }
     }
 
+    public String[][] getAñadaFecha(String año){
+        int numFiles= getNumeroFilasTabla("vinos");
+        int numCols= 3;
+        String [][] vino= new String [numFiles][numCols];
+
+        try{
+            String q= "SELECT v.nombreVinos as NOMBRE, v.Fecha as FECHA, v.Añada as AÑO FROM  vinos v WHERE v.Añada= '" +año+ "'";
+            System.out.println(q);
+            ResultSet rs= query.executeQuery(q);
+            int nr = 0;
+            while (rs.next()) {
+                vino[nr][0] = rs.getString("NOMBRE");
+                //vino[nr][1] = rs.getString("AÑADA");
+                vino[nr][1]= rs.getString("FECHA");
+                nr++;
+            }
+            return vino;
+        }
+        catch(Exception e){
+            System.out.println (e);
+            return null;
+        }
+    }
+
+    public int getFilasVinoAñada(String año){
+        String qn= "SELECT COUNT(*) AS n FROM vinos v " + "WHERE v.Añada= '"+ año+ "'";
+        int N= getNumRowsQuery(qn);
+        return N;
+    }
     public String getClaveFromTabla(String nombreTabla, String nombreColumnaClave, String nombreColumnaValor, String valorColumna){
         try {
             String queryText = "SELECT " + nombreColumnaClave + " AS clave FROM " + nombreTabla+ " WHERE " +nombreColumnaValor+ " = '"+valorColumna+"'";
@@ -338,13 +406,14 @@ public class DataBase {
         }
     }
 
+
     //INSERT
-    public void insertInfoTaulaVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b){
+    public void insertInfoTaulaVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año){
         try{
             String Snombre= nombre.replace("\"'", "\\'");
             String Can= String.valueOf(can);
-            String q= "INSERT INTO vinos (nombreVinos, Añada, Precio, Ubicación, Cantidad, COLOR_idCOLOR, CAPACIDAD_idCAPACIDAD, DENOMINACIÓN, bodega) VALUES " +
-                    "('"+Snombre + "','" +a + "','" + p + "','" +u + "','" + Can + "','" + color + "','" +cap + "','"+ DO + "','" +b + "')";
+            String q= "INSERT INTO vinos (nombreVinos, Añada, Precio, Ubicación, Cantidad, COLOR_idCOLOR, CAPACIDAD_idCAPACIDAD, DENOMINACIÓN, bodega, Fecha) VALUES " +
+                    "('"+Snombre + "','" +a + "','" + p + "','" +u + "','" + Can + "','" + color + "','" +cap + "','"+ DO + "','" +b + "','" + año+ "')";
             System.out.println(q);
             query.execute(q);
         }

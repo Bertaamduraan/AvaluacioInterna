@@ -10,6 +10,7 @@ public class RadioButton {
     int colorSinSeleccionar, colorTrazo, colorSeleccionado;
 
     boolean seleccionado;
+    Fonts FontsApp;
 
     public RadioButton(PApplet p5, int x, int y, int radio, String t){
         this.x= x;
@@ -19,6 +20,7 @@ public class RadioButton {
         this.colorTrazo= p5.color(255);
         this.colorSeleccionado= p5.color(200);
         this.texto= t;
+        FontsApp= new Fonts(p5);
     }
 
     //GETTER
@@ -38,12 +40,13 @@ public class RadioButton {
     public void display(PApplet p5){
         p5.pushStyle();
             p5.noStroke();
+            p5.textFont(FontsApp.getFontAt(2));
             p5.fill(colorSinSeleccionar);
             p5.ellipse(x, y, 2*r, 2*r);
-            p5.textAlign(p5.LEFT);
-            p5.textSize(15);
+            p5.textAlign(p5.LEFT, p5.CENTER);
+            p5.textSize(25);
             p5.fill(0);
-            p5.text(this.texto, this.x+25, this.y+5);
+            p5.text(this.texto, this.x+30, this.y);
         p5.popStyle();
 
         if(this.seleccionado){

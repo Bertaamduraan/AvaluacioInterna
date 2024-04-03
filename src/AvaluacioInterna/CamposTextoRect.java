@@ -13,20 +13,22 @@ public class CamposTextoRect {
     int ColorRelleno;
     String textoEstatico;
     String texto= "";
-    int TamañoTexto= 20;
+    int TamañoTexto= 30;
 
     boolean selected = false;
+    Fonts FontsApp;
 
     //Constructor
     public CamposTextoRect(PApplet p5, int x, int y, int w, String t){
         this.x= x;
         this.y= y;
         this.w= w;
-        this.h= 40;
+        this.h= 50;
         this.texto= t;
         this.textoEstatico = t;
         this.GrosorTrazo= 2;
         this.ColorTrazo= p5.color(0);
+        FontsApp= new Fonts(p5);
 
     }
 
@@ -52,7 +54,7 @@ public class CamposTextoRect {
         else {
             p5.fill(ColorRelleno);
         }
-
+        p5.textFont(FontsApp.getFontAt(2));
         p5.strokeWeight(GrosorTrazo);
         p5.stroke(ColorTrazo);
         p5.rect(this.x+10, this.y, this.w-20, this.h, 10);
@@ -104,7 +106,7 @@ public class CamposTextoRect {
 
 
     public boolean cursorEncimaCampoTexto(PApplet p5) {
-        return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y+50);
+        return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y+20);
     }
 
     public void isPressed(PApplet p5) {

@@ -110,11 +110,11 @@ public class Estante {
             p5.stroke(0);
             p5.strokeWeight(2);
             p5.rectMode(p5.CORNER);
-            p5.rect(x-5, y-5, w+(vinoWidth/2)-25,  h+10, 7);
+            p5.rect(x-5, y-5, w+(vinoWidth/2)-40,  h+10, 7);
 
             p5.rect(x+w-200+margenH*2+5, y-40, 200, 40, 5);
             p5.noStroke();
-            p5.rect(x+w-200+ margenH*2+6, y -39, 198, 44, 7);
+            p5.rect(x+w-200+ margenH*2+6, y-39, 198, 44, 7);
 
             p5.fill(255);
             p5.textAlign(p5.CENTER);
@@ -172,18 +172,7 @@ public class Estante {
         return false;
     }
 
-    boolean checkCursor(PApplet p5){
-        if(bNext.mouseEncimaBoton(p5)&& bNext.enable){
-            return true;
-        }
-        else if(bPrev.mouseEncimaBoton(p5) && bPrev.enable){
-            return true;
-        }
-        else if(this.checkMouseVino(p5)){
-            return true;
-        }
-        return false;
-    }
+
 
     int checkClickVino(PApplet p5){
         for(int i= 0; i<this.numVinosVisibles; i++){
@@ -199,18 +188,5 @@ public class Estante {
         return -1;
     }
 
-    boolean checkMouseVino(PApplet p5){
-        for(int i= 0; i<this.numVinosVisibles; i++){
-            int index= i+this.currentWine;
-            if(index<this.numVinos){
-                float xPos= x+i*(this.vinoWidth+this.margenH);
-                Vino v= vinos[index];
-                if(v.cursorEncima(p5, xPos, y, this.vinoWidth, h)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
 }

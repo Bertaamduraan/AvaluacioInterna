@@ -15,6 +15,11 @@ public class CamposDeTexto {
     int TamañoTexto= 20;
 
     boolean selected = false;
+    Fonts FontsApp;
+
+    public void setTamañoTexto(int t){
+        TamañoTexto= t;
+    }
 
     //Constructor
     public CamposDeTexto(PApplet p5, int x, int y, int w, String t){
@@ -25,11 +30,13 @@ public class CamposDeTexto {
         this.textoEstatico = t;
         this.GrosorTrazo= 3;
         this.ColorLinea= p5.color(0);
+        FontsApp= new Fonts(p5);
     }
 
     //Dibuja el campo de texto
     public void display(PApplet p5){
         p5.pushStyle();
+            p5.textFont(FontsApp.getFontAt(2));
             p5.strokeWeight(GrosorTrazo);
             p5.stroke(ColorLinea);
             p5.line(this.x+10, this.y, this.x+this.w-15, this.y);
@@ -37,7 +44,7 @@ public class CamposDeTexto {
             p5.fill(0);
             p5.textSize(TamañoTexto);
             p5.textAlign(p5.LEFT, p5.CENTER);
-            p5.text(texto, x+10, y-10);
+            p5.text(texto, x+10, y-15);
             //p5.text (texto, x+10+textoEstatico.length(), y-10);
         p5.popStyle();
     }

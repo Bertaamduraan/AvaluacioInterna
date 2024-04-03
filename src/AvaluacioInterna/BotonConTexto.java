@@ -18,6 +18,7 @@ public class BotonConTexto {
     Fonts tipoTexto;
     int MidaTextoBoton= 35;
     boolean funciona;
+    Fonts FontsApp;
 
 
     //CONSTRUCTOR
@@ -29,6 +30,7 @@ public class BotonConTexto {
         this.h= h;
         this.r= MiniBotonesRadio;
         this.funciona= true;
+        FontsApp= new Fonts(p5);
     }
 
     //SETTERS
@@ -55,6 +57,7 @@ public class BotonConTexto {
     //DIBUJAR EL BOTÓN
     public void display(PApplet p5){
         p5.pushStyle();
+            p5.textFont(FontsApp.getFontAt(3));
         if(funciona) {
             if (cursorEncimaBoton(p5)) {
                 p5.fill(ColorRellenoEncima); //color cuando el cursor está encima

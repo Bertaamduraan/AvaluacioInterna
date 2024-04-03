@@ -14,29 +14,33 @@ public class Contador {
     //PROPIEDADES DE UN CONTADOR
     float x, y, w, h;
 
+    Fonts FontsApp;
+
 
     PImage up, down; //ICONOS DEL BOTÓN
 
     //MÉTODO DEL CONSTRUCTOR
-    Contador (PImage mas, PImage menos, float x, float y, float w, float h){
+    Contador (PApplet p5, PImage mas, PImage menos, float x, float y, float w, float h){
         this.up= mas;
         this.down = menos;
         this.x= x;
         this.y= y;
         this.w= w;
         this.h= h;
+        FontsApp= new Fonts(p5);
     }
 
 
     //DIBUJAR EL BOTÓN
     public void display(PApplet p5){
-
+    p5.pushStyle();
         p5.fill(255);
         p5.stroke(0);
         p5.rect(this.x, this.y, this.w, this.h*2, 7);
 
         p5.fill(0);
-        p5.textSize(32);
+        p5.textFont(FontsApp.getFontAt(2));
+        p5.textSize(50);
         p5.textAlign(p5.CENTER, p5.CENTER);
         p5.text(valor, this.x+this.w/2, this.y+this.h);
 
@@ -46,6 +50,7 @@ public class Contador {
         p5.image(up, this.x+this.w+10, this.y, this.h, this.h);
         p5.rect( this.x+this.w+10, this.y+this.h, this.h, this.h);
         p5.image(down, this.x+this.w+10, this.y+this.h, this.h, this.h);
+    p5.popStyle();
     }
 
     public int getValor(){

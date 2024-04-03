@@ -12,6 +12,8 @@ public class Selector {
     boolean plegado= true;
 
     float espacioLineas= 8; //Espacio entre líneas
+    Fonts FontsApp;
+    int TamañoTexto= 18;
 
     public Selector(PApplet p5, String[] texts, float x, float y, float w, float h, float r){
 
@@ -23,15 +25,21 @@ public class Selector {
         this.h= h;
         this.r= r;
         this.plegado= true;
+        FontsApp= new Fonts(p5);
     }
 
     public boolean estaPlegado(){
         return this.plegado;
     }
 
+    public void setTamañoTexto(int t){
+        TamañoTexto= t;
+    }
+
 
     public void display(PApplet p5){
     p5.pushStyle();
+        p5.textFont(FontsApp.getFontAt(3));
         p5.stroke(0);
         p5.strokeWeight(2);
         p5.fill(255);
@@ -40,7 +48,8 @@ public class Selector {
         p5.stroke(0); p5.stroke(0);
         p5.triangle(x + w - 25, y+5, x + w - 15, y + 25, x + w - 5 , y+5);
 
-        p5.fill(0); p5.textSize(18);
+        p5.fill(0);
+        p5.textSize(TamañoTexto);
         p5.textAlign(p5.CENTER, p5.CENTER);
         p5.text(selectedValue, x+(w/2), y+(h/2));
 

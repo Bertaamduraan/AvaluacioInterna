@@ -15,7 +15,7 @@ public class Confirmar {
     Fonts FontsAPP;
 
     BotonConTexto bAceptar, bCancelar;
-    float widthBoton= 95, heightBoton= 45;
+    float widthBoton= 105, heightBoton= 45;
 
     boolean visible= false;
 

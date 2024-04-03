@@ -52,7 +52,7 @@ public class Main extends PApplet{
             case AÑADIR_VINOS: gui.dibujaPantallaVinos(this);
             break;
 
-            case AÑADIR_CATA: gui.dibujaPantallaCatas(this);
+            case AÑADIR_CATAiCENA: gui.dibujaPantallaCatas(this);
             break;
         }
 
@@ -91,7 +91,7 @@ public class Main extends PApplet{
                 gui.ptitulo= "AÑADIR VINO";
                 gui.MenuOpen= false;
             } else if (gui.bMCatas.cursorEncimaBoton(this)) {
-                gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATA;
+                gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATAiCENA;
                 gui.MenuOpen= false;
             }
         }
@@ -101,6 +101,17 @@ public class Main extends PApplet{
             }
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO) {
+            gui.cAddCenas.bAceptar.funciona= false;
+            gui.cAddCenas.bCancelar.funciona= false;
+            gui.cAddCatas.bAceptar.funciona= false;
+            gui.cAddCatas.bCancelar.funciona= false;
+            gui.cEliminarCatas.bAceptar.funciona= false;
+            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cAddVinos.bAceptar.funciona= false;
+            gui.cAddVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bAceptar.funciona=false;
+
             gui.UserName.isPressed(this);
             gui.Contra.isPressed(this);
             if (gui.LogIn.cursorEncimaBoton(this)) {
@@ -113,7 +124,16 @@ public class Main extends PApplet{
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BODEGA){
-
+            gui.cAddCenas.bAceptar.funciona= false;
+            gui.cAddCenas.bCancelar.funciona= false;
+            gui.cAddCatas.bAceptar.funciona= false;
+            gui.cAddCatas.bCancelar.funciona= false;
+            gui.cEliminarCatas.bAceptar.funciona= false;
+            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cAddVinos.bAceptar.funciona= false;
+            gui.cAddVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bAceptar.funciona=false;
 
             gui.denominacioDeOrigen.getTextField().isPressed(this);
             gui.denominacioDeOrigen.buttonPressed(this);
@@ -133,7 +153,6 @@ public class Main extends PApplet{
                 gui.wineSelected= false;
                 if(gui.vinoSeleccionado1!= null) {
                     gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionado1.nombre, this);
-
                 }
                 if (gui.vinoSeleccionado2!= null){
                     gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionado2.nombre, this);
@@ -141,8 +160,6 @@ public class Main extends PApplet{
                 if (gui.vinoSeleccionado3!= null){
                     gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionado3.nombre, this);
                 }
-
-
             }
 
 
@@ -176,16 +193,27 @@ public class Main extends PApplet{
                     gui.vinoSeleccionado3= null;
                 }
             }
+
         }
 
         if(gui.pantallaActual== InterficieGrafica.PANTALLA.CALENDARIO){
+            gui.cEliminarVinos.bAceptar.funciona=false;
             gui.c1.checkBotones(this);
         }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible && !gui.cVinos.visible) {
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS) {
+            gui.cAddCenas.bAceptar.funciona= false;
+            gui.cAddCenas.bCancelar.funciona= false;
+            gui.cAddCatas.bAceptar.funciona= false;
+            gui.cAddCatas.bCancelar.funciona= false;
+            gui.cEliminarCatas.bAceptar.funciona= false;
+            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cAddVinos.bAceptar.funciona= false;
+            gui.cAddVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bCancelar.funciona= false;
+        //*************************************************
             gui.TNombre.isPressed(this);
             gui.TBodega.isPressed(this);
             gui.TDenominacion.isPressed(this);
@@ -194,12 +222,10 @@ public class Main extends PApplet{
             gui.TRPrecio.isPressed(this);
             gui.TRCapacidad.isPressed(this);
             gui.TRUbicacion.isPressed(this);
-
             gui.TRCapacidadB.isPressed(this);
             gui.TRPrecioB.isPressed(this);
+            gui.TRAño.isPressed(this);
 
-            gui.Cocineros.getTextField().isPressed(this);
-            gui.Cocineros.buttonPressed(this);
 
             gui.ATVinos.isPressed(this);
 
@@ -209,7 +235,7 @@ public class Main extends PApplet{
                 }
                 gui.ColorVino.cambio();
             }
-            if (gui.RBCenasV.cursorEncima(this)) {
+            /*if (gui.RBCenasV.cursorEncima(this)) {
                 gui.RBCenasV.cambio();
             } else if (gui.RBCatasV.cursorEncima(this)) {
                 gui.RBCatasV.cambio();
@@ -225,7 +251,7 @@ public class Main extends PApplet{
 
             if(gui.bCalendarioVinos.mouseEncimaBoton(this)){
                 gui.cVinos.visible= !gui.cVinos.visible;
-            }
+            }*/
 
             gui.contadorVinos.update(this);
 
@@ -236,6 +262,7 @@ public class Main extends PApplet{
                     if(gui.BAceptarV.cursorEncimaBoton(this)){
                         gui.cAddVinos.visible= true;
                         gui.cAddVinos.bAceptar.funciona= true;
+                        gui.cAddVinos.bCancelar.funciona= true;
                         gui.cEliminarVinos.bAceptar.funciona= false;
                     }
                     if(gui.cAddVinos.bAceptar.cursorEncimaBoton(this) && gui.cAddVinos.bAceptar.funciona) {
@@ -264,7 +291,7 @@ public class Main extends PApplet{
                         }
 
                         gui.db.insertInfoTaulaVino(gui.TNombre.getSoloTexto(), gui.TAñadaV.getSoloTexto(), gui.TRPrecio.getSoloTexto(), gui.TRUbicacion.getSoloTexto(),
-                                                    gui.contadorVinos.getValor(), color, capacidad, denominacion, bodega);
+                                                    gui.contadorVinos.getValor(), color, capacidad, denominacion, bodega, gui.TRAño.getSoloTexto());
                         gui.infoVinosE1= db.getInfoTablaVinosPorColor( "Tinto");
                         gui.infoVinosE2= db.getInfoTablaVinosPorColor("Blanco");
                         gui.infoVinosE3= db.getInfoTablaVinosPorColor("Otros");
@@ -280,6 +307,7 @@ public class Main extends PApplet{
                     if(gui.BEliminarV.cursorEncimaBoton(this)){
                         gui.cEliminarVinos.visible= true;
                         gui.cEliminarVinos.bAceptar.funciona= true;
+                        gui.cEliminarVinos.bCancelar.funciona= true;
                     }
                     if(gui.cEliminarVinos.bAceptar.cursorEncimaBoton(this) && gui.cEliminarVinos.bAceptar.funciona){
                         gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
@@ -295,7 +323,7 @@ public class Main extends PApplet{
                     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
-        } else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && gui.cVinosCata.visible && !gui.cVinos.visible) {
+        } /*else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinos.visible) {
             //CATAS
             gui.cVinosCata.checkBotones(this);
 
@@ -329,26 +357,22 @@ public class Main extends PApplet{
                 gui.cVinosCena.visible= false;
             }
 
-        }
-        else if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_VINOS && !gui.cVinosCena.visible && !gui.cVinosCata.visible && gui.cVinos.visible){
-            gui.cVinos.checkBotones(this);
-            if(gui.bCalendarioVinos.mouseEncimaBoton(this)){
-                gui.cVinos.visible= !gui.cVinos.visible;
-            }
-            if(gui.cVinos.bnext.cursorEncimaBoton(this)){
-                gui.cVinos.ProximoMes();
-            }
-            if(gui.cVinos.bprev.cursorEncimaBoton(this)){
-                gui.cVinos.mesAnterior();
-            }
-            if(gui.cVinos.bAccept.cursorEncimaBoton(this) && gui.cVinos.dateSelected){
-                gui.dataCalendarioVinos= gui.cVinos.diaSeleccionado+"/"+gui.cVinos.mesSeleccionado+"/"+gui.cVinos.añoSeleccionado;
-                gui.cVinos.visible= false;
-            }
-        }
+        }*/
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.BUSCADOR) {
+            gui.cAddCenas.bAceptar.funciona= false;
+            gui.cAddCenas.bCancelar.funciona= false;
+            gui.cAddCatas.bAceptar.funciona= false;
+            gui.cAddCatas.bCancelar.funciona= false;
+            gui.cEliminarCatas.bAceptar.funciona= false;
+            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cAddVinos.bAceptar.funciona= false;
+            gui.cAddVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bAceptar.funciona=false;
+
             gui.ATVinos.isPressed(this);
             gui.TRCantidadB.isPressed(this);
             gui.TRPrecioB.isPressed(this);
@@ -392,18 +416,32 @@ public class Main extends PApplet{
             }
 
         }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && !gui.cCata.visible ){
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATAiCENA && !gui.cCata.visible ){
+            gui.cAddCenas.bAceptar.funciona= true;
+            gui.cAddCenas.bCancelar.funciona= true;
+            gui.cAddCatas.bAceptar.funciona= true;
+            gui.cAddCatas.bCancelar.funciona= true;
+            gui.cEliminarCatas.bAceptar.funciona= true;
+            gui.cEliminarCatas.bCancelar.funciona= true;
+            gui.cAddVinos.bAceptar.funciona= false;
+            gui.cAddVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bAceptar.funciona=false;
+        //********************************************************************************************
             gui.ATCatas.isPressed(this);
+
+            gui.Cocineros.getTextField().isPressed(this);
+            gui.Cocineros.buttonPressed(this);
 
             if(gui.bCalendarioCata.mouseEncimaBoton(this)){
                 gui.cCata.visible= !gui.cCata.visible;
             }
 
 
-            if(gui.BAceptarC.cursorEncimaBoton(this)){
+            if(gui.BAceptarCata.cursorEncimaBoton(this)){
                 gui.cAddCatas.visible= true;
+
             }
             if(gui.cAddCatas.bAceptar.cursorEncimaBoton(this) && gui.cAddCatas.bAceptar.funciona){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
@@ -411,10 +449,13 @@ public class Main extends PApplet{
             }
             else if (gui.cAddCatas.bCancelar.cursorEncimaBoton(this) && gui.cAddCatas.bCancelar.funciona){
                 gui.cAddCatas.visible= false;
-            }
 
+            }
+        //****************************************************************************************************************
             if(gui.BEliminarC.cursorEncimaBoton(this)){
                 gui.cEliminarCatas.visible= true;
+                gui.cEliminarCatas.bCancelar.funciona= true;
+                gui.cEliminarCatas.bAceptar.funciona= true;
             }
             if(gui.cEliminarCatas.bAceptar.cursorEncimaBoton(this) && gui.cEliminarCatas.bAceptar.funciona){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
@@ -422,9 +463,30 @@ public class Main extends PApplet{
             }
             else if (gui.cEliminarCatas.bCancelar.cursorEncimaBoton(this) && gui.cEliminarCatas.bCancelar.funciona){
                 gui.cEliminarCatas.visible= false;
+                gui.cEliminarCatas.bCancelar.funciona= false;
+                gui.cEliminarCatas.bAceptar.funciona= false;
             }
+
+      //*************************************************************************************************************
+            if(gui.BAceptarCena.cursorEncimaBoton(this)){
+                gui.cAddCenas.visible= true;
+                gui.cAddCenas.bAceptar.funciona= true;
+                gui.cAddCenas.bCancelar.funciona= true;
+            }
+            if(gui.cAddCenas.bAceptar.cursorEncimaBoton(this) && gui.cAddCenas.bAceptar.funciona){
+                gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
+                gui.cAddCenas.visible= false;
+            }
+            else if (gui.cAddCenas.bCancelar.cursorEncimaBoton(this) && gui.cAddCenas.bCancelar.funciona){
+                gui.cAddCenas.visible= false;
+                gui.cAddCenas.bCancelar.funciona= false;
+                gui.cAddCenas.bAceptar.funciona= false;
+            }
+
+
         }
-        else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA && gui.cCata.visible){
+        else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATAiCENA && gui.cCata.visible){
+            gui.cEliminarVinos.bAceptar.funciona=false;
             gui.cCata.checkBotones(this);
             if(gui.bCalendarioCata.mouseEncimaBoton(this)){
                 gui.cCata.visible= !gui.cCata.visible;
@@ -459,7 +521,7 @@ public class Main extends PApplet{
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
             }
             if(gui.addCatas.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_CATA;
+                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_CATAiCENA;
             }
         }
 
@@ -509,7 +571,7 @@ public class Main extends PApplet{
             gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_VINOS;
         }
         else if(key=='6'){
-            gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATA;
+            gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATAiCENA;
         }*/
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.INICIO){
@@ -542,16 +604,11 @@ public class Main extends PApplet{
             gui.TRUbicacion.keyPressed(key, (int) keyCode);
             gui.TRCapacidadB.keyPressed(key, (int)keyCode);
             gui.TRPrecioB.keyPressed(key, (int)keyCode);
-
             gui.ATVinos.keyPressed(key, (int) keyCode);
-
-            if (gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)) {
-                gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
-                gui.Cocineros.update(this);
-            }
+            gui.TRAño.keyPressed(key, (int) keyCode);
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATA) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATAiCENA) {
             if (gui.SLvino1.getTextField().cursorEncimaCampoTexto(this)) {
                     gui.SLvino1.getTextField().keyPressed(key, (int) keyCode);
                 gui.SLvino1.update(this);
@@ -570,6 +627,11 @@ public class Main extends PApplet{
             if (gui.SLvino4.getTextField().cursorEncimaCampoTexto(this)) {
                 gui.SLvino4.getTextField().keyPressed(key, (int) keyCode);
                 gui.SLvino4.update(this);
+            }
+
+            if (gui.Cocineros.getTextField().cursorEncimaCampoTexto(this)) {
+                gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
+                gui.Cocineros.update(this);
             }
 
             gui.ATCatas.keyPressed(key, (int) keyCode);

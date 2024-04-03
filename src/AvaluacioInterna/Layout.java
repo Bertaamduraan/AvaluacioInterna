@@ -9,31 +9,31 @@ public class Layout {
     public static float logoWidth = 1100, logoHeight = 820;
 
     // Dimensiones HeadLine
-    public static float HeadLineWidth = 1360, HeadLineHeight = 85;
+    public static float HeadLineWidth = 1750, HeadLineHeight = 85;
 
     //Dimensiones Rectangulo Centro
     public static float CentRectWidth = 600, CentRectHeight = 500;
 
     // Dimensions Menu
-    public static float MenuWidth = 500, MenuHeight = 800;
+    public static float MenuWidth = 600, MenuHeight = 1030;
 
     //Dimensiones Logo Menú
     public static float LogoMenuWidth= 70, LogoMenuHeight= 45;
 
     //Dimensiones Botones Menú
-    public static float MiniBotonesWidth= 460, MiniBotonesHeight= 50, MiniBotonesRadio= 30;
+    public static float MiniBotonesWidth= 560, MiniBotonesHeight= 65, MiniBotonesRadio= 30;
 
     //Dimensiones Fila Buscador
     public static float FilaBuscadorWidth= 1490, FilaBuscadorHeight= 200;
 
     //Dimensiones Filas Calendario
-    public static float FilaCalendarioWidth= 1470, FilaCalendarioHeight= 600;
+    public static float FilaCalendarioWidth= 1850, FilaCalendarioHeight= 900;
 
     //Dimensiones Columnas Vinos
-    public static float columnVinosWidth= 477, columnVinosHeight= 650;
+    public static float columnVinosWidth= 595, columnVinosHeight= 860;
 
     // Dimensiones Columnas Catas
-    public static float columnCatasWidth = 735, columnCatasHeight = 600 ;
+    public static float columnCatasWidth = 910, columnCatasHeight = 860 ;
 
 
 }

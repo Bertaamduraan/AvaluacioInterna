@@ -15,8 +15,11 @@ public class SelectList {
     String ValorSelected; //Valor seleccionado
     String t0;
 
+    int sizeText= 25;
+
     int NumCoincidencias=0;
     ArrayList<BotonConTexto> buttons;
+    Fonts FontsApp;
 
     public SelectList(PApplet p5, String [][] textos, float x, float y, float w, float h, String textoIncial){
         this.texts= textos;
@@ -31,6 +34,7 @@ public class SelectList {
         this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, ValorSelected);
         this.TextField.setHeightRectSizeLetra((int)this.h, 18);
         this.buttons= new ArrayList<BotonConTexto>();
+        FontsApp= new Fonts(p5);
     }
 
     public CamposTextoRect getTextField(){
@@ -41,13 +45,18 @@ public class SelectList {
         return this.ValorSelected;
     }
 
+    public void setSizeText(int s){
+        sizeText= s;
+    }
+
 
     public void display(PApplet p5){
         p5.pushStyle();
             TextField.setColoresCamposTextoRect(255, 200, 0);
             TextField.display(p5);
             if(!TextField.selected && ValorSelected.equals("")){
-                p5.textSize(18);
+                p5.textFont(FontsApp.getFontAt(2));
+                p5.textSize(sizeText);
                 p5.fill(0);
                 p5.textAlign(p5.CENTER, p5.CENTER);
                 p5.text(t0, this.x+this.w/2, this.y+ this.h/2);

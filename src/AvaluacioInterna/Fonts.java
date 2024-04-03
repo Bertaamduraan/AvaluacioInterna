@@ -16,9 +16,10 @@ public class Fonts {
     public void setFonts(PApplet p5){
         this.fonts = new PFont[10];
         this.fonts[0] = p5.createFont("data/WONDER SEASON.ttf", 72);
-        this.fonts[1] = p5.createFont("data/CASTLEROCKS-Regular_Demo.ttf", 72);
-        this.fonts[3]= p5.createFont("Philosopher-Bold.ttf", 72);
-        this.fonts[2] = p5.createFont("data/KIN668.TTF", 72);
+        this.fonts[1] = p5.createFont("data/Dream Orphans.otf", 72);
+        this.fonts[2]= p5.createFont("Philosopher-Bold.ttf", 72);
+        this.fonts[3]= p5.createFont("Butler_Medium.otf", 72);
+
 
     }
 
