@@ -199,20 +199,19 @@ public class CalendarioPlus {
 
     //DIBUJA EL CALENDARIO
     void display(PApplet p5){
-
         if(visible){
             p5.pushStyle();
-                p5.fill(coloresCalendario.getColorAt(8));
+                p5.fill(coloresCalendario.getColorAt(3));
                 p5.noStroke();
-                p5.rect(x, y-80, w, h);
+                p5.rect(x, y-80, w, h, 7);
 
                 p5.fill(255);
                 p5.textSize(36);
                 p5.textAlign(p5.LEFT);
-                p5.text(meses[mes-1]+"/"+año, x+10, y-30);
+                p5.text(meses[mes-1]+" "+año, x+10, y-30);
                 for(BotonesDias b: botones){
                     if(b!=null){
-                        b.display(p5);
+                        b.display(p5, 10, 13, 0, 0);
                     }
                 }
 
@@ -242,7 +241,8 @@ public class CalendarioPlus {
                 if(b.selected){
                     dateSelected=true;
                     setDateSelected(b.dia, b.mes, b.año);
-                }else{
+                }
+                else{
                     dateSelected= false;
                 }
             }

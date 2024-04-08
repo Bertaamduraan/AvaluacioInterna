@@ -11,24 +11,10 @@ public class Vino {
     String bodega;
     String color;
     String ubicacion;
-    String añada;
     int c;
-    Fonts FontsApp;
-
     int textSize= 12;
-
    float margen= 10;
-
-   Vino(PApplet p5, String n, String DO, String b, String color, String u, String a, String f){
-       this.nombre=n;
-       this.DO= DO;
-       this.bodega=b;
-       this.color= color;
-       this.ubicacion= u;
-       this.añada=a;
-       c= p5.color(200);
-       setPortada (f, p5);
-   }
+    Fonts FontsApp;
 
     Vino(PApplet p5, String n, String DO, String color, String u, String f){
         this.nombre=n;

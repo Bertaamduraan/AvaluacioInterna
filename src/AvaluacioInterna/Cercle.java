@@ -8,7 +8,8 @@ public class Cercle {
     int c;
 
     public Cercle(float x, float y, float r){
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
         this.r = r;
     }
 

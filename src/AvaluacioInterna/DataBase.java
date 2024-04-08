@@ -157,42 +157,34 @@ public class DataBase {
     }
 
     public String [][] getInfoTablaVinosFiltros(String colorVino, String DeO, String añada, String pvp, String bodega, String capacidad, String cantidad){
-
         String qColor="";
         if(!colorVino.equals("Color")){
             qColor = " AND col.Color = '"+colorVino+"' ";
         }
-
         String qDO="";
         if(DeO!=""){
             qDO = " AND den.NombreDEO = '"+DeO+"' ";
         }
-
         String qAño="";
         if(añada!=""){
             qAño = " AND v.Añada='"+añada+"' ";
         }
-
         String qPrecio="";
         if(pvp!=""){
             qPrecio = " AND v.Precio='"+pvp+"' ";
         }
-
         String qBodega="";
         if(bodega!=""){
             qBodega = " AND v.bodega='"+bodega+"' ";
         }
-
         String qCapacidad= "";
         if(capacidad!=""){
             qCapacidad= " AND v.CAPACIDAD_idCAPACIDAD='"+capacidad+"' ";
         }
-
         String qCantidad= "";
         if(cantidad!= ""){
             qCantidad= " AND v.Cantidad='" + cantidad+"' ";
         }
-
         String qn = "SELECT COUNT(*) AS n FROM vinos v, color col, denominacion den, imagen img " +
                 "WHERE v.COLOR_idCOLOR = col.idColor AND v.DENOMINACIÓN= den.idDenominacion AND v.IMAGEN_idIMAGEN = img.idImagen " +
                 " " + qAño + qPrecio + qColor + qDO + qBodega + qCapacidad + qCantidad;
@@ -223,8 +215,6 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
-
-
     }
 
     public String [][] getInfoTablaVinosPorColorDO(String colorVino, String DeO){
@@ -257,8 +247,6 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
-
-
     }
 
     public String[][] getInfoTablaRepresentantes(){
@@ -370,7 +358,6 @@ public class DataBase {
 
         try{
             String q= "SELECT v.nombreVinos as NOMBRE, v.Fecha as FECHA, v.Añada as AÑO FROM  vinos v WHERE v.Añada= '" +año+ "'";
-            System.out.println(q);
             ResultSet rs= query.executeQuery(q);
             int nr = 0;
             while (rs.next()) {

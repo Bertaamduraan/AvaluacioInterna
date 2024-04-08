@@ -19,7 +19,6 @@ public class CalendarCarrousel {
     String [] años;
 
     BotonConFoto bPrev, bNext;
-    DataBase db;
 
     public CalendarCarrousel(PApplet p5, float x, float y, float w, float h, String[] años){
         this.coloresApp= new Colors(p5);
@@ -27,8 +26,6 @@ public class CalendarCarrousel {
         this.currentYear=0;
         this.numTotalAño= años.length;
         this.años= años;
-        db= new DataBase("admin", "12345", "vinoteca");
-        db.connect();
     }
 
     //SETTERS
@@ -65,7 +62,6 @@ public class CalendarCarrousel {
                 p5.textAlign(p5.LEFT, p5.LEFT);
                 p5.textSize(30);
                 p5.text("AÑO: "+años[this.currentYear], 3*marginH, 3*marginV+HeadLineHeight);
-                //db.getAñadaFecha(años[this.currentYear]);
 
         p5.popStyle();
 

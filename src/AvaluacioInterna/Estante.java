@@ -8,25 +8,23 @@ import static processing.core.PConstants.CENTER;
 
 public class Estante {
 
+    //ATRIBUTOS DE LA CLASE ESTANTE
     float x, y, w, h;
-
     int pos;
-    String nombre;
     int cFons;
-
     int currentWine=0;
     int numVinos= 0;
     int numVinosVisibles;
     Vino[] vinos;
-
     float vinoWidth;
     float margenH= 10;
+    String nombre;
+    BotonConFoto bPrev, bNext;
+
     int selected= -1;
     Fonts FontsApp;
 
-
-    BotonConFoto bPrev, bNext;
-
+    //CONSTRUCTOR
     Estante(PApplet p5, int p, String n, float x, float y, float w, float h, int numVisible){
         this.pos= p;
         this.nombre= n;
@@ -65,19 +63,19 @@ public class Estante {
         }
     }*/
 
-    void addVINOinfo(String [] info, PApplet p5){
+    public void addVINOinfo(String [] info, PApplet p5){
         //Vino v= new Vino(p5, info[0], info[1], info[2], info[3], info[4], info[5], info[6]);
         Vino v= new Vino(p5, info[0], info[1], info[2], info[3], info[4]);
         addVino(v);
     }
 
-    void addVinos(String[][]info, PApplet p5){
+    public void addVinos(String[][]info, PApplet p5){
         for(int f=0; f<info.length; f++){
             addVINOinfo(info[f], p5);
         }
     }
 
-    void setButtons(PApplet p5,String img1, String img2){
+    public void setButtons(PApplet p5,String img1, String img2){
         PImage imgPrev= p5.loadImage(img1);
         bPrev= new BotonConFoto(p5, imgPrev, x-40, y+h/2, 30, 30);
 
@@ -85,25 +83,25 @@ public class Estante {
         bNext= new BotonConFoto(p5, imgNext, x+w+(vinoWidth/2)-20, y+h/2, 30, 30);
     }
 
-    void setColor(int c){
+    public void setColor(int c){
         this.cFons= c;
     }
 
-    void next(){
+    public void next(){
         if(this.currentWine<this.numVinos-this.numVinosVisibles){
             this.currentWine+=this.numVinosVisibles;
             this.currentWine= constrain(this.currentWine, 0, this.numVinos-1);
         }
     }
 
-    void prev(){
+    public void prev(){
         if(this.currentWine>0){
             this.currentWine-=this.numVinosVisibles;
             this.currentWine= constrain(this.currentWine, 0, this.numVinos-1);
         }
     }
 
-    void display(PApplet p5){
+    public void display(PApplet p5){
     p5.pushStyle();
             p5.textFont(FontsApp.getFirstFont());
             p5.fill(cFons);
@@ -160,7 +158,7 @@ public class Estante {
     p5.popStyle();
     }
 
-    boolean checkButtons(PApplet p5){
+    public boolean checkButtons(PApplet p5){
         if(bNext.mouseEncimaBoton(p5) && bNext.enable){
             this.next();
             return true;
@@ -173,8 +171,7 @@ public class Estante {
     }
 
 
-
-    int checkClickVino(PApplet p5){
+    public int checkClickVino(PApplet p5){
         for(int i= 0; i<this.numVinosVisibles; i++){
             int index = i+this.currentWine;
             if(index<this.numVinos){
