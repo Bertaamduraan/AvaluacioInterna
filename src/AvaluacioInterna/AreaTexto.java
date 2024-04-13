@@ -15,15 +15,16 @@ public class AreaTexto {
     //TEXTO
     String texto= "";
     String [] lineas;
-    int sizeTexto=20;
+    int sizeTexto=25;
 
     boolean seleccionado= false;
 
-    public AreaTexto(PApplet p5, int x, int y, int w, int h, int nc, int nf){
+    public AreaTexto(PApplet p5, int x, int y, int w, int h, int nc, int nf, String t){
         this.x= x;
         this.y= y;
         this.w= w;
         this.h= h;
+        this.texto= t;
 
         this.numColumn= nc;
         this.numFilas= nf;
@@ -51,10 +52,14 @@ public class AreaTexto {
         p5.textAlign(p5.LEFT);
         for(int i=0; i< lineas.length; i++){
             if(lineas[i]!=null){
-                p5.text(lineas[i], x+10, y+(i+1)*sizeTexto);
+                p5.text(lineas[i], x+10, y+(i+2)*sizeTexto);
             }
         }
         p5.popStyle();
+    }
+
+    public void setTexto(String t){
+        this.texto= t;
     }
 
     public void saltoLinea(){

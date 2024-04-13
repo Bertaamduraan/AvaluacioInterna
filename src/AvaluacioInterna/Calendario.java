@@ -59,13 +59,13 @@ public class Calendario {
         this.x = x; this.y = y; this.w = w; this.h = h;
         crearCalendario(x, y, w, h);
 
-        bNext= new BotonConTexto(p5, x+ w/4, h+350, 300, 60, "SIGUIENTE");
-        bNext.setColores(255, 200, 0, 0);
-        bNext.setMidaTextoBoton(40);
-
-        bPrev= new BotonConTexto(p5, x+w/4+350, h+350, 300, 60, "ANTERIOR");
+        bPrev= new BotonConTexto(p5, x+ w/4+50, h+350, 270, 60, "ANTERIOR");
         bPrev.setColores(255, 200, 0, 0);
         bPrev.setMidaTextoBoton(40);
+
+        bNext= new BotonConTexto(p5, x+w/4+360, h+350, 300, 60, "SIGUIENTE");
+        bNext.setColores(255, 200, 0, 0);
+        bNext.setMidaTextoBoton(40);
 
         bOK= new BotonConTexto(p5, x+w/4+700, h+350, 90, 60, "OK");
         bOK.setColores(255, 200, 0, 0);
@@ -209,13 +209,13 @@ public class Calendario {
             p5.text(months[mes-1] +" "+ año, x+w/2, y-30);
             for(BotonesDias b: buttons){
                 if(b!=null){
-                    b.display(p5, 150, 40, 20, 3);
+                    b.display(p5, 150, 40, 20, 3, 0xFFAB3663);
                 }
             }
 
             //DIBUJAR LOS BOTONES
-            bNext.display(p5);
             bPrev.display(p5);
+            bNext.display(p5);
             bOK.display(p5);
 
         p5.popStyle();

@@ -211,7 +211,7 @@ public class CalendarioPlus {
                 p5.text(meses[mes-1]+" "+año, x+10, y-30);
                 for(BotonesDias b: botones){
                     if(b!=null){
-                        b.display(p5, 10, 13, 0, 0);
+                        b.display(p5, 10, 13, 0, 0, coloresCalendario.getColorAt(3));
                     }
                 }
 

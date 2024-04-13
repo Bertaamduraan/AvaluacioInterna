@@ -16,7 +16,7 @@ public class Vino {
    float margen= 10;
     Fonts FontsApp;
 
-    Vino(PApplet p5, String n, String DO, String color, String u, String f){
+    public Vino(PApplet p5, String n, String DO, String color, String u, String f){
         this.nombre=n;
         this.DO= DO;
         this.color= color;
@@ -26,11 +26,11 @@ public class Vino {
         FontsApp= new Fonts(p5);
     }
 
-   void setPortada(String imgName, PApplet p5){
+   public void setPortada(String imgName, PApplet p5){
        this.foto= p5.loadImage(imgName);
    }
 
-   void setColor(int c){
+   public void setColor(int c){
        this.c= c;
    }
 
@@ -46,7 +46,7 @@ public class Vino {
      * @param w Anchura de la foto que se crea al clicar encima de un vino
      * @param h Altura de la foto que se crea al clicar ecnima de un vino
      */
-   void display(PApplet p5, float x, float y, float w, float h){
+   public void display(PApplet p5, float x, float y, float w, float h){
     p5.pushStyle();
        p5.textFont(FontsApp.getFontAt(0));
         p5.rectMode(p5.CORNER);

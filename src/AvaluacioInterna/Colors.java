@@ -14,14 +14,12 @@ public class Colors {
     void setColors(PApplet p5){
         this.colors = new int[12];
         this.colors[0] = p5.color(0xFFAB3663); //Color vino
-        this.colors[1] = p5.color(0xFFF1DAB1); //Color beige
         this.colors[2] = p5.color(0xFF095256); //Color turquesa fuerte
         this.colors[3]= p5.color(0xFF5AAA95); //Color tuquesa flojo
-        this.colors[4] = p5.color(0xFF53A548); //Color verde flojo
         this.colors[5] = p5.color(0xFF087F8C); //Color AZUL medio
-        this.colors[6] = p5.color(0xFFAEECEF); //Color azul flojo
+        //this.colors[6] = p5.color(0xFFAEECEF); //Color azul flojo
+
         //COLORES BOTONES
-        this.colors[7] = p5.color(0xFFBA4013); //Naranja fuerte
         this.colors[8]= p5.color(0xFFB86221); //NARANJA FUERTE
         this.colors[9]= p5.color(0xFFED8D0E); //NARANJA CLARO
 

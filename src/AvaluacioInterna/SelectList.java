@@ -32,13 +32,13 @@ public class SelectList {
         this.t0= textoIncial;
 
         this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, ValorSelected);
-        this.TextField.setHeightRectSizeLetra((int)this.h, 18);
+        this.TextField.setHeightRectSizeLetra((int)this.h, 22);
         this.buttons= new ArrayList<BotonConTexto>();
         FontsApp= new Fonts(p5);
     }
 
     public CamposTextoRect getTextField(){
-        return  this.TextField;
+        return this.TextField;
     }
 
     public String getSelectedValue(){

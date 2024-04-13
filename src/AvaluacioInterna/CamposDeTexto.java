@@ -50,13 +50,16 @@ public class CamposDeTexto {
     }
 
     //AÑADIR O QUITAR EL TEXTO QUE SE TECLEA
-    void keyPressed(char key, int keyCode){
+    public void keyPressed(char key, int keyCode){
         if (selected) {
             if (keyCode == (int) BACKSPACE && texto.length()>textoEstatico.length()) {
                 eliminarTexto();
             }
             else if (keyCode == 32) {
                 añadirTexto(' '); // SPACE
+            }
+            else if(keyCode== 16){
+                añadirTexto2("");
             }
             else {
                 añadirTexto(key);
@@ -65,6 +68,12 @@ public class CamposDeTexto {
     }
 
     public void añadirTexto(char c){
+        if(this.texto.length()<w){
+            this.texto= this.texto+c;
+        }
+    }
+
+    public void añadirTexto2(String c){
         if(this.texto.length()<w){
             this.texto= this.texto+c;
         }

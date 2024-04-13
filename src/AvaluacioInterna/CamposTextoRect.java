@@ -75,6 +75,9 @@ public class CamposTextoRect {
             else if (keyCode == 32) {
                 añadirTexto(' '); // SPACE
             }
+            else if(keyCode==16){
+                añadirTexto2("");
+            }
             else {
                 añadirTexto(key);
             }
@@ -82,6 +85,12 @@ public class CamposTextoRect {
     }
 
     public void añadirTexto(char c){
+        if(this.texto.length()<w){
+            this.texto= this.texto+c;
+        }
+    }
+
+    public void añadirTexto2(String c){
         if(this.texto.length()<w){
             this.texto= this.texto+c;
         }

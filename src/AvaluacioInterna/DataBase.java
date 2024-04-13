@@ -274,7 +274,7 @@ public class DataBase {
         int numFiles= getNumeroFilasTabla("vinos");
         String []info= new String [numFiles];
         try{
-            ResultSet rs= query.executeQuery( "SELECT * FROM vino");
+            ResultSet rs= query.executeQuery( "SELECT (*) FROM vino");
             int nr= 0;
             while(rs.next()){
                 info[nr]= rs.getString("nombreVinos");
@@ -316,8 +316,6 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
-
-
     }
 
     public String [] getInfoVino(String nom){
@@ -340,9 +338,15 @@ public class DataBase {
             vino[5]= rs.getString("CAPACIDAD");
             vino[6]= rs.getString("BODEGA");
             vino[7]= rs.getString("YEAR");
+            if(vino[7]== null){
+                vino[7]= "0000";
+            }
             vino[8]= String.valueOf(rs.getInt("PRECIO"));
             vino[9]= String.valueOf(rs.getString("CANTIDAD"));
             vino[10]= String.valueOf(rs.getString("FECHA"));
+            if(vino[10]== "null"){
+                vino[10]= "0000";
+            }
             return vino;
         }
         catch(Exception e){
@@ -362,7 +366,6 @@ public class DataBase {
             int nr = 0;
             while (rs.next()) {
                 vino[nr][0] = rs.getString("NOMBRE");
-                //vino[nr][1] = rs.getString("AÑADA");
                 vino[nr][1]= rs.getString("FECHA");
                 nr++;
             }
@@ -392,6 +395,52 @@ public class DataBase {
             return null;
         }
     }
+
+    public String [] getTipos(){
+        int numFilas=3;
+        String [] tipos= new String [numFilas];
+        try{
+            ResultSet rs= query.executeQuery("SELECT Color FROM color");
+            int nr= 0;
+            while(rs.next()){
+                tipos[nr]= rs.getString("Color");
+                nr++;
+            }
+            return tipos;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
+    public String [] getInfoEvento(String fecha){
+        int numCols = 4;
+        String [] evento = new String [numCols];
+        try{
+            String q= "SELECT e.NombreEvento AS NOMBRE, e.Fecha AS FECHA, c.Representante AS COCINEROS, e.DescriptionEvent AS TEXTO FROM evento e, cocineros c "+
+                    "WHERE e.Cocineros = c.idGrupo AND e.Fecha = '"+ fecha+ "'";
+            System.out.println(q);
+            ResultSet rs= query.executeQuery(q);
+            rs.next();
+            evento[0]= rs.getString("FECHA");
+            evento[1]= rs.getString("NOMBRE");
+            if(evento[1]==null){
+                evento[1]= "";
+            }
+            evento[2]= rs.getString("COCINEROS");
+            evento[3]= rs.getString("TEXTO");
+        }
+        catch (Exception e){
+            return null;
+        }
+        return evento;
+    }
+
+    /*public String [] getVinosEvento(String fecha){
+        String c= getClaveFromTabla("evento", "idEvento", "Fecha", fecha);
+        String [] vinosEvento= new String [4];
+
+    }*/
 
 
     //INSERT
@@ -435,6 +484,7 @@ public class DataBase {
         }
     }
 
+    //DELETE
     public void deleteVino (String nombreV){
         try {
             String q = "DELETE FROM vinos WHERE nombreVinos= '" + nombreV + "'";
@@ -446,5 +496,26 @@ public class DataBase {
         }
     }
 
-
+    public void deleteVinosEvento(String clave){
+        try {
+            String q = "DELETE FROM vinos_evento WHERE Evento_idEvento= '" + clave + "'";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public void deleteEvento(String fecha){
+        String c= getClaveFromTabla("evento", "idEvento", "Fecha", fecha);
+        deleteVinosEvento(c);
+        try {
+            String q = "DELETE FROM evento WHERE idEvento= '" + c + "'";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }

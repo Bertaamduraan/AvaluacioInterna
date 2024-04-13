@@ -50,7 +50,7 @@ public class BotonConTexto {
         this.ColorLetra= cLetras;
     }
 
-    void setFunciona (boolean f){
+    public void setFunciona (boolean f){
         this.funciona= f;
     }
 

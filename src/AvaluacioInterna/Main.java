@@ -52,10 +52,10 @@ public class Main extends PApplet{
             case AÑADIR_VINOS: gui.dibujaPantallaVinos(this);
             break;
 
-            case AÑADIR_CATASiCENAS: gui.dibujaPantallaCatas(this);
+            case AÑADIR_EVENTO: gui.dibujaPantallaAñadirEvento(this);
             break;
 
-            case VISUALIZAR_CATASiCENAS: gui.dibujaVisualizarCatas(this);
+            case VISUALIZAR_cEVENTOS: gui.dibujaVisualizarEventos(this);
         }
 
 
@@ -69,7 +69,7 @@ public class Main extends PApplet{
             String rutaImagen= selection.getAbsolutePath();
 
             gui.imagen= loadImage(rutaImagen); //ACTUALIZAR IMAGEN
-            gui.titulo= selection.getName(); //ACTUALIZAR TÍTULO
+            //gui.titulo= selection.getName(); //ACTUALIZAR TÍTULO
         }
 
     }
@@ -93,11 +93,11 @@ public class Main extends PApplet{
                 gui.ptitulo= "AÑADIR VINO";
                 gui.MenuOpen= false;
             } else if (gui.bMCatas.cursorEncimaBoton(this)) {
-                gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_CATASiCENAS;
+                gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
                 gui.MenuOpen= false;
             }
             else if(gui.bMVisualizar.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.VISUALIZAR_CATASiCENAS;
+                gui.pantallaActual= InterficieGrafica.PANTALLA.VISUALIZAR_cEVENTOS;
                 gui.MenuOpen= false;
             }
         }
@@ -117,6 +117,8 @@ public class Main extends PApplet{
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bAceptar.funciona=false;
+            gui.confirmVisualizarCatas.bCancelar.funciona=false;
+            gui.confirmVisualizarCatas.bAceptar.funciona=false;
 
             gui.UserName.isPressed(this);
             gui.Contra.isPressed(this);
@@ -140,6 +142,8 @@ public class Main extends PApplet{
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bAceptar.funciona=false;
+            gui.confirmVisualizarCatas.bCancelar.funciona=false;
+            gui.confirmVisualizarCatas.bAceptar.funciona=false;
 
             gui.denominacioDeOrigen.getTextField().isPressed(this);
             gui.denominacioDeOrigen.buttonPressed(this);
@@ -376,6 +380,8 @@ public class Main extends PApplet{
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bAceptar.funciona=false;
+            gui.confirmVisualizarCatas.bCancelar.funciona=false;
+            gui.confirmVisualizarCatas.bAceptar.funciona=false;
 
             gui.ATVinos.isPressed(this);
             gui.TRCantidadB.isPressed(this);
@@ -422,7 +428,7 @@ public class Main extends PApplet{
 
         }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATASiCENAS && !gui.cCata.visible ){
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_EVENTO && !gui.cCata.visible){
             gui.cAddCenas.bAceptar.funciona= true;
             gui.cAddCenas.bCancelar.funciona= true;
             gui.cAddCatas.bAceptar.funciona= true;
@@ -433,6 +439,8 @@ public class Main extends PApplet{
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bAceptar.funciona=false;
+            gui.confirmVisualizarCatas.bCancelar.funciona=false;
+            gui.confirmVisualizarCatas.bAceptar.funciona=false;
         //********************************************************************************************
             gui.ATCatas.isPressed(this);
 
@@ -473,6 +481,7 @@ public class Main extends PApplet{
             }
 
       //*************************************************************************************************************
+
             if(gui.BAceptarCena.cursorEncimaBoton(this)){
                 gui.cAddCenas.visible= true;
                 gui.cAddCenas.bAceptar.funciona= true;
@@ -488,9 +497,8 @@ public class Main extends PApplet{
                 gui.cAddCenas.bAceptar.funciona= false;
             }
 
-
         }
-        else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATASiCENAS && gui.cCata.visible){
+        else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_EVENTO && gui.cCata.visible){
             gui.cEliminarVinos.bAceptar.funciona=false;
             gui.cCata.checkBotones(this);
             if(gui.bCalendarioCata.mouseEncimaBoton(this)){
@@ -527,7 +535,7 @@ public class Main extends PApplet{
                 gui.wineSelected=false;
             }
             if(gui.addCatas.cursorEncimaBoton(this)){
-                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_CATASiCENAS;
+                gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
             }
         }
 
@@ -544,21 +552,36 @@ public class Main extends PApplet{
         gui.SLvino4.buttonPressed(this);
 
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.VISUALIZAR_CATASiCENAS) {
-            gui.cVisualizarCatas.checkButtons(this);
-
-            if(gui.cVisualizarCatas.bNext.cursorEncimaBoton(this)){
-                gui.cVisualizarCatas.nextMonth();
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.VISUALIZAR_cEVENTOS) {
+            gui.cVisualizarEvento.checkButtons(this);
+            if(gui.cVisualizarEvento.bNext.cursorEncimaBoton(this)){
+                gui.cVisualizarEvento.nextMonth();
             }
-            if(gui.cVisualizarCatas.bPrev.cursorEncimaBoton(this)){
-                gui.cVisualizarCatas.prevMonth();
+            if(gui.cVisualizarEvento.bPrev.cursorEncimaBoton(this)){
+                gui.cVisualizarEvento.prevMonth();
             }
-            if(gui.cVisualizarCatas.bOK.cursorEncimaBoton(this)&& gui.cVisualizarCatas.EstaFechaSeleccionada()){
-                gui.dataCalendarioVisualizarCatas= gui.cVisualizarCatas.getFechaSeleccionada();
-
+            if(gui.cVisualizarEvento.bOK.cursorEncimaBoton(this)&& gui.cVisualizarEvento.EstaFechaSeleccionada()){
+                gui.dataCalendarioVisualizarEventos = gui.cVisualizarEvento.getFechaSeleccionada();
             }
         }
 
+        if(gui.BOKCatas.cursorEncimaBoton(this)){
+            gui.confirmVisualizarCatas.visible= true;
+            gui.confirmVisualizarCatas.bAceptar.funciona= true;
+            gui.confirmVisualizarCatas.bCancelar.funciona= true;
+        }
+        if(gui.confirmVisualizarCatas.bAceptar.cursorEncimaBoton(this)&& gui.confirmVisualizarCatas.bAceptar.funciona){
+            gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
+            gui.ptitulo= "VISUALIZAR EVENTO";
+            gui.confirmVisualizarCatas.visible= false;
+            gui.dibujaVisualizarEvento(this);
+
+        }
+        else if(gui.confirmVisualizarCatas.bCancelar.cursorEncimaBoton(this) && gui.confirmVisualizarCatas.bCancelar.funciona){
+            gui.confirmVisualizarCatas.visible= false;
+            gui.confirmVisualizarCatas.bCancelar.funciona= false;
+            gui.confirmVisualizarCatas.bAceptar.funciona= false;
+        }
 
     }
 
@@ -629,9 +652,9 @@ public class Main extends PApplet{
             gui.TRAño.keyPressed(key, (int) keyCode);
         }
 
-        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_CATASiCENAS) {
+        if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_EVENTO) {
             if (gui.SLvino1.getTextField().cursorEncimaCampoTexto(this)) {
-                    gui.SLvino1.getTextField().keyPressed(key, (int) keyCode);
+                gui.SLvino1.getTextField().keyPressed(key, (int) keyCode);
                 gui.SLvino1.update(this);
             }
 

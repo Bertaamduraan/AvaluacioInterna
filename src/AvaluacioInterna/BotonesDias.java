@@ -31,9 +31,9 @@ public class BotonesDias {
     }
 
     //DIBUJAR EL BOTÓN
-    void display(PApplet p5, int n, int Ts, int r, int sW){
+    void display(PApplet p5, int n, int Ts, int r, int sW, int c){
         p5.pushStyle();
-            p5.fill(0xFF5AAA95);
+            p5.fill(c);
             p5.stroke(0);
             p5.strokeWeight(sW);
             p5.rect(x, y, w, h, r);

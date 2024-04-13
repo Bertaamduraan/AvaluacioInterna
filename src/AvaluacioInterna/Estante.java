@@ -25,7 +25,7 @@ public class Estante {
     Fonts FontsApp;
 
     //CONSTRUCTOR
-    Estante(PApplet p5, int p, String n, float x, float y, float w, float h, int numVisible){
+    public Estante(PApplet p5, int p, String n, float x, float y, float w, float h, int numVisible){
         this.pos= p;
         this.nombre= n;
         this.vinos= new Vino[100];
@@ -38,7 +38,7 @@ public class Estante {
         FontsApp= new Fonts(p5);
     }
 
-    Estante(PApplet p5, String n, float x, float y, float w, float h,int numVisible){
+    public Estante(PApplet p5, String n, float x, float y, float w, float h,int numVisible){
         this.nombre= n;
         this.vinos= new Vino[300];
         this.x= x;
@@ -50,7 +50,7 @@ public class Estante {
         FontsApp= new Fonts(p5);
     }
 
-    void addVino(Vino v){
+    public void addVino(Vino v){
         if(numVinos<this.vinos.length){
             this.vinos[numVinos]= v;
             numVinos++;
@@ -74,6 +74,9 @@ public class Estante {
             addVINOinfo(info[f], p5);
         }
     }
+    public void setColor(int c){
+        this.cFons= c;
+    }
 
     public void setButtons(PApplet p5,String img1, String img2){
         PImage imgPrev= p5.loadImage(img1);
@@ -81,10 +84,6 @@ public class Estante {
 
         PImage imgNext= p5.loadImage(img2);
         bNext= new BotonConFoto(p5, imgNext, x+w+(vinoWidth/2)-20, y+h/2, 30, 30);
-    }
-
-    public void setColor(int c){
-        this.cFons= c;
     }
 
     public void next(){
