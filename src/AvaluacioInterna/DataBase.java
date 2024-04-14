@@ -476,12 +476,12 @@ public class DataBase {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //INSERT
-    public void insertVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año){
+    public void insertVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String imagen, String b, String año){
         try{
             String Snombre= nombre.replace("\"'", "\\'");
             String Can= String.valueOf(can);
-            String q= "INSERT INTO vinos (nombreVinos, Añada, Precio, Ubicación, Cantidad, COLOR_idCOLOR, CAPACIDAD_idCAPACIDAD, DENOMINACIÓN, bodega, Fecha) VALUES " +
-                    "('"+Snombre + "','" +a + "','" + p + "','" +u + "','" + Can + "','" + color + "','" +cap + "','"+ DO + "','" +b + "','" + año+ "')";
+            String q= "INSERT INTO vinos (nombreVinos, Añada, Precio, Ubicación, Cantidad, COLOR_idCOLOR, CAPACIDAD_idCAPACIDAD, DENOMINACIÓN, IMAGEN_idIMAGEN, bodega, Fecha) VALUES " +
+                    "('"+Snombre + "','" +a + "','" + p + "','" +u + "','" + Can + "','" + color + "','" +cap + "','"+ DO + "','"+imagen+ "','" +b + "','" + año+ "')";
             System.out.println(q);
             query.execute(q);
         }
@@ -507,6 +507,19 @@ public class DataBase {
         try{
             String Snombre= nombreBodega.replace("\"'", "\\'");
             String q= "INSERT INTO bodega (nombreBodega) VALUES " +
+                    "('" +Snombre+ "')";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void insertImagen(String nombreImagen){
+        try{
+            String Snombre= nombreImagen.replace("\"'", "\\'");
+            String q= "INSERT INTO imagen (Imagen) VALUES " +
                     "('" +Snombre+ "')";
             System.out.println(q);
             query.execute(q);
@@ -581,12 +594,12 @@ public class DataBase {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+
 
     //UPDATES
-    public void updateVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año, String clave){
+    public void updateVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año,String i, String clave){
         try {
             String Snombre = nombre.replace("\"'", "\\'");
             String Can = String.valueOf(can);
             String q = "UPDATE vinos SET nombreVinos= '" + Snombre + "',  Añada= '" + a + "', Precio= '" + p + "', Ubicación= '" + u + "', Cantidad= '" + Can + "', COLOR_idCOLOR= '" + color +
-                    "', CAPACIDAD_idCAPACIDAD= '" + cap + "', DENOMINACIÓN= '" + DO + "', bodega= '" + b + "', Fecha= '" + año + "' WHERE idVinos= '"+ clave+ "'";
+                    "', CAPACIDAD_idCAPACIDAD= '" + cap + "', DENOMINACIÓN= '" + DO + "', bodega= '" + b + "', Fecha= '" + año + "', IMAGEN_idIMAGEN= '"+i+"'  WHERE idVinos= '"+ clave+ "'";
             System.out.println(q);
             query.execute(q);
         }
@@ -595,11 +608,39 @@ public class DataBase {
         }
     }
 
-    public void updateEvento(){
+    public void updateEvento(String nombre, String fecha, String cocineros, String tipoEvento, String descripcion, String clave){
+        try {
+            String Snombre= nombre.replace("\"'", "\\'");
+            String q= "UPDATE evento SET NombreEvento= '"+ Snombre+"', Fecha= '"+fecha+"', Cocineros= '"+cocineros+"', TipoEvento= '"+tipoEvento+
+                    "', DescriptionEvent= '"+descripcion+"' WHERE idEvento= '"+clave+"'";
+            System.out.println(q);
+            query.execute(q);
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
 
     }
 
-    public void updateVinosEvento(){
+    public void updateVinosEvento(String vino0, String vino1, String vino2, String vino3, String idEvento){
+        try{
+            String q0= "UPDATE vinos_evento SET Vinos_NombreVinos= '"+vino0+"' WHERE vinos_evento.Evento_idEvento= '"+idEvento+"' AND vinos_evento.Orden= '0'";
+            System.out.println(q0);
+            query.execute(q0);
+            String q1= "UPDATE vinos_evento SET Vinos_NombreVinos= '"+vino1+"' WHERE vinos_evento.Evento_idEvento= '"+idEvento+"' AND vinos_evento.Orden= '1'";
+            System.out.println(q1);
+            query.execute(q1);
+            String q2= "UPDATE vinos_evento SET Vinos_NombreVinos= '"+vino2+"' WHERE vinos_evento.Evento_idEvento= '"+idEvento+"' AND vinos_evento.Orden= '2'";
+            System.out.println(q2);
+            query.execute(q2);
+            String q3= "UPDATE vinos_evento SET Vinos_NombreVinos= '"+vino3+"' WHERE vinos_evento.Evento_idEvento= '"+idEvento+"' AND vinos_evento.Orden= '3'";
+            System.out.println(q3);
+            query.execute(q3);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
 
     }
 }
