@@ -485,7 +485,7 @@ public class InterficieGrafica {
 
         BAceptarV.display(p5);
         BEliminarV.display(p5);
-        ATVinos.display(p5);
+        //ATVinos.display(p5);
         ColorVino.display(p5);
 
         contadorVinos.display(p5);
