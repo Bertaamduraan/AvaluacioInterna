@@ -21,7 +21,7 @@ public class SelectList {
     ArrayList<BotonConTexto> buttons;
     Fonts FontsApp;
 
-    public SelectList(PApplet p5, String [][] textos, float x, float y, float w, float h, String textoIncial){
+    public SelectList(PApplet p5, String [][] textos, float x, float y, float w, float h, String textoIncial, int sT){
         this.texts= textos;
         this.selectedID="";
         this.ValorSelected= "";
@@ -32,7 +32,7 @@ public class SelectList {
         this.t0= textoIncial;
 
         this.TextField= new CamposTextoRect(p5, (int) x, (int) y, (int) w, ValorSelected);
-        this.TextField.setHeightRectSizeLetra((int)this.h, 22);
+        this.TextField.setHeightRectSizeLetra((int)this.h, sT);
         this.buttons= new ArrayList<BotonConTexto>();
         FontsApp= new Fonts(p5);
     }

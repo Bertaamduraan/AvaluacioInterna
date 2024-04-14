@@ -99,6 +99,18 @@ public class CalendarioPlus {
         this.añoSeleccionado= y;
     }
 
+    //GETTER
+    public String getFechaSeleccionada1(){
+        String date="";
+        if(mesSeleccionado<10){
+            date= this.diaSeleccionado +"/0"+ this.mesSeleccionado +"/"+ this.añoSeleccionado;
+        }
+        if(mesSeleccionado>=10){
+            date= this.diaSeleccionado +"/"+ this.mesSeleccionado +"/"+ this.añoSeleccionado;
+        }
+        return date;
+    }
+
 
     public void mesAnterior(){
         this.botones= new BotonesDias[37];

@@ -270,14 +270,16 @@ public class DataBase {
         }
     }
 
-    public String[] getNombreVinos(){
+    public String[][] getAllVinos(){
         int numFiles= getNumeroFilasTabla("vinos");
-        String []info= new String [numFiles];
+        int numCols= 2;
+        String [][] info= new String [numFiles][numCols];
         try{
-            ResultSet rs= query.executeQuery( "SELECT (*) FROM vino");
+            ResultSet rs= query.executeQuery( "SELECT * FROM vinos");
             int nr= 0;
             while(rs.next()){
-                info[nr]= rs.getString("nombreVinos");
+                info[nr][0]= String.valueOf(nr);
+                info[nr][1]= rs.getString("nombreVinos");
                 nr++;
             }
             return info;
@@ -318,6 +320,7 @@ public class DataBase {
         }
     }
 
+
     public String [] getInfoVino(String nom){
         int numCols= 11;
         String [] vino= new String [numCols];
@@ -339,13 +342,13 @@ public class DataBase {
             vino[6]= rs.getString("BODEGA");
             vino[7]= rs.getString("YEAR");
             if(vino[7]== null){
-                vino[7]= "0000";
+                vino[7]= "00-00-00";
             }
             vino[8]= String.valueOf(rs.getInt("PRECIO"));
             vino[9]= String.valueOf(rs.getString("CANTIDAD"));
             vino[10]= String.valueOf(rs.getString("FECHA"));
             if(vino[10]== "null"){
-                vino[10]= "0000";
+                vino[10]= "00-00-00";
             }
             return vino;
         }
@@ -436,15 +439,44 @@ public class DataBase {
         return evento;
     }
 
-    /*public String [] getVinosEvento(String fecha){
+    public String [] getVinosEvento(String fecha){
         String c= getClaveFromTabla("evento", "idEvento", "Fecha", fecha);
         String [] vinosEvento= new String [4];
+        try{
+            String q0 = "SELECT Ve.Vinos_NombreVinos AS NOMBRE0 FROM vinos_evento AS Ve WHERE Ve.Orden = '0' AND Ve.Evento_idEvento = '" + c + "'";
+            ResultSet rs0 = query.executeQuery(q0);
+            rs0.next();
+            vinosEvento[0] = rs0.getString("NOMBRE0");
+            System.out.println(vinosEvento[0]);
 
-    }*/
+            String q1 = "SELECT Ve.Vinos_NombreVinos AS NOMBRE1 FROM vinos_evento AS Ve WHERE Ve.Orden = 1 AND Ve.Evento_idEvento = '" + c + "';";
+            System.out.println(q1);
+            ResultSet rs1 = query.executeQuery(q1);
+            rs1.next();
+            vinosEvento[1] = rs1.getString("NOMBRE1");
 
+            String q2 = "SELECT Ve.Vinos_NombreVinos AS NOMBRE2 FROM vinos_evento AS Ve WHERE Ve.Orden = 2 AND Ve.Evento_idEvento = '" + c + "';";
+            System.out.println(q2);
+            ResultSet rs2 = query.executeQuery(q2);
+            rs2.next();
+            vinosEvento[2] = rs2.getString("NOMBRE2");
 
+            String q3 = "SELECT Ve.Vinos_NombreVinos AS NOMBRE3 FROM vinos_evento AS Ve WHERE Ve.Orden = 3 AND Ve.Evento_idEvento = '" + c + "';";
+            System.out.println(q3);
+            ResultSet rs3 = query.executeQuery(q3);
+            rs3.next();
+            vinosEvento[3] = rs3.getString("NOMBRE3");
+            return vinosEvento;
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //INSERT
-    public void insertInfoTaulaVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año){
+    public void insertVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año){
         try{
             String Snombre= nombre.replace("\"'", "\\'");
             String Can= String.valueOf(can);
@@ -484,6 +516,33 @@ public class DataBase {
         }
     }
 
+    public void insertEvento (String nombreEvento, String fecha, String cocinero, String tipo, String descripcion){
+        try{
+            String Snombre= nombreEvento.replace("\"'", "\\'");
+            String q= "INSERT INTO evento (NombreEvento, Fecha, Cocineros, TipoEvento, DescriptionEvent) VALUES "+
+                    "('"+Snombre+"','"+ fecha +"','"+ cocinero +"','"+ tipo+"','"+ descripcion+ "')";
+            System.out.println("\n"+q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void insertVinosEvento(String fechaEvento, String vino0, String vino1,  String vino2, String vino3){
+        String fecha= getClaveFromTabla("evento", "idEvento", "Fecha",fechaEvento);
+        try{
+            String q= "INSERT INTO vinos_evento (Vinos_NombreVinos, Evento_idEvento, Orden) VALUES "+
+                    "('"+vino0+"','"+ fecha+"', '0'), ('"+vino1+"','"+ fecha+"', '1'), ('"+vino2+"','"+ fecha+"','2'), ('"+vino3+"','"+ fecha+"','3')" ;
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //DELETE
     public void deleteVino (String nombreV){
         try {
@@ -517,5 +576,30 @@ public class DataBase {
         catch (Exception e){
             System.out.println(e);
         }
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+
+
+    //UPDATES
+    public void updateVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año, String clave){
+        try {
+            String Snombre = nombre.replace("\"'", "\\'");
+            String Can = String.valueOf(can);
+            String q = "UPDATE vinos SET nombreVinos= '" + Snombre + "',  Añada= '" + a + "', Precio= '" + p + "', Ubicación= '" + u + "', Cantidad= '" + Can + "', COLOR_idCOLOR= '" + color +
+                    "', CAPACIDAD_idCAPACIDAD= '" + cap + "', DENOMINACIÓN= '" + DO + "', bodega= '" + b + "', Fecha= '" + año + "' WHERE idVinos= '"+ clave+ "'";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void updateEvento(){
+
+    }
+
+    public void updateVinosEvento(){
+
     }
 }

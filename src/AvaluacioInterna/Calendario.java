@@ -78,7 +78,14 @@ public class Calendario {
     }
 
     public String getFechaSeleccionada(){
-        return this.diaSelect +"/"+ this.mesSelect +"/"+ this.añoSelect;
+        String date="";
+        if(mesSelect<10){
+             date= this.diaSelect +"/0"+ this.mesSelect +"/"+ this.añoSelect;
+        }
+        if(mesSelect>=10){
+            date= this.diaSelect +"/"+ this.mesSelect +"/"+ this.añoSelect;
+        }
+        return date;
     }
 
     //SETTERS

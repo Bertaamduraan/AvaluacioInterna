@@ -17,7 +17,7 @@ public class Colors {
         this.colors[2] = p5.color(0xFF095256); //Color turquesa fuerte
         this.colors[3]= p5.color(0xFF5AAA95); //Color tuquesa flojo
         this.colors[5] = p5.color(0xFF087F8C); //Color AZUL medio
-        //this.colors[6] = p5.color(0xFFAEECEF); //Color azul flojo
+        this.colors[6] = p5.color(0xFFAEECEF); //Color azul flojo
 
         //COLORES BOTONES
         this.colors[8]= p5.color(0xFFB86221); //NARANJA FUERTE

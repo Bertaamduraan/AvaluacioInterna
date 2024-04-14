@@ -94,6 +94,7 @@ public class Main extends PApplet{
                 gui.MenuOpen= false;
             } else if (gui.bMCatas.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
+                gui.ptitulo= "AÑADIR EVENTO";
                 gui.MenuOpen= false;
             }
             else if(gui.bMVisualizar.cursorEncimaBoton(this)){
@@ -111,8 +112,8 @@ public class Main extends PApplet{
             gui.cAddCenas.bCancelar.funciona= false;
             gui.cAddCatas.bAceptar.funciona= false;
             gui.cAddCatas.bCancelar.funciona= false;
-            gui.cEliminarCatas.bAceptar.funciona= false;
-            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cEliminarEvento.bAceptar.funciona= false;
+            gui.cEliminarEvento.bCancelar.funciona= false;
             gui.cAddVinos.bAceptar.funciona= false;
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
@@ -136,8 +137,8 @@ public class Main extends PApplet{
             gui.cAddCenas.bCancelar.funciona= false;
             gui.cAddCatas.bAceptar.funciona= false;
             gui.cAddCatas.bCancelar.funciona= false;
-            gui.cEliminarCatas.bAceptar.funciona= false;
-            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cEliminarEvento.bAceptar.funciona= false;
+            gui.cEliminarEvento.bCancelar.funciona= false;
             gui.cAddVinos.bAceptar.funciona= false;
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
@@ -162,12 +163,15 @@ public class Main extends PApplet{
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
                 if(gui.vinoSeleccionado1!= null) {
                     gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionado1.nombre, this);
+                    gui.claveVinoSeleccionado= gui.db.getClaveFromTabla("vinos", "idVinos", "nombreVinos", gui.vinoSeleccionado1.nombre);
                 }
                 else if (gui.vinoSeleccionado2!= null){
                     gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionado2.nombre, this);
+                    gui.claveVinoSeleccionado= gui.db.getClaveFromTabla("vinos", "idVinos", "nombreVinos", gui.vinoSeleccionado2.nombre);
                 }
                 else if (gui.vinoSeleccionado3!= null){
                     gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionado3.nombre, this);
+                    gui.claveVinoSeleccionado= gui.db.getClaveFromTabla("vinos", "idVinos", "nombreVinos", gui.vinoSeleccionado3.nombre);
                 }
             }
 
@@ -277,7 +281,8 @@ public class Main extends PApplet{
                     if(gui.cAddVinos.bAceptar.cursorEncimaBoton(this) && gui.cAddVinos.bAceptar.funciona) {
                         gui.cAddVinos.visible= false;
                         gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
-                        String color= gui.db.getClaveFromTabla("color", "idColor", "Color", gui.ColorVino.getSelectedValue());
+                        gui.wineSelected= false;
+                        String color= gui.db.getClaveFromTabla("color", "idColor", "Color", gui.ColorVino.selectedValue);
                         String bodega = gui.db.getClaveFromTabla("bodega", "idbodega", "nombreBodega", gui.TBodega.getSoloTexto());
                         String capacidad= gui.db.getClaveFromTabla("capacidad", "idCapacidad", "Capacidad", gui.TRCapacidad.getSoloTexto());
                         String denominacion= gui.db.getClaveFromTabla("denominacion", "idDenominacion", "NombreDEO", gui.TDenominacion.getSoloTexto());
@@ -299,12 +304,24 @@ public class Main extends PApplet{
 
                         }
 
-                        gui.db.insertInfoTaulaVino(gui.TNombre.getSoloTexto(), gui.TAñadaV.getSoloTexto(), gui.TRPrecio.getSoloTexto(), gui.TRUbicacion.getSoloTexto(),
-                                                    gui.contadorVinos.getValor(), color, capacidad, denominacion, bodega, gui.TRAño.getSoloTexto());
+                        if(gui.claveVinoSeleccionado !=null){
+                            println("ya existe  Vino");
+                            gui.db.updateVino(gui.TNombre.getSoloTexto(), gui.TAñadaV.getSoloTexto(), gui.TRPrecio.getSoloTexto(), gui.TRUbicacion.getSoloTexto(),
+                                    gui.contadorVinos.getValor(), color, capacidad, denominacion, bodega, gui.TRAño.getSoloTexto(), gui.claveVinoSeleccionado);
+
+                        }
+
+                        else{
+                            gui.db.insertVino(gui.TNombre.getSoloTexto(), gui.TAñadaV.getSoloTexto(), gui.TRPrecio.getSoloTexto(), gui.TRUbicacion.getSoloTexto(),
+                                    gui.contadorVinos.getValor(), color, capacidad, denominacion, bodega, gui.TRAño.getSoloTexto());
+                        }
+
                         gui.infoVinosE1= db.getInfoTablaVinosPorColor( "Tinto");
                         gui.infoVinosE2= db.getInfoTablaVinosPorColor("Blanco");
                         gui.infoVinosE3= db.getInfoTablaVinosPorColor("Otros");
                         gui.setEstanterias(this, gui.infoVinosE1, gui.infoVinosE2, gui.infoVinosE3);
+
+
 
 
                     }
@@ -374,8 +391,8 @@ public class Main extends PApplet{
             gui.cAddCenas.bCancelar.funciona= false;
             gui.cAddCatas.bAceptar.funciona= false;
             gui.cAddCatas.bCancelar.funciona= false;
-            gui.cEliminarCatas.bAceptar.funciona= false;
-            gui.cEliminarCatas.bCancelar.funciona= false;
+            gui.cEliminarEvento.bAceptar.funciona= false;
+            gui.cEliminarEvento.bCancelar.funciona= false;
             gui.cAddVinos.bAceptar.funciona= false;
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
@@ -416,6 +433,8 @@ public class Main extends PApplet{
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
                 gui.ptitulo= "VISUALIZAR VINO";
                 gui.dibujarPantallaVizualizarVino(gui.vinoSeleccionadoBuscador.nombre, this);
+                gui.claveVinoSeleccionado= gui.db.getClaveFromTabla("vinos", "idVinos", "nombreVinos", gui.vinoSeleccionadoBuscador.nombre);
+
             }
 
             if(gui.okB.cursorEncimaBoton(this)){
@@ -429,12 +448,12 @@ public class Main extends PApplet{
         }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_EVENTO && !gui.cCata.visible){
-            gui.cAddCenas.bAceptar.funciona= true;
-            gui.cAddCenas.bCancelar.funciona= true;
-            gui.cAddCatas.bAceptar.funciona= true;
-            gui.cAddCatas.bCancelar.funciona= true;
-            gui.cEliminarCatas.bAceptar.funciona= true;
-            gui.cEliminarCatas.bCancelar.funciona= true;
+            gui.cAddCenas.bAceptar.funciona= false;
+            gui.cAddCenas.bCancelar.funciona= false;
+            gui.cAddCatas.bAceptar.funciona= false;
+            gui.cAddCatas.bCancelar.funciona= false;
+            gui.cEliminarEvento.bAceptar.funciona= false;
+            gui.cEliminarEvento.bCancelar.funciona= false;
             gui.cAddVinos.bAceptar.funciona= false;
             gui.cAddVinos.bCancelar.funciona= false;
             gui.cEliminarVinos.bCancelar.funciona= false;
@@ -443,6 +462,7 @@ public class Main extends PApplet{
             gui.confirmVisualizarCatas.bAceptar.funciona=false;
         //********************************************************************************************
             gui.ATCatas.isPressed(this);
+            gui.NombreEvento.isPressed(this);
 
             gui.Cocineros.getTextField().isPressed(this);
             gui.Cocineros.buttonPressed(this);
@@ -454,33 +474,50 @@ public class Main extends PApplet{
 
             if(gui.BAceptarCata.cursorEncimaBoton(this)){
                 gui.cAddCatas.visible= true;
+                gui.cAddCenas.bAceptar.funciona= true;
+                gui.cAddCenas.bCancelar.funciona= true;
+                gui.cAddCatas.bAceptar.funciona= true;
+                gui.cAddCatas.bCancelar.funciona= true;
 
             }
-            if(gui.cAddCatas.bAceptar.cursorEncimaBoton(this) && gui.cAddCatas.bAceptar.funciona){
+            if(gui.cAddCatas.visible && gui.cAddCatas.bAceptar.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                 gui.cAddCatas.visible= false;
+                String fechaEvento= gui.formataFechaEng(gui.dataCalendario);
+                String cocineros="";
+                if(gui.Cocineros.TextField.texto.equals("")){
+                    cocineros= gui.db.getClaveFromTabla("cocineros", "idGrupo", "Representante", "ninguno");
+                }
+                gui.db.insertEvento(gui.NombreEvento.getSoloTexto(), fechaEvento, cocineros, "1", gui.ATCatas.texto);
+                gui.db.insertVinosEvento(fechaEvento, gui.SLvino1.getSelectedValue(), gui.SLvino2.getSelectedValue(), gui.SLvino3.getSelectedValue(), gui.SLvino4.getSelectedValue());
             }
-            else if (gui.cAddCatas.bCancelar.cursorEncimaBoton(this) && gui.cAddCatas.bCancelar.funciona){
+            else if (gui.cAddCatas.visible && gui.cAddCatas.bCancelar.cursorEncimaBoton(this)){
                 gui.cAddCatas.visible= false;
-
             }
-        //****************************************************************************************************************
+//*******************************************************************************************************************************
             if(gui.BEliminarC.cursorEncimaBoton(this)){
-                gui.cEliminarCatas.visible= true;
-                gui.cEliminarCatas.bCancelar.funciona= true;
-                gui.cEliminarCatas.bAceptar.funciona= true;
+                gui.cEliminarEvento.visible= true;
+                gui.cEliminarEvento.bCancelar.funciona= true;
+                gui.cEliminarEvento.bAceptar.funciona= true;
+                gui.cAddCenas.bAceptar.funciona=false;
+                gui.cAddCenas.bCancelar.funciona=false;
+                gui.cAddCatas.bAceptar.funciona=false;
+                gui.cAddCatas.bCancelar.funciona=false;
             }
-            if(gui.cEliminarCatas.bAceptar.cursorEncimaBoton(this) && gui.cEliminarCatas.bAceptar.funciona){
+            if(gui.cEliminarEvento.visible && gui.cEliminarEvento.bAceptar.cursorEncimaBoton(this)){
+                String fecha= gui.formataFechaEng(gui.dataCalendario);
+                gui.db.deleteEvento(fecha);
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
-                gui.cEliminarCatas.visible= false;
+                gui.cEliminarEvento.visible= false;
             }
-            else if (gui.cEliminarCatas.bCancelar.cursorEncimaBoton(this) && gui.cEliminarCatas.bCancelar.funciona){
-                gui.cEliminarCatas.visible= false;
-                gui.cEliminarCatas.bCancelar.funciona= false;
-                gui.cEliminarCatas.bAceptar.funciona= false;
+            else if (gui.cEliminarEvento.visible && gui.cEliminarEvento.bCancelar.cursorEncimaBoton(this)){
+                gui.cEliminarEvento.visible= false;
+                gui.cEliminarEvento.bCancelar.funciona= false;
+                gui.cEliminarEvento.bAceptar.funciona= false;
             }
 
-      //*************************************************************************************************************
+
+//********************************************************************************************************************************
 
             if(gui.BAceptarCena.cursorEncimaBoton(this)){
                 gui.cAddCenas.visible= true;
@@ -496,7 +533,7 @@ public class Main extends PApplet{
                 gui.cAddCenas.bCancelar.funciona= false;
                 gui.cAddCenas.bAceptar.funciona= false;
             }
-
+//*********************************************************************************************************************************
         }
         else if (gui.pantallaActual==InterficieGrafica.PANTALLA.AÑADIR_EVENTO && gui.cCata.visible){
             gui.cEliminarVinos.bAceptar.funciona=false;
@@ -514,7 +551,7 @@ public class Main extends PApplet{
             }
 
             if(gui.cCata.bAccept.cursorEncimaBoton(this) && gui.cCata.dateSelected){
-                gui.dataCalendario= gui.cCata.diaSeleccionado+"/"+gui.cCata.mesSeleccionado+"/"+gui.cCata.añoSeleccionado;
+                gui.dataCalendario= gui.cCata.getFechaSeleccionada1();
                 gui.cCata.visible= false;
             }
         }
@@ -553,6 +590,19 @@ public class Main extends PApplet{
 
 
         if(gui.pantallaActual==InterficieGrafica.PANTALLA.VISUALIZAR_cEVENTOS) {
+            gui.cAddCenas.bAceptar.funciona= true;
+            gui.cAddCenas.bCancelar.funciona= true;
+            gui.cAddCatas.bAceptar.funciona= true;
+            gui.cAddCatas.bCancelar.funciona= true;
+            gui.cEliminarEvento.bAceptar.funciona= false;
+            gui.cEliminarEvento.bCancelar.funciona= false;
+            gui.cAddVinos.bAceptar.funciona= false;
+            gui.cAddVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bCancelar.funciona= false;
+            gui.cEliminarVinos.bAceptar.funciona=false;
+            gui.confirmVisualizarCatas.bCancelar.funciona=true;
+            gui.confirmVisualizarCatas.bAceptar.funciona=true;
+
             gui.cVisualizarEvento.checkButtons(this);
             if(gui.cVisualizarEvento.bNext.cursorEncimaBoton(this)){
                 gui.cVisualizarEvento.nextMonth();
@@ -677,6 +727,8 @@ public class Main extends PApplet{
                 gui.Cocineros.getTextField().keyPressed(key, (int) keyCode);
                 gui.Cocineros.update(this);
             }
+
+            gui.NombreEvento.keyPressed(key, (int) keyCode);
 
             gui.ATCatas.keyPressed(key, (int) keyCode);
         }
