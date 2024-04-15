@@ -42,5 +42,4 @@ public class Fonts {
     public PFont getFontAt(int i){
         return this.fonts[i];
     }
-
 }

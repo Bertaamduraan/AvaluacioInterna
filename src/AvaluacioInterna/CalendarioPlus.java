@@ -180,7 +180,6 @@ public class CalendarioPlus {
     //VA UN MES ADELANTE EN EL CALENDARIO
     void ProximoMes(){
         this.botones= new BotonesDias[37];
-
         this.mes++;
         if(this.mes==13){
             this.mes=1;
@@ -197,7 +196,6 @@ public class CalendarioPlus {
         }else{
             this.diaDelaSem= diaDelaSem-2;
         }
-
         calendario.set(Calendar.DAY_OF_WEEK, calendario.getFirstDayOfWeek());
         this.primerDia= calendario.get(Calendar.DATE);
 

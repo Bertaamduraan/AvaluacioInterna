@@ -3,7 +3,6 @@ package AvaluacioInterna;
 import processing.core.PApplet;
 
 public class Selector {
-
     float x, y, w, h, r;
 
     String [] textos; //Valores posibles a eligir
@@ -36,7 +35,6 @@ public class Selector {
         TamañoTexto= t;
     }
 
-
     public void display(PApplet p5){
     p5.pushStyle();
         p5.textFont(FontsApp.getFontAt(3));
@@ -68,8 +66,6 @@ public class Selector {
                  p5.text(this.textos[i], x + (w/2), y + h + 25 + (h + espacioLineas)*i);
              }
         }
-
-
     p5.popStyle();
     }
 
@@ -88,12 +84,10 @@ public class Selector {
         this.plegado= !this.plegado;
     }
 
-
     public void actualizar(PApplet p5){
         int option = OpcionClicked(p5);
         selectedValue= this.textos[option];
     }
-
 
     //indica si el cursos está sobre el selector
     public boolean cursorEncimaBoton(PApplet p5){
@@ -111,11 +105,8 @@ public class Selector {
         }
     }
 
-
-
     int OpcionClicked(PApplet p5){
         int i= (int) p5.map(p5.mouseY, y+h, y+h+(h+espacioLineas)* this.textos.length, 0, this.textos.length);
         return i;
     }
-
 }

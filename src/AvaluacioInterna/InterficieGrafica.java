@@ -3,6 +3,8 @@ package AvaluacioInterna;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.time.Year;
+
 import static AvaluacioInterna.Layout.*;
 import static AvaluacioInterna.mides.midaSubtitol;
 import static AvaluacioInterna.mides.midaTitol;
@@ -38,7 +40,7 @@ public class InterficieGrafica {
     PImage logoAdd, logoLogOut;
     boolean OpcionesOpen= false;
     boolean MenuOpen= false;
-    BotonConTexto addVinos, addCatas;
+    BotonConTexto addVinos, addEventos;
     PImage imagenInicial2, imagenInicial3;
 
 
@@ -136,6 +138,17 @@ public class InterficieGrafica {
 
         pantallaActual= PANTALLA.INICIO;
 
+        int minAño = 2017;
+        Year thisYear = Year.now();
+        int maxAño =  thisYear.getValue();
+        p5.println("MAX: "+maxAño);
+        int numAños = maxAño - minAño + 1;
+        años = new String[numAños];
+        for(int i=0, a=minAño; a<=maxAño; a++, i++){
+            años[i] = String.valueOf(a);
+            p5.println(años[i]);
+        }
+
         ColoresApp= new Colors(p5); //Constructor de los colores de la App
         FontsApp= new Fonts(p5); // Constructor de las tipografias de la App
         fotoCalendario= p5.loadImage("299092_calendar_icon.png");
@@ -163,12 +176,12 @@ public class InterficieGrafica {
 
         logoAdd= p5.loadImage("Plus_symbol.png");
         ADD= new BotonConFoto(p5, logoAdd, HeadLineWidth+30, 3*marginV, 30, 30);
-        addVinos= new BotonConTexto(p5, HeadLineWidth+30, 5*marginV, 120, 30, "AÑADIR VINO");
+        addVinos= new BotonConTexto(p5, HeadLineWidth+10, 5*marginV, 140, 30, "AÑADIR VINO");
         addVinos.setMidaTextoBoton(15);
         addVinos.setColores(255, 200,0, 0);
-        addCatas= new BotonConTexto(p5, HeadLineWidth+30, 7*marginV, 120, 30, "AÑADIR CATA");
-        addCatas.setMidaTextoBoton(15);
-        addCatas.setColores(255, 200,0, 0 );
+        addEventos = new BotonConTexto(p5, HeadLineWidth+10, 7*marginV, 140, 30, "AÑADIR EVENTO");
+        addEventos.setMidaTextoBoton(15);
+        addEventos.setColores(255, 200,0, 0 );
 
         logoLogOut= p5.loadImage("LogoLogOut.png");
         LogOut= new BotonConFoto(p5, logoLogOut, HeadLineWidth+80, 3*marginV, 30, 30);
@@ -200,7 +213,35 @@ public class InterficieGrafica {
         bMVisualizar= new BotonConTexto(p5, marginH*2, 12*marginV+MenuHeight/4 + 5*MiniBotonesHeight, MiniBotonesWidth, MiniBotonesHeight, "VISUALIZAR EVENTOS");
 
         //CAMPOS DE TEXTO, BOTONES Y ROUND BUTTONS AÑADIR_VINOS
-        setPantallaVinos(p5);
+        TNombre= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (4*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Nombre: ");
+        TNombre.setTamañoTexto(25);
+        TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
+        TBodega.setTamañoTexto(25);
+        TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (12*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominación de origen: ");
+        TDenominacion.setTamañoTexto(25);
+        TVariedad= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Variedad: ");
+        TAñadaV = new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (16*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Añada: ");
+        TAñadaV.setTamañoTexto(25);
+
+        TRPrecio= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (3*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Precio: ");
+        TRPrecio.setColoresCamposTextoRect(255, 200, 0);
+        TRCapacidad= new CamposTextoRect(p5,(int)(4*marginH+2*columnVinosWidth), (int)(7*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Capacidad: " );
+        TRCapacidad.setColoresCamposTextoRect(255, 200,0);
+        TRUbicacion= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Ubicacion: ");
+        TRUbicacion.setColoresCamposTextoRect(255, 200,0);
+        TRAño= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (marginV+HeadLineHeight+75), (int)columnVinosWidth, "Consumir a partir de: ");
+        TRAño.setColoresCamposTextoRect(255, 200, 0);
+
+        ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 180, 80, 10);
+        ColorVino.setTamañoTexto(25);
+        ColorVino.setSelectedValue("COLOR VINO");
+
+        flechaUp= p5.loadImage("flechas1.2.png");
+        flechaDown= p5.loadImage("flechas1.1.png");
+        contadorVinos= new Contador(p5, flechaUp, flechaDown, (int) (2*columnVinosWidth+5*marginH), (int) (16*marginV+HeadLineHeight+115), 250, 30);
+
+        bImagenVino= new BotonConTexto(p5, 3*marginH, 1000, 100, 40, "IMAGEN");
+
         BAceptarV= new BotonConTexto(p5,7*marginH+columnVinosWidth,3*marginV+HeadLineHeight+columnVinosHeight,150,55, "GUARDAR");
         BAceptarV.setMidaTextoBoton(27);
         BAceptarV.setColores(255, 200, 0, 0);
@@ -214,8 +255,37 @@ public class InterficieGrafica {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //CAMPOS DE TEXTO Y BOTONES AÑADIR_CATAiCENA
+        allVinosCatas= db.getAllVinos();
+        SLvino1= new SelectList(p5, allVinosCatas, (int) (3*marginH+columnCatasWidth), (int)(6*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60, "Primer vino", 30);
+        SLvino1.setSizeText(35);
+        SLvino2= new SelectList(p5,  allVinosCatas, (int) (3*marginH+columnCatasWidth), (int)(11*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60,  "Segundo vino", 30);
+        SLvino2.setSizeText(35);
+        SLvino3= new SelectList(p5, allVinosCatas, (int) (3*marginH+columnCatasWidth), (int) (16*marginV+HeadLineHeight+90), (int)(columnCatasWidth), 60, "Tercer vino", 30);
+        SLvino3.setSizeText(35);
+        SLvino4= new SelectList(p5, allVinosCatas, (int) (3*marginH+columnCatasWidth), (int)(21*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60, "Cuarto vino", 30);
+        SLvino4.setSizeText(35);
 
-        setPantallaAñadirEvento(p5);
+        ATCatas= new AreaTexto(p5, 2*(int)marginH, 300, (int)columnCatasWidth, 460, 80, 30, "");
+
+        cCata= new CalendarioPlus(p5, 350, 250, 300,250);
+        bCalendarioCata= new BotonConFoto(p5,fotoCalendario, 3*marginH, 150, 100, 100);
+        String dataCalendario= "";
+
+        /*RBCatasV= new RadioButton(p5,(int) (5*marginH+columnCatasWidth), (int)(columnCatasHeight-150), 20, "CATA");
+        RBCenasV= new RadioButton(p5, (int) (5*marginH+columnCatasWidth), (int) (columnCatasHeight-50), 20, "CENA FINAL DE MES");
+        grb= new GrupoRadioButton(2);
+        grb.setRadioButtons(RBCatasV, RBCenasV);
+        grb.setSeleccionado(2);*/
+
+        RepreCocineros= db.getInfoTablaRepresentantes();
+        Cocineros= new SelectList(p5, RepreCocineros, (int) (5*marginH+columnCatasWidth), (int)(columnCatasHeight-120), 500, 80, "REPRESENTANTE GRUPO COCINEROS", 30);
+        Cocineros.setSizeText(25);
+
+        ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (20*marginV+HeadLineHeight+115), (int)columnVinosWidth, 270, 40, 10, "");
+        NombreEvento = new CamposTextoRect(p5, (int) (3*marginH+columnCatasWidth), (int)(3*marginV+HeadLineHeight+30), (int) (columnCatasWidth),  "Nombre de la cena o cata: ");
+        NombreEvento.setHeightRectSizeLetra(70, 30);
+        NombreEvento.setColoresCamposTextoRect(255, 200, 0);
+
         BAceptarCata = new BotonConTexto(p5,columnVinosWidth-6*marginH,3*marginV+HeadLineHeight+columnVinosHeight,350,55, "GUARDAR COMO CATA");
         BAceptarCata.setMidaTextoBoton(27);
         BAceptarCata.setColores(255, 200, 0, 0);
@@ -285,6 +355,12 @@ public class InterficieGrafica {
 
         e2= new Estante(p5, 2, "BLANCO", 100, 450, 950, 250, 5);
         e2.addVinos(infoVinosE2, p5);
+        /*for(int i=0; i<infoVinosE2.length; i++){
+            for(int j=0; j<infoVinosE2[i].length; j++){
+                p5.print(infoVinosE2[i][j]+ "\t");
+            }
+            p5.println();
+        }*/
         e2.setColor(ColoresApp.getColorAt(0));
         e2.setButtons(p5, "flechaAtrás.png", "flechaAdelante.png");
 
@@ -295,67 +371,47 @@ public class InterficieGrafica {
     }
 
     public void setPantallaVinos(PApplet p5){
-        TNombre= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (4*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Nombre: ");
-        TNombre.setTamañoTexto(25);
-        TBodega= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (8*marginV+HeadLineHeight+115), (int) columnVinosWidth, "Bodega: ");
-        TBodega.setTamañoTexto(25);
-        TDenominacion= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (12*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Denominación de origen: ");
-        TDenominacion.setTamañoTexto(25);
-        TVariedad= new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Variedad: ");
-        TAñadaV = new CamposDeTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (16*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Añada: ");
-        TAñadaV.setTamañoTexto(25);
+        TNombre.setSoloTexto("");
+        TBodega.setSoloTexto("");
+        TDenominacion.setSoloTexto("");
+        TAñadaV.setSoloTexto("");
 
-        TRPrecio= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (3*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Precio: ");
-        TRPrecio.setColoresCamposTextoRect(255, 200, 0);
-        TRCapacidad= new CamposTextoRect(p5,(int)(4*marginH+2*columnVinosWidth), (int)(7*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Capacidad: " );
-        TRCapacidad.setColoresCamposTextoRect(255, 200,0);
-        TRUbicacion= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (11*marginV+HeadLineHeight+115), (int)columnVinosWidth, "Ubicacion: ");
-        TRUbicacion.setColoresCamposTextoRect(255, 200,0);
-        TRAño= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (marginV+HeadLineHeight+75), (int)columnVinosWidth, "Beber a partir de: ");
-        TRAño.setColoresCamposTextoRect(255, 200, 0);
+        TRPrecio.setSoloTexto("");
+        TRCapacidad.setSoloTexto("");
+        TRUbicacion.setSoloTexto("");
+        TRAño.setSoloTexto("");
 
-        ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 180, 80, 10);
-        ColorVino.setTamañoTexto(25);
+        contadorVinos.valor=0;
+
+        imagen = p5.loadImage("silueta_Vino.png");
+
         ColorVino.setSelectedValue("COLOR VINO");
-
-        flechaUp= p5.loadImage("flechas1.2.png");
-        flechaDown= p5.loadImage("flechas1.1.png");
-        contadorVinos= new Contador(p5, flechaUp, flechaDown, (int) (2*columnVinosWidth+5*marginH), (int) (16*marginV+HeadLineHeight+115), 250, 30);
-
-        bImagenVino= new BotonConTexto(p5, 3*marginH, 1000, 100, 40, "IMAGEN");
     }
 
     public void setPantallaAñadirEvento(PApplet p5){
         allVinosCatas= db.getAllVinos();
-        SLvino1= new SelectList(p5, allVinosCatas, (int) (3*marginH+columnCatasWidth), (int)(6*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60, "Primer vino", 30);
-        SLvino1.setSizeText(35);
-        SLvino2= new SelectList(p5,  allVinosCatas, (int) (3*marginH+columnCatasWidth), (int)(11*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60,  "Segundo vino", 30);
-        SLvino2.setSizeText(35);
-        SLvino3= new SelectList(p5, allVinosCatas, (int) (3*marginH+columnCatasWidth), (int) (16*marginV+HeadLineHeight+90), (int)(columnCatasWidth), 60, "Tercer vino", 30);
-        SLvino3.setSizeText(35);
-        SLvino4= new SelectList(p5, allVinosCatas, (int) (3*marginH+columnCatasWidth), (int)(21*marginV+HeadLineHeight+90), (int) (columnCatasWidth), 60, "Cuarto vino", 30);
-        SLvino4.setSizeText(35);
+        SLvino1.setTextoInicial("PRIMER VINO");
+        SLvino1.TextField.texto= "";
 
-        ATCatas= new AreaTexto(p5, 2*(int)marginH, 300, (int)columnCatasWidth, 460, 80, 30, "");
+        SLvino2.setTextoInicial("SEGUNDO VINO");
+        SLvino2.TextField.texto= "";
 
-        cCata= new CalendarioPlus(p5, 350, 250, 300,250);
-        bCalendarioCata= new BotonConFoto(p5,fotoCalendario, 3*marginH, 150, 100, 100);
-        String dataCalendario= "";
+        SLvino3.setTextoInicial("TERCER VINO");
+        SLvino3.TextField.texto= "";
 
-        /*RBCatasV= new RadioButton(p5,(int) (5*marginH+columnCatasWidth), (int)(columnCatasHeight-150), 20, "CATA");
-        RBCenasV= new RadioButton(p5, (int) (5*marginH+columnCatasWidth), (int) (columnCatasHeight-50), 20, "CENA FINAL DE MES");
-        grb= new GrupoRadioButton(2);
-        grb.setRadioButtons(RBCatasV, RBCenasV);
-        grb.setSeleccionado(2);*/
+        SLvino4.setTextoInicial("CUARTO VINO");
+        SLvino4.TextField.texto= "";
+
+        ATCatas.lineas[0]= "";  //DESCRPCIÓN
+        ATCatas.setTexto(ATCatas.lineas[0]);
+
+        dataCalendario= "";
 
         RepreCocineros= db.getInfoTablaRepresentantes();
-        Cocineros= new SelectList(p5, RepreCocineros, (int) (5*marginH+columnCatasWidth), (int)(columnCatasHeight-120), 500, 80, "REPRESENTANTE GRUPO COCINEROS", 30);
-        Cocineros.setSizeText(25);
+        Cocineros.setTextoInicial("REPRESENTANTE GRUPO COCINEROS");
+        Cocineros.TextField.texto= "";
 
-        ATVinos= new AreaTexto(p5, (int) (3*marginH+columnVinosWidth), (int) (20*marginV+HeadLineHeight+115), (int)columnVinosWidth, 270, 40, 10, "");
-        NombreEvento = new CamposTextoRect(p5, (int) (3*marginH+columnCatasWidth), (int)(3*marginV+HeadLineHeight+30), (int) (columnCatasWidth),  "Nombre de la cena o cata: ");
-        NombreEvento.setHeightRectSizeLetra(70, 30);
-        NombreEvento.setColoresCamposTextoRect(255, 200, 0);
+        NombreEvento.setSoloTexto("");
 
     }
 
@@ -371,7 +427,6 @@ public class InterficieGrafica {
             p5.fill(0);
             p5.text("WineKeeper", p5.width/2+50, 350);
             dibujaLogo(p5);
-            //dibujaRectanguloCentro(p5);
             p5.textFont(FontsApp.getFontAt(2));
             UserName.display(p5);
             Contra.display(p5);
@@ -619,8 +674,6 @@ public class InterficieGrafica {
     }
 
     public void dibujaHeadLine(PApplet p5){
-        //p5.fill(ColoresApp.getColorAt(3));
-        //p5.rect(LogoMenuWidth +3*marginH, marginV, HeadLineWidth, HeadLineHeight);
         p5.pushStyle();
             p5.fill(0);
             p5.stroke(0);
@@ -631,7 +684,6 @@ public class InterficieGrafica {
             p5.textFont(FontsApp.getFontAt(0));
             p5.textSize(midaTitol);
             p5.textAlign(p5.LEFT, p5.CENTER);
-            String nuevoTitulo;
             if(pantallaActual==PANTALLA.AÑADIR_VINOS || pantallaActual== PANTALLA.AÑADIR_EVENTO){
                 p5.text("" + ptitulo, 4 * marginH + LogoMenuWidth, HeadLineHeight - 25);
             }
@@ -643,20 +695,6 @@ public class InterficieGrafica {
 
 
         p5.popStyle();
-    }
-
-    public void dibujaRectanguloCentro(PApplet p5){
-        p5.fill(ColoresApp.getColorAt(0), 90);
-        p5.pushStyle();
-            p5.rectMode(CENTER);
-            p5.rect(p5.width/2, p5.height/2 +marginV*6, CentRectWidth+130, CentRectHeight-150, 10);
-            //TEXTO
-            p5.fill(0);
-            p5.textFont(FontsApp.getFirstFont());
-            p5.textSize(midaTitol);
-            //p5.text("PANTALLA "+ pantallaActual+ "(" +pantallaActual.ordinal() +")", p5.width/2, marginV*5);
-        p5.popStyle();
-
     }
 
     public void dibujaLogos(PApplet p5){
@@ -738,7 +776,7 @@ public class InterficieGrafica {
     public void dibujaOpciones(PApplet p5){
         p5.textFont(FontsApp.getFirstFont());
         addVinos.display(p5);
-        addCatas.display(p5);
+        addEventos.display(p5);
     }
 
 
@@ -798,6 +836,10 @@ public class InterficieGrafica {
             String[][] vinos = db.getAñadaFecha(c1.años[c1.currentYear]);
             for(int j= 0; j<db.getFilasVinoAñada(c1.años[c1.currentYear]); j++) {
                 p5.text(vinos[j][0], 3 * marginH, 5 * marginV + HeadLineHeight+(50*j));
+                if(vinos[j][1]==null){
+                    vinos[j][1]= "0000-00-00";
+                }
+                vinos[j][1]= getOnlyYear(vinos[j][1]);
                 p5.text("Consumir a partir de " + vinos[j][1], FilaCalendarioWidth - 21*marginH, 5 * marginV + HeadLineHeight+(50*j));
             }
         }
@@ -825,7 +867,4 @@ public class InterficieGrafica {
         String d= fecha.split("-")[2];
         return y;
     }
-
-
-
 }

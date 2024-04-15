@@ -82,7 +82,4 @@ public class CalendarCarrousel {
             this.prev();
         }
     }
-
-
-
 }

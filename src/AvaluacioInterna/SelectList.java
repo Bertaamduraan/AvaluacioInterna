@@ -49,6 +49,10 @@ public class SelectList {
         sizeText= s;
     }
 
+    public void setTextoInicial(String t){
+        t0= t;
+    }
+
 
     public void display(PApplet p5){
         p5.pushStyle();
@@ -113,6 +117,4 @@ public class SelectList {
             buttons.clear();
         }
     }
-
-
 }

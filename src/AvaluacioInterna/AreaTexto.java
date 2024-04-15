@@ -19,6 +19,17 @@ public class AreaTexto {
 
     boolean seleccionado= false;
 
+    /**
+     * CONSTRUCTOR DEL ÁREA DE TEXTO
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición "x" en la que se crea el área de texto
+     * @param y Posición "y" en la que se crea el área de texto
+     * @param w Anchura del área de texto
+     * @param h Altura del área de texto
+     * @param nc Número de columnas
+     * @param nf Número de filas
+     * @param t Texto Inicial
+     */
     public AreaTexto(PApplet p5, int x, int y, int w, int h, int nc, int nf, String t){
         this.x= x;
         this.y= y;
@@ -35,6 +46,10 @@ public class AreaTexto {
         this.ColorSeleccionado= p5.color(200);
     }
 
+    /**
+     * DIBUJA EL ÁREA DE TEXTO
+     * @param p5 Objeto de la clase PApplet para dibujar
+     */
     public void display(PApplet p5){
         p5.pushStyle();
         if(seleccionado){

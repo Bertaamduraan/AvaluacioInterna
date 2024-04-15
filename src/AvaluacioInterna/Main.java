@@ -67,6 +67,7 @@ public class Main extends PApplet{
         }
         else{
             String rutaImagen= selection.getAbsolutePath();
+            System.out.println(rutaImagen);
 
             gui.imagen= loadImage(rutaImagen); //ACTUALIZAR IMAGEN
             gui.titulo= selection.getName(); //ACTUALIZAR TÍTULO
@@ -92,10 +93,12 @@ public class Main extends PApplet{
                 gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_VINOS;
                 gui.ptitulo= "AÑADIR VINO";
                 gui.MenuOpen= false;
+                gui.setPantallaVinos(this);
             } else if (gui.bMCatas.cursorEncimaBoton(this)) {
                 gui.pantallaActual = InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
                 gui.ptitulo= "AÑADIR EVENTO";
                 gui.MenuOpen= false;
+                gui.setPantallaAñadirEvento(this);
             }
             else if(gui.bMVisualizar.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.VISUALIZAR_cEVENTOS;
@@ -105,6 +108,8 @@ public class Main extends PApplet{
 
             if(gui.LogOut.mouseEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.INICIO;
+                gui.UserName.setSoloTexto("");
+                gui.Contra.setSoloTexto("");
             }
 
 
@@ -549,11 +554,13 @@ public class Main extends PApplet{
                 gui.ptitulo= "AÑADIR VINO";
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
                 gui.wineSelected=false;
+                gui.setPantallaVinos(this);
             }
-            if(gui.addCatas.cursorEncimaBoton(this)){
+            if(gui.addEventos.cursorEncimaBoton(this)){
                 gui.ptitulo= "AÑADIR EVENTO";
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
                 gui.eventoSelected= false;
+                gui.setPantallaAñadirEvento(this);
             }
         }
 
@@ -630,7 +637,7 @@ public class Main extends PApplet{
     public void keyPressed(){
         /*if(key=='0'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.INICIO;
-        }*/
+        }
         if(key=='1'){
             gui.pantallaActual = InterficieGrafica.PANTALLA.BODEGA;
         }

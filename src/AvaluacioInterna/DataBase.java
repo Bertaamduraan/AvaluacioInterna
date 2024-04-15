@@ -590,9 +590,7 @@ public class DataBase {
             System.out.println(e);
         }
     }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //UPDATES
     public void updateVino(String nombre, String a, String p, String u, int can, String color, String cap, String DO, String b, String año,String i, String clave){
         try {
@@ -622,7 +620,6 @@ public class DataBase {
         }
 
     }
-
     public void updateVinosEvento(String vino0, String vino1, String vino2, String vino3, String idEvento){
         try{
             String q0= "UPDATE vinos_evento SET Vinos_NombreVinos= '"+vino0+"' WHERE vinos_evento.Evento_idEvento= '"+idEvento+"' AND vinos_evento.Orden= '0'";
@@ -641,6 +638,5 @@ public class DataBase {
         catch (Exception e){
             System.out.println(e);
         }
-
     }
 }
