@@ -243,30 +243,12 @@ public class Main extends PApplet{
                 }
                 gui.ColorVino.cambio();
             }
-            /*if (gui.RBCenasV.cursorEncima(this)) {
-                gui.RBCenasV.cambio();
-            } else if (gui.RBCatasV.cursorEncima(this)) {
-                gui.RBCatasV.cambio();
-            }
-
-            if(gui.bCalendarioVino1.mouseEncimaBoton(this)){
-                gui.cVinosCata.visible= !gui.cVinosCata.visible;
-            }
-
-            if(gui.bCalendarioVino2.mouseEncimaBoton(this)){
-                gui.cVinosCena.visible= !gui.cVinosCena.visible;
-            }
-
-            if(gui.bCalendarioVinos.mouseEncimaBoton(this)){
-                gui.cVinos.visible= !gui.cVinos.visible;
-            }*/
 
             gui.contadorVinos.update(this);
 
             if(gui.bImagenVino.cursorEncimaBoton(this)){
                 selectInput("Selecciona una imagen...", "fileSelected");
             }
-
                     if(gui.BAceptarV.cursorEncimaBoton(this)){
                         gui.cAddVinos.visible= true;
                         gui.cAddVinos.bAceptar.funciona= true;
@@ -277,7 +259,6 @@ public class Main extends PApplet{
                         gui.cAddVinos.visible= false;
                         gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                         gui.wineSelected= false;
-                        gui.claveVinoSeleccionado= null;
                         String color= gui.db.getClaveFromTabla("color", "idColor", "Color", gui.ColorVino.selectedValue);
                         String bodega = gui.db.getClaveFromTabla("bodega", "idbodega", "nombreBodega", gui.TBodega.getSoloTexto());
                         String capacidad= gui.db.getClaveFromTabla("capacidad", "idCapacidad", "Capacidad", gui.TRCapacidad.getSoloTexto());
