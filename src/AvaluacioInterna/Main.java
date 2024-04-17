@@ -277,6 +277,7 @@ public class Main extends PApplet{
                         gui.cAddVinos.visible= false;
                         gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                         gui.wineSelected= false;
+                        gui.claveVinoSeleccionado= null;
                         String color= gui.db.getClaveFromTabla("color", "idColor", "Color", gui.ColorVino.selectedValue);
                         String bodega = gui.db.getClaveFromTabla("bodega", "idbodega", "nombreBodega", gui.TBodega.getSoloTexto());
                         String capacidad= gui.db.getClaveFromTabla("capacidad", "idCapacidad", "Capacidad", gui.TRCapacidad.getSoloTexto());
@@ -546,6 +547,7 @@ public class Main extends PApplet{
         if(gui.bLMenu.mouseEncimaBoton(this)){
             gui.MenuOpen= !gui.MenuOpen;
             gui.wineSelected= false;
+            gui.claveVinoSeleccionado= null;
             gui.eventoSelected=false;
         }
 
@@ -554,6 +556,7 @@ public class Main extends PApplet{
                 gui.ptitulo= "AÑADIR VINO";
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_VINOS;
                 gui.wineSelected=false;
+                gui.claveVinoSeleccionado= null;
                 gui.setPantallaVinos(this);
             }
             if(gui.addEventos.cursorEncimaBoton(this)){

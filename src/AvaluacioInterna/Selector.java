@@ -14,6 +14,16 @@ public class Selector {
     Fonts FontsApp;
     int TamañoTexto= 18;
 
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param texts Array de opciones que puede tener el selector
+     * @param x Posición "x" en la que se crea el selector
+     * @param y Posición "x" en la que se crea el selector
+     * @param w Anchura del selector
+     * @param h Altura del selector
+     * @param r Valor para redondear el rectángulo del selector
+     */
     public Selector(PApplet p5, String[] texts, float x, float y, float w, float h, float r){
 
         this.textos= texts;
@@ -35,6 +45,7 @@ public class Selector {
         TamañoTexto= t;
     }
 
+    //DIBUJA EL SELECTOR PLEGADO Y DESPLEGADO CON LOS VALORES CORRESPONDIENTES
     public void display(PApplet p5){
     p5.pushStyle();
         p5.textFont(FontsApp.getFontAt(3));

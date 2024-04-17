@@ -30,7 +30,15 @@ public class Calendario {
     //Botones del calendario
     public BotonConTexto bNext, bPrev, bOK;
 
-    //CONSTRUCTOR
+
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición "x" en la que se crea el Calendario
+     * @param y Posición "y" en la que se crea el Calendario
+     * @param w Anchura del calendario
+     * @param h Altura del calendario
+     */
     public Calendario (PApplet p5, int x, int y, int w, int h){
         this.buttons= new BotonesDias[37];
 

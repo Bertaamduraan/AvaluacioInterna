@@ -20,6 +20,15 @@ public class CalendarCarrousel {
 
     BotonConFoto bPrev, bNext;
 
+    /**
+     * CONSTRUCTOR CALENDARIO CARROUSEL
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición 'x' donde se dibujará el calendario
+     * @param y Posición 'y' donde se dibujará el calendario
+     * @param w Anchura del calendario
+     * @param h ALtura del calendario
+     * @param años Array de años que mostrará el calendario
+     */
     public CalendarCarrousel(PApplet p5, float x, float y, float w, float h, String[] años){
         this.coloresApp= new Colors(p5);
         this.x = x; this.y = y; this.w = w; this.h = h;
@@ -49,7 +58,10 @@ public class CalendarCarrousel {
         }
     }
 
-
+    /**
+     * DIBUJAR EL CALENDARIO
+     * @param p5 Objeto de la clase PApplet para dibujar
+     */
     public void display(PApplet p5){
         p5.pushStyle();
             p5.fill(this.coloresApp.getColorAt(3));

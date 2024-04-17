@@ -21,7 +21,15 @@ public class BotonConTexto {
     Fonts FontsApp;
 
 
-    //CONSTRUCTOR
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición 'x' donde se dibujarà el botón
+     * @param y Posición  'y' donde se dibujarà el botón
+     * @param w Anchura del botón
+     * @param h Altura del botón
+     * @param text Texto que tendrá escrito el botón
+     */
     public BotonConTexto(PApplet p5,  float x, float y, float w, float h, String text){
        this.TextoBoton= text;
         this.x= x;
@@ -40,8 +48,6 @@ public class BotonConTexto {
     public void setMidaTextoBoton(int m){
         this.MidaTextoBoton= m;
     }
-
-
 
     public void setColores(int cRelleno, int colorRellenoEncima, int cTrazo, int cLetras){
         this.ColorRelleno= cRelleno;

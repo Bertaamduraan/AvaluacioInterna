@@ -19,7 +19,17 @@ public class Contador {
 
     PImage up, down; //ICONOS DEL BOTÓN
 
-    //MÉTODO DEL CONSTRUCTOR
+
+    /**
+     * MÉTODO DEL CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param mas Imagen que representa el botón para aumentar el valor del contador
+     * @param menos Imagen que representa el botón para disminuir el valor del contador
+     * @param x Posición "x" en la que se crea el contador
+     * @param y Posición "y" en la que se crea el contador
+     * @param w Anchura del contador
+     * @param h Altura del contador
+     */
     Contador (PApplet p5, PImage mas, PImage menos, float x, float y, float w, float h){
         this.up= mas;
         this.down = menos;
@@ -31,7 +41,10 @@ public class Contador {
     }
 
 
-    //DIBUJAR EL BOTÓN
+    /**
+     * DIBUJAR EL BOTÓN
+     * @param p5 Objeto de la clase PApplet para dibujar
+     */
     public void display(PApplet p5){
     p5.pushStyle();
         p5.fill(255);
@@ -56,11 +69,6 @@ public class Contador {
     public int getValor(){
         return this.valor;
     }
-
-    public boolean cursorEncimaBoton(PApplet p5){
-        return cursorEncimaBotonUp(p5) || cursorEncimaBotonDown(p5);
-    }
-
     public boolean cursorEncimaBotonUp(PApplet p5){
         return p5.mouseX >= this.x + this.w+10 && p5.mouseX <= this.x + this.w+10 + this.h &&
                 p5.mouseY >= this.y && p5.mouseY <= this.y + this.h;

@@ -19,7 +19,16 @@ public class Confirmar {
 
     boolean visible= false;
 
-    //CONSTRUCTOR
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param t Texto grande que mostrará
+     * @param m Mensaje más extenso y pequeño que mostrará
+     * @param x Posición "x" en la que se crea el confirm
+     * @param y Posición "x" en la que se crea el confirm
+     * @param w Anchura del confirm
+     * @param h Altura del confirm
+     */
     Confirmar (PApplet p5, String t, String m, float x, float y, float w, float h) {
         ColoresAPP= new Colors(p5);
         FontsAPP= new Fonts(p5);
@@ -55,7 +64,7 @@ public class Confirmar {
             this.bCancelar.setFunciona(true);
         }
     }
-
+    //DIBUJA EL CONFIRM
     void display(PApplet p5){
         if(this.visible){
             float borde= 10;

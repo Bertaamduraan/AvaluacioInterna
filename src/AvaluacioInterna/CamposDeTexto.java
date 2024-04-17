@@ -21,7 +21,14 @@ public class CamposDeTexto {
         TamañoTexto= t;
     }
 
-    //Constructor
+    /**
+     * CONSTRUCTIR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición "x" en la que se crea el campo de texto
+     * @param y Posición "y" en la que se crea el campo de texto
+     * @param w Anchura de la línea del campod e texto
+     * @param t Texto inicial del campo de texto
+     */
     public CamposDeTexto(PApplet p5, int x, int y, int w, String t){
         this.x= x;
         this.y= y;

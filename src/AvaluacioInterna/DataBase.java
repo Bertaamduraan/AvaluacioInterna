@@ -480,6 +480,9 @@ public class DataBase {
         try{
             String Snombre= nombre.replace("\"'", "\\'");
             String Can= String.valueOf(can);
+            if(imagen==null){
+                imagen= "silueta_Vino.png";
+            }
             String q= "INSERT INTO vinos (nombreVinos, Añada, Precio, Ubicación, Cantidad, COLOR_idCOLOR, CAPACIDAD_idCAPACIDAD, DENOMINACIÓN, IMAGEN_idIMAGEN, bodega, Fecha) VALUES " +
                     "('"+Snombre + "','" +a + "','" + p + "','" +u + "','" + Can + "','" + color + "','" +cap + "','"+ DO + "','"+imagen+ "','" +b + "','" + año+ "')";
             System.out.println(q);

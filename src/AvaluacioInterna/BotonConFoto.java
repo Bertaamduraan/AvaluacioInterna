@@ -10,7 +10,15 @@ public class BotonConFoto {
     PImage logo;
     boolean enable;
 
-    //Constructor
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param logo Imagen que representará el botón
+     * @param x Posición 'x' donde se dibujarà el botón
+     * @param y Posición  'y' donde se dibujarà el botón
+     * @param w Anchura del botón
+     * @param h Altura del botón
+     */
     public BotonConFoto(PApplet p5, PImage logo, float x, float y, float w, float h){
         this.logo= logo;
         this.x= x;
@@ -38,7 +46,6 @@ public class BotonConFoto {
         return (p5.mouseX >= this.x) && (p5.mouseX <= this.x + this.w) &&
                 (p5.mouseY >= this.y) && (p5.mouseY <= this.y + this.h) && enable;
     }
-
 
     public void setEnable(boolean encendido){
         this.enable= encendido;

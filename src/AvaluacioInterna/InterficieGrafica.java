@@ -232,6 +232,7 @@ public class InterficieGrafica {
         TRAño= new CamposTextoRect(p5, (int) (4*marginH+2*columnVinosWidth), (int) (marginV+HeadLineHeight+75), (int)columnVinosWidth, "Consumir a partir de: ");
         TRAño.setColoresCamposTextoRect(255, 200, 0);
 
+        VColor= db.getTipos();
         ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 180, 80, 10);
         ColorVino.setTamañoTexto(25);
         ColorVino.setSelectedValue("COLOR VINO");
@@ -781,7 +782,7 @@ public class InterficieGrafica {
 
 
     public boolean LogInCorrecto(){
-        return (UserName.texto.equals("USER NAME: admin")&& Contra.texto.equals("CONTRASEÑA: 234"));
+        return (UserName.texto.equals("USER NAME: joanMarge")&& Contra.texto.equals("CONTRASEÑA: 123456"));
     }
 
 
@@ -810,8 +811,8 @@ public class InterficieGrafica {
         infoVinoSeleccionado = db.getInfoVino(nombreVinoSeleccionado);
         TNombre.setSoloTexto(nombreVinoSeleccionado);
         TDenominacion.setSoloTexto(infoVinoSeleccionado[1]);
-        ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 180, 80, 10);
-        ColorVino.setTamañoTexto(25);
+        //ColorVino= new Selector(p5, VColor, (int) (3.5*marginH+columnVinosWidth), (int) (HeadLineHeight+50), 180, 80, 10);
+        //ColorVino.setTamañoTexto(25);
         ColorVino.setSelectedValue(infoVinoSeleccionado[2]);
         TRUbicacion.setSoloTexto (infoVinoSeleccionado[3]);
         titulo= infoVinoSeleccionado[4]; imagen= p5.loadImage(titulo);

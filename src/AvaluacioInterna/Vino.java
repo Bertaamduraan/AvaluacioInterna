@@ -16,6 +16,15 @@ public class Vino {
    float margen= 10;
     Fonts FontsApp;
 
+    /**
+     * CONSTRUCTOR DE UN VINO
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param n Nombre del vino
+     * @param DO Denominación de origen dle vino
+     * @param color Color del vino
+     * @param u Ubicación del vino
+     * @param f Imagen que representa el vino
+     */
     public Vino(PApplet p5, String n, String DO, String color, String u, String f){
         this.nombre=n;
         this.DO= DO;

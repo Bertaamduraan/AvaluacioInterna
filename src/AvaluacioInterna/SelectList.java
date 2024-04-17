@@ -21,6 +21,17 @@ public class SelectList {
     ArrayList<BotonConTexto> buttons;
     Fonts FontsApp;
 
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param textos Array de valores que tiene la lista, y que el usario puede seleccionar
+     * @param x Posición "x" en la que se crea la lista
+     * @param y Posición "y" en la que se crea la lista
+     * @param w Anchura de la lista
+     * @param h Altura de la lista
+     * @param textoIncial Texto inicial de la lista
+     * @param sT Tamaño del texto
+     */
     public SelectList(PApplet p5, String [][] textos, float x, float y, float w, float h, String textoIncial, int sT){
         this.texts= textos;
         this.selectedID="";
@@ -53,7 +64,8 @@ public class SelectList {
         t0= t;
     }
 
-
+    //DIBUJA EL RECTÁNGULO DONDE EL USUARIO PODRÁ ESCRBIR AL IGUAL QUE LOS BOTONES QUE SE PUEDEN PULSAR CON
+    //                                                                       LOS VALORES CORRESPONDIENTES
     public void display(PApplet p5){
         p5.pushStyle();
             TextField.setColoresCamposTextoRect(255, 200, 0);

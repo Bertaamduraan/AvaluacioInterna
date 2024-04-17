@@ -33,6 +33,14 @@ public class CalendarioPlus {
     //VISIBILIDAD DEL CALENDARIO
     boolean visible = false;
 
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param x Posición "x" en la que se crea el Calendario
+     * @param y Posición "y" en la que se crea el Calendario
+     * @param w Anchura del calendario
+     * @param h Altura del calendario
+     */
     CalendarioPlus(PApplet p5, int x, int y, int w, int h){
         this.botones= new BotonesDias[37];
 
@@ -111,7 +119,7 @@ public class CalendarioPlus {
         return date;
     }
 
-
+    //SE MUEVE A UN MES ANTERIOR
     public void mesAnterior(){
         this.botones= new BotonesDias[37];
 
@@ -140,6 +148,7 @@ public class CalendarioPlus {
         crearCalendario(x, y, w, h);
     }
 
+    //CREAR EL CALENDARIO INICIAL
     public void crearCalendario(int x, int y, int w, int h){
         float dayWidth= w/7;
         float dayHeight= h/6;

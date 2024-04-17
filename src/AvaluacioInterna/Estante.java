@@ -24,7 +24,17 @@ public class Estante {
     int selected= -1;
     Fonts FontsApp;
 
-    //CONSTRUCTOR
+    /**
+     * CONSTRUCTOR
+     * @param p5 Objeto de la clase PApplet para dibujar
+     * @param p Posición del estante si se dibujan más estantes
+     * @param n Nombre del estante
+     * @param x  Posición "x" en la que se crea el estante
+     * @param y  Posición "x" en la que se crea el estante
+     * @param w Anchura del estante
+     * @param h Altura del estante
+     * @param numVisible Número visible de estantes a la misma vez en un estante
+     */
     public Estante(PApplet p5, int p, String n, float x, float y, float w, float h, int numVisible){
         this.pos= p;
         this.nombre= n;
@@ -99,7 +109,7 @@ public class Estante {
             this.currentWine= constrain(this.currentWine, 0, this.numVinos-1);
         }
     }
-
+    //DIBUJA EL ESTANTE
     public void display(PApplet p5){
     p5.pushStyle();
             p5.textFont(FontsApp.getFirstFont());

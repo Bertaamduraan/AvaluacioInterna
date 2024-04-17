@@ -13,8 +13,17 @@ public class BotonesDias {
 
     boolean selected;
 
-    //CONSTRUCTOR
-    BotonesDias( float x, float y, float w, float h, int d, int m, int a){
+    /**
+     * CONSTRUCTOR
+     * @param x Posición 'x' donde se dibujará el botón del dia
+     * @param y Posición 'y' donde se dibujará el botón del dia
+     * @param w Anchura del botón
+     * @param h Altura del botón
+     * @param d Valor numérico entre 1 y 31 que puede tener el botón
+     * @param m Valor numérico que representa el mes en que se encuentra el botón
+     * @param a Valor numérico que representa el año en el que se ecnuetra el botón
+     */
+    BotonesDias(float x, float y, float w, float h, int d, int m, int a){
         this.x=x;
         this.y= y;
         this.w= w;
@@ -25,12 +34,19 @@ public class BotonesDias {
         this.selected= false;
     }
 
-
     void setSeleccionado(boolean b){
         this.selected=b;
     }
 
-    //DIBUJAR EL BOTÓN
+    /**
+     * DIBUJAR EL BOTÓN
+     * @param p5 Objeto de la clase PApplet, para dibujar
+     * @param n Valor para disminuir el radio del círculo que se dibuja al pulsar sobre un botón
+     * @param Ts Valor numérico que representa el tamaño del texto del botón
+     * @param r Valor para redondear las esquinas de los botones
+     * @param sW Grosor deñ trazo
+     * @param c El color del botón
+     */
     void display(PApplet p5, int n, int Ts, int r, int sW, int c){
         p5.pushStyle();
             p5.fill(c);
