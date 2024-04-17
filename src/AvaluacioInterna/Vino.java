@@ -78,11 +78,6 @@ public class Vino {
        p5.textSize(textSize);
        p5.fill(0);
        p5.text(this.nombre, margen+x, y+3*h/4+10, w - 2*margen, h+100);
-       /*p5.textSize(12);
-       p5.text(this.DO, margen+x, y + 3*h/4 + 25);
-       p5.text(this.bodega, margen+x, y + 3*h/4 + 35);
-       p5.text(this.color, margen+x, y + 3*h/4 + 45);
-       p5.text(this.añada, margen+x, y + 3*h/4 + 55);*/
    p5.popStyle();
    }
    public boolean cursorEncima (PApplet p5, float x, float y, float w, float h){

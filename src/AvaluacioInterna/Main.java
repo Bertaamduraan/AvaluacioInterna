@@ -426,7 +426,6 @@ public class Main extends PApplet{
             if(gui.cAddCatas.visible && gui.cAddCatas.bAceptar.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                 gui.eventoSelected= false;
-                gui.claveEventoSeleccionado= null;
                 gui.cAddCatas.visible= false;
                 String fechaEvento= gui.formataFechaEng(gui.dataCalendario);
                 gui.claveEventoSeleccionado= gui.db.getClaveFromTabla("evento", "idEvento", "Fecha", fechaEvento);
@@ -532,6 +531,7 @@ public class Main extends PApplet{
             gui.wineSelected= false;
             gui.claveVinoSeleccionado= null;
             gui.eventoSelected=false;
+            gui.claveEventoSeleccionado=null;
         }
 
         if(gui.OpcionesOpen){
@@ -546,6 +546,7 @@ public class Main extends PApplet{
                 gui.ptitulo= "AÑADIR EVENTO";
                 gui.pantallaActual= InterficieGrafica.PANTALLA.AÑADIR_EVENTO;
                 gui.eventoSelected= false;
+                gui.claveEventoSeleccionado= null;
                 gui.setPantallaAñadirEvento(this);
             }
         }
