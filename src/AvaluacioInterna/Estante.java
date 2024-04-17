@@ -67,11 +67,11 @@ public class Estante {
         }
     }
 
-    /*void addVinos(Vino[] vs){
+    void addVinos(Vino[] vs){
         for(Vino v: vs){
             addVino(v);
         }
-    }*/
+    }
 
     public void addVINOinfo(String [] info, PApplet p5){
         //Vino v= new Vino(p5, info[0], info[1], info[2], info[3], info[4], info[5], info[6]);
