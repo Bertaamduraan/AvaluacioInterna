@@ -445,6 +445,7 @@ public class Main extends PApplet{
             if(gui.cAddCatas.visible && gui.cAddCatas.bAceptar.cursorEncimaBoton(this)){
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                 gui.eventoSelected= false;
+                gui.claveEventoSeleccionado= null;
                 gui.cAddCatas.visible= false;
                 String fechaEvento= gui.formataFechaEng(gui.dataCalendario);
                 gui.claveEventoSeleccionado= gui.db.getClaveFromTabla("evento", "idEvento", "Fecha", fechaEvento);
@@ -480,6 +481,7 @@ public class Main extends PApplet{
                 gui.db.deleteEvento(fecha);
                 gui.pantallaActual= InterficieGrafica.PANTALLA.BODEGA;
                 gui.eventoSelected= false;
+                gui.claveEventoSeleccionado= null;
                 gui.cEliminarEvento.visible= false;
             }
             else if (gui.cEliminarEvento.visible && gui.cEliminarEvento.bCancelar.cursorEncimaBoton(this)){
